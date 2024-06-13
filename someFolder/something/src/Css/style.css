@@ -706,7 +706,8 @@ input {
 }
 
 .flexRow14{
-  
+  display: flex;
+  justify-content: center;
 }
 
 input::placeholder {
