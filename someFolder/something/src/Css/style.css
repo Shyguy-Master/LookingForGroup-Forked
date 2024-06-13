@@ -684,30 +684,49 @@ input {
 
 /*||ForgotPassword Page */
 
-.flexColumn10{
+.centerContent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.flexColumn10 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center; 
-  border-bottom-left-radius: 25px;
-  border-bottom-right-radius: 25px;
-  background-color: white;
-  border-bottom: solid black 2px;
-  border-left: solid black 2px;
-  border-right: solid black 2px;
-  width: 75vw;
-  min-height: 75vh;
+  justify-content: center;
+  border-radius: 25px;
+  padding: 20px;
   height: auto;
+  min-height: 75vh;
+  border: solid black 2px;
+  width: 75vh;
 }
 
-.flexRow13{
+.flexRow13, .flexRow14, .flexRowEmail {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
+  width: 100%;
+  margin-bottom: 10px; /* Add some spacing between rows */
 }
 
-.flexRow14{
-  display: flex;
-  justify-content: center;
+.flexRow14 h1, p {
+  margin: 0;
+  text-align: center;
+  width: 100%;
+  padding: 0 20px; 
+  box-sizing: border-box;
+}
+
+h1 {
+  font-size: 1.5em; 
+}
+
+h2 {
+  font-size: 1.2em; 
 }
 
 input::placeholder {

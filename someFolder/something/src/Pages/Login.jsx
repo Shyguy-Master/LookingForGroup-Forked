@@ -12,6 +12,8 @@ const Login = () => {
                     <h1>   Welcome!!</h1>
                     <h2>Don't have an account?</h2>
                     <button className="button-77" type="button" onClick={() => navigate('/SignUp')}>Sign Up</button>
+                    <h3>Forgot Password?</h3> 
+                    <a href="" onClick={() => navigate('/AskEmail') }>Reset password</a>
                 </div>
 
                 <div className="flexRow3">
