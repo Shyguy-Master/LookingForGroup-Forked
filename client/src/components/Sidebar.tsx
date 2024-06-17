@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './styles.css';
 import homeIcon from '../img/AhomeIcon.png';
@@ -11,12 +11,33 @@ import * as paths from "../constants/routes";
 const SideBar = () => {
   const [headerText, setHeaderText] = useState('Group'); // State to manage the h1 text
   const navigate = useNavigate(); // Hook for navigation
+  const dotRef = useRef(null);
 
   // Function to handle the button clicks and update the h1 text
   const handleTextChange = (text, path) => {
     setHeaderText(text);
     navigate(path); // Navigate to the specified path
   };
+
+  useEffect(() => {
+    const dotElement = dotRef.current;
+    const rect1 = dotElement.querySelector('.rect1');
+    const rect2 = dotElement.querySelector('.rect2');
+
+    const handleRect1Click = () => {
+    };
+
+    const handleRect2Click = () => {
+    };
+
+    if (rect1) rect1.addEventListener('click', handleRect1Click);
+    if (rect2) rect2.addEventListener('click', handleRect2Click);
+
+    return () => {
+      if (rect1) rect1.removeEventListener('click', handleRect1Click);
+      if (rect2) rect2.removeEventListener('click', handleRect2Click);
+    };
+  }, []);
 
   return (
     <div className='SideBarContainer'>
@@ -25,7 +46,7 @@ const SideBar = () => {
       </div>
       
       <div className='ProfileContainer'>
-        <span className="dot"></span>
+        <span className="dot" ref={dotRef}></span>
       </div>
       
       <h1>UserName</h1>
