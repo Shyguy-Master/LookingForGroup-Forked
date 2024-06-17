@@ -11,9 +11,7 @@ const Home = () => {
             <header></header>
             <div className="flexColumn">
                 <div className="flexRow">
-                    <h1>
-                        Looking For Group
-                    </h1>
+                    
                     <div className="button-group">
                         <button className="button" type="button" onClick={() => window.location.href = '/Login'}>Login</button>
                         <button className="button" type="button" onClick={() => window.location.href = '/SignUp'}>SignUp</button>

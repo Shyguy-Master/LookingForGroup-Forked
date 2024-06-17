@@ -68,7 +68,7 @@ const ForgotPassword = () => {
           </div>
   
           <div className='flexRowEmail'>
-            <input type='text' id='email' name='email' placeholder='Email' /><br /> {/* Changed id and name */}
+            <input type='text' id='email' name='email' placeholder='Email' /><br />
           </div>
   
           <input
