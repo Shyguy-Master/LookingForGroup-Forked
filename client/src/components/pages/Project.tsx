@@ -1,9 +1,11 @@
 import "./pages.css";
 import "../styles.css";
-import profilePlaceholder from "../../img/profile-user.png";
+// import profilePlaceholder from "../../img/profile-user.png";
 import { ProjectPost } from "../ProjectPost";
 import { ProjectMember } from "../ProjectMember";
 import { projects, profiles, posts } from "../../constants/fakeData";
+
+const profilePlaceholder = "./icons/profile-user.png";
 
 // To-do:
 // Figure out image displays once images are added to site
@@ -60,7 +62,7 @@ const leaveProject = () => {
 }
 
 const toggleOptionDisplay = () => {
-  document.getElementById("more-options-popup").classList.toggle("show");
+  // document.getElementById("more-options-popup").classList.toggle("show");
 }
 
 // Displays for users that are not members of the project
@@ -149,6 +151,7 @@ const ProjectInfoMember = (props) => {
 
 const Project = (props) => {
   return (
+    
     <div id='project-page' className='page'>
       <div id='return-button-container'>
       <button id='return-button' className='white-button' onClick={previousPage}>&lt; return</button>

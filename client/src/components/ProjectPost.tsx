@@ -1,5 +1,7 @@
 import "./styles.css"
-import postImagePlaceholder from "../img/AhomeIcon.png";
+// import postImagePlaceholder from "../img/AhomeIcon.png";
+
+const postImagePlaceholder = "./icons/home.png";
 
 export const ProjectPost = (props) => {
   return (

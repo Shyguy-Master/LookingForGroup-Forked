@@ -1,6 +1,7 @@
 import "./styles.css"
-import profilePlaceholder from "../img/profile-user.png";
+// import profilePlaceholder from "../img/profile-user.png";
 
+const profilePlaceholder = "./icons/profile-user.png";
 export const ProjectMember = (props) => {
   return (
     //Allow to be clickable later, take user to member's profile page

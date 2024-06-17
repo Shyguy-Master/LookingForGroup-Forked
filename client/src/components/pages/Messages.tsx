@@ -2,8 +2,9 @@ import "./pages.css";
 
 const Messages = (props) => {
   return (
-    <div>
-      Messages
+    <div className="page">
+      <h1 className="page-title">My Messages</h1>
+      
     </div>
   );
 }

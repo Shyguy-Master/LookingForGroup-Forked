@@ -1,13 +1,15 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './styles.css';
-import homeIcon from '../img/AhomeIcon.png';
-import folder from '../img/folder.png';
-import message from '../img/message.png';
-import profile from '../img/profile-user.png';
-import setting from '../img/setting.png';
+// import homeIcon from '../img/AhomeIcon.png';
+// import folder from '../img/folder.png';
+// import message from '../img/message.png';
+// import profile from '../img/profile-user.png';
+// import setting from '../img/setting.png';
 import * as paths from "../constants/routes";
 import { useSelector } from 'react-redux';
+
+import { profiles } from "../constants/fakeData";
 
 // To Do:
 // Make mobile friendly version stay at bottom of screen
@@ -18,14 +20,16 @@ import { useSelector } from 'react-redux';
 
 const SideBar = () => {
   const [width, setWidth] = React.useState(window.innerWidth);
-  const breakpoint = useSelector((state:any) => state.page.MOBILE_BREAKPOINT);
+  const breakpoint = useSelector((state: any) => state.page.MOBILE_BREAKPOINT);
 
   const [headerText, setHeaderText] = useState('Group'); // State to manage the h1 text
+  const [activeTab, setActiveTab] = useState('Home'); // State to manage the active tab [Home, Projects, Messages, Profile, Settings
   const navigate = useNavigate(); // Hook for navigation
 
   // Function to handle the button clicks and update the h1 text
-  const handleTextChange = (text, path) => {
+  const handleTextChange = (text, path, tab) => {
     setHeaderText(text);
+    setActiveTab(tab);
     navigate(path); // Navigate to the specified path
   };
 
@@ -36,22 +40,27 @@ const SideBar = () => {
   // Mobile layout
   if (width < breakpoint) {
     return (
-      <div className='sideBarContainer'>
+      <div className='sideBarContainer' style={{
+        position: 'fixed',
+        bottom: 0,
+        boxShadow: '0px -2px 5px 0px rgba(0,0,0,0.2)',
+        zIndex: 100
+      }}>
         <div className='containerButtonSideBar'>
-          <button onClick={() => handleTextChange('Discovery', paths.routes.HOME)}> 
-            <img src={homeIcon} className="navIcon" alt="Home" />
+          <button className={activeTab === 'Home' ? 'active' : ''} onClick={() => handleTextChange('Group', paths.routes.HOME, 'Home')}>
+            <img src="./icons/home.png" className="navIcon" alt="Home" />
           </button>
-          <button onClick={() => handleTextChange('My Projects', paths.routes.MYPROJECTS)}> 
-            <img src={folder} className="navIcon" alt="Projects" />
+          <button className={activeTab === 'Projects' ? 'active' : ''} onClick={() => handleTextChange('My Projects', paths.routes.MYPROJECTS, 'Projects')}>
+            <img src="./icons/folder.png" className="navIcon" alt="Projects" />
           </button>
-          <button onClick={() => handleTextChange('Messages', paths.routes.MESSAGES)}> 
-            <img src={message} className="navIcon" alt="Messages" />
+          <button className={activeTab === 'Messages' ? 'active' : ''} onClick={() => handleTextChange('Messages', paths.routes.MESSAGES, 'Messages')}>
+            <img src="./icons/message.png" className="navIcon" alt="Messages" />
           </button>
-          <button onClick={() => handleTextChange('Profile', paths.routes.PROFILE)}> 
-            <img src={profile} className="navIcon" alt="Profile" />
+          <button className={activeTab === 'Profile' ? 'active' : ''} onClick={() => handleTextChange('Profile', paths.routes.PROFILE, 'Profile')}>
+            <img src="./icons/profile-user.png" className="navIcon" alt="Profile" />
           </button>
-          <button onClick={() => handleTextChange('Settings', paths.routes.SETTINGS)}> 
-            <img src={setting} className="navIcon" alt="Setting" />
+          <button className={activeTab === 'Settings' ? 'active' : ''} onClick={() => handleTextChange('Settings', paths.routes.SETTINGS, 'Settings')}>
+            <img src="./icons/setting.png" className="navIcon" alt="Setting" />
           </button>
         </div>
       </div>
@@ -62,30 +71,32 @@ const SideBar = () => {
   return (
     <div className='SideBarContainer'>
       <div className='headerContainer'>
-        <h1>Looking For {headerText}</h1>  
+        <h1>Looking For {headerText}</h1>
       </div>
-      
+
       <div className='ProfileContainer'>
-        <span className="dot"></span>
+        <span className="dot">
+          {/* <img src="./cat1.png" alt="profile picture" /> */}
+          <img src={profiles[0].profilePicture.name} alt="profile picture" />
+        </span>
+        <h1>{profiles[0].name}</h1>
       </div>
-      
-      <h1>UserName</h1>
-      
+
       <div className='containerButtonSideBar'>
-        <button onClick={() => handleTextChange('Discovery', paths.routes.HOME)}> 
-          <img src={homeIcon} className="navIcon" alt="Home" /> Home 
+        <button className={activeTab === 'Home' ? 'active' : ''} onClick={() => handleTextChange('Group', paths.routes.HOME, 'Home')}>
+          <img src="./icons/home.png" className="navIcon" alt="Home" /> Home
         </button>
-        <button onClick={() => handleTextChange('My Projects', paths.routes.MYPROJECTS)}> 
-          <img src={folder} className="navIcon" alt="Projects" /> My Projects
+        <button className={activeTab === 'Projects' ? 'active' : ''} onClick={() => handleTextChange('My Projects', paths.routes.MYPROJECTS, 'Projects')}>
+          <img src="./icons/folder.png" className="navIcon" alt="Projects" /> My Projects
         </button>
-        <button onClick={() => handleTextChange('Messages', paths.routes.MESSAGES)}> 
-          <img src={message} className="navIcon" alt="Messages" /> Messages
+        <button className={activeTab === 'Messages' ? 'active' : ''} onClick={() => handleTextChange('Messages', paths.routes.MESSAGES, 'Messages')}>
+          <img src="./icons/message.png" className="navIcon" alt="Messages" /> Messages
         </button>
-        <button onClick={() => handleTextChange('Profile', paths.routes.PROFILE)}> 
-          <img src={profile} className="navIcon" alt="Profile" /> Profile
+        <button className={activeTab === 'Profile' ? 'active' : ''} onClick={() => handleTextChange('Profile', paths.routes.PROFILE, 'Profile')}>
+          <img src="./icons/profile-user.png" className="navIcon" alt="Profile" /> Profile
         </button>
-        <button onClick={() => handleTextChange('Settings', paths.routes.SETTINGS)}> 
-          <img src={setting} className="navIcon" alt="Setting" /> Settings
+        <button className={activeTab === 'Settings' ? 'active' : ''} onClick={() => handleTextChange('Settings', paths.routes.SETTINGS, 'Settings')}>
+          <img src="./icons/setting.png" className="navIcon" alt="Setting" /> Settings
         </button>
       </div>
 

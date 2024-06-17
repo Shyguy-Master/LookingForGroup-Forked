@@ -1,11 +1,13 @@
 import "./pages.css";
 import "../styles.css";
-import pfp from '../../img/profile-user.png';
+// import pfp from '../../img/profile-user.png';
 import {profiles} from "../../constants/fakeData";
 import{projects} from "../../constants/fakeData";
 import { Tags } from "../Tags";
 import { ProjectCard } from "../ProjectCard";
+
 const user = profiles[0];
+const pfp = "./icons/profile-user.png";
 
 const Profile = (props) => {
   return (

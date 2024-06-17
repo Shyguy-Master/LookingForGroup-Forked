@@ -1,10 +1,13 @@
 import React from "react";
 import { Tags } from "./Tags";
 
-import profilePicture from "../images/blue_frog.png";
-import followPicture from "../images/heart.png";
+// import profilePicture from "../images/blue_frog.png";
+// import followPicture from "../images/heart.png";
 
 import { projects } from "../constants/fakeData";
+
+const profilePicture = "./images/blue_frog.png";
+const followPicture = "./icons/heart.png";
 
 export const ProfileCard = ({profile}) => {
     return (

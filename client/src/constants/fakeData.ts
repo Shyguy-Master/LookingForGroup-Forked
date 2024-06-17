@@ -75,7 +75,8 @@ export const profiles = [
             },
         ],
         profilePicture: {
-            name: "image1",
+            // name: "image1",
+            name: "images/cat1.png",
             data: "",
             mimeType: "",
         },
