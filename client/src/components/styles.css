@@ -587,6 +587,7 @@
 */
 button {
     cursor: pointer;
+    transition: .2s;
 }
 
 #settings-page {
@@ -683,6 +684,7 @@ button {
     font-size: 14px;
     padding: 8px;
     font-weight: 700;
+    height: 40px;
 }
 
 .delete-account-btn:hover {
@@ -693,4 +695,40 @@ button {
 .delete-account-btn:active {
     background-color: #e72952;
     color: white;
+}
+
+.delete-modal {
+    position: fixed;
+    z-index: 1;
+    width: 450px;
+    height: 300px;
+    overflow: auto;
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: 0px 4px 40px grey;
+}
+
+.btn-cancel {
+    background-color: #eeeeee;
+    border: 2px solid #eeeeee;
+    border-radius: 2px;
+    color: black;
+    font-size: 14px;
+    padding: 8px;
+    font-weight: 700;
+    height: 40px;
+    margin-top: 20px;
+}
+
+.btn-cancel:hover {
+    background-color: #e3e3e3;
+    border-color: #e3e3e3;
+}
+
+.modal-buttons {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+    margin-top: 30px;
 }

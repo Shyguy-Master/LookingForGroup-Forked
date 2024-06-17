@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import "./pages.css";
+import ConfirmDelete from '../ConfirmDelete';
 
 // TO DO:
 // - Add general settings
@@ -13,10 +14,29 @@ import "./pages.css";
 const Settings = (props) => {
   const [activeTab, setActiveTab] = useState("general");
   const [activeTheme, setActiveTheme] = useState('light'); // State to manage the active theme
+  const [showDelete, setShowDelete] = useState(false);
 
   // Function to handle the button clicks and update the h1 text
   const handleThemeChange = (theme) => {
     setActiveTheme(theme);
+  };
+
+  const handleDelete = () => {
+    setShowDelete(true);
+  };
+
+  const handleClose = () => {
+    setShowDelete(false);
+  };
+
+  const handleConfirmDelete = () => {
+    setShowDelete(false);
+    deleteAccount();
+  };
+
+  const deleteAccount = () => {
+    // Placeholder
+    alert('Account deleted successfully');
   };
 
   return (
@@ -53,7 +73,7 @@ const Settings = (props) => {
           </div>
           <div className="setting">
             <h5>Notifications</h5>
-            
+
           </div>
         </div>
 
@@ -62,8 +82,13 @@ const Settings = (props) => {
           <div>account settings go here</div>
           <div className="setting">
             {/* Delete button: popup asking "are you sure" or require password to confirm */}
-            <button className="delete-account-btn">Delete Account</button>
+            <button className="delete-account-btn" onClick={handleDelete}>Delete Account</button>
           </div>
+          <ConfirmDelete
+            show={showDelete}
+            onClose={handleClose}
+            onConfirm={handleConfirmDelete}
+          />
         </div>
       </div>
     </div>
