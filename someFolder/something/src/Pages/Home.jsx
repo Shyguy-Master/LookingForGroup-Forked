@@ -3,7 +3,6 @@ import '../Css/style.css';
 import logo from '../img/developer-icon-free-vector.jpg';
 import designer from '../img/paintBrush.png';
 import project from '../img/Project.png';
-import menu from '../img/hamburgerMenu.png';
 
 const Home = () => {
     return (
@@ -11,18 +10,54 @@ const Home = () => {
             <header></header>
             <div className="flexColumn">
                 <div className="flexRow">
-                    
+                    <nav>
+                        <ul className="nav-list">
+                            <li className="dropdown">
+                                <a>Projects</a>
+                                <div className="dropdown-content">
+                                    <a href="#">Filler Item 1</a>
+                                    <a href="#">Filler Item 2</a>
+                                    <a href="#">Filler Item 3</a>
+                                    <a href="#">Filler Item 4</a>
+                                </div>
+                            </li>
+                            <li className="dropdown">
+                                <a>Designers</a>
+                                <div className="dropdown-content">
+                                    <a href="#">Filler Item 1</a>
+                                    <a href="#">Filler Item 2</a>
+                                    <a href="#">Filler Item 3</a>
+                                    <a href="#">Filler Item 4</a>
+                                </div>
+                            </li>
+                            <li className="dropdown">
+                                <a>Developers</a>
+                                <div className="dropdown-content">
+                                    <a href="#">Filler Item 1</a>
+                                    <a href="#">Filler Item 2</a>
+                                    <a href="#">Filler Item 3</a>
+                                    <a href="#">Filler Item 4</a>
+                                </div>
+                            </li>
+                            <li className="dropdown">
+                                <a>Mentors</a>  
+                                <div className="dropdown-content">
+                                    <a href="#">Filler Item 1</a>
+                                    <a href="#">Filler Item 2</a>
+                                    <a href="#">Filler Item 3</a>
+                                    <a href="#">Filler Item 4</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </nav>
                     <div className="button-group">
                         <button className="button" type="button" onClick={() => window.location.href = '/Login'}>Login</button>
                         <button className="button" type="button" onClick={() => window.location.href = '/SignUp'}>SignUp</button>
-                        <img src={menu} width="32" height="32" alt="Menu Icon" />
                     </div>
                 </div>
 
                 <div className="flexLookFor">
-                    <h1>
-                        Look For
-                    </h1>
+                    <h1>Looking for Group</h1>
                 </div>
 
                 <div className="flexDescripRow">
