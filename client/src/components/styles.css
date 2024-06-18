@@ -590,6 +590,13 @@ button {
     transition: .2s;
 }
 
+.column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
 #settings-page {
     display: flex;
     align-items: center;
@@ -642,7 +649,7 @@ button {
 
 .setting h5 {
     margin-right: 10px;
-    width: 80px;
+    width: 120px;
     text-align: left;
 }
 
@@ -651,16 +658,9 @@ button {
     height: 30px;
 }
 
-#light {
-    background-color: white;
-}
-
-#dark {
-    background-color: rgb(37, 35, 41);
-}
-
 .theme-btn {
     border: 2px solid #eeeeee;
+    outline: 2px solid white;
     border-radius: 50%;
     width: 50px;
     height: 50px;
@@ -673,6 +673,32 @@ button {
 
 .active-theme {
     outline: 2px solid black;
+}
+
+.password-change {
+    height: 25px;
+    width: 200px;
+    border: 1px solid black;
+    border-radius: 2px;
+    font-size: 20px;
+    padding: 5px 10px;
+    background-color: white;
+}
+
+.change-pass-btn {
+    background-color: #eeeeee;
+    border: none;
+    border-radius: 2px;
+    color: black;
+    font-size: 14px;
+    padding: 8px;
+    font-weight: 700;
+    height: 40px;
+    margin-left: 40px;
+}
+
+.change-pass-btn:hover {
+    background-color: #e3e3e3;
 }
 
 .delete-account-btn {
@@ -731,4 +757,68 @@ button {
     align-items: center;
     flex-direction: row;
     margin-top: 30px;
+}
+
+/* From: https://www.w3schools.com/howto/howto_css_switch.asp */
+/* The switch - the box around the slider */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 55px;
+    height: 28px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* Rounded sliders */
+.slider.round {
+    border-radius: 34px;
+}
+
+.slider.round:before {
+    border-radius: 50%;
+}
+
+/* The slider */
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+input:checked+.slider {
+    background-color: var(--orange);
+}
+
+input:focus+.slider {
+    box-shadow: 0 0 1px #efefef;
+}
+
+input:checked+.slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
 }
