@@ -354,6 +354,12 @@
         padding-left: calc((100vw - 160px) / 10);
         padding-right: auto;
     }
+
+    .setting h5 {
+        margin-right: 10px;
+        max-width: 90px;
+        text-align: left;
+    }
 }
 
 /* Project page style rules */
@@ -593,8 +599,12 @@ button {
 .column {
     display: flex;
     flex-direction: column;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
     align-items: center;
-    gap: 10px;
 }
 
 #settings-page {
@@ -640,7 +650,9 @@ button {
     display: flex;
     flex-direction: row;
     align-items: center;
-    width: 80%;
+    width: 100%;
+
+    /* border: 1px solid lightblue; */
 }
 
 .active-tab {
@@ -649,13 +661,20 @@ button {
 
 .setting h5 {
     margin-right: 10px;
-    width: 120px;
+    width: 140px;
+    text-align: left;
+    /* border: 1px solid lightcoral; */
+}
+
+.text {
+    width: 180px;
     text-align: left;
 }
 
 #language-select {
-    width: 160px;
-    height: 30px;
+    width: 200px;
+    height: 40px;
+    padding: 5px 10px;
 }
 
 .theme-btn {
@@ -677,7 +696,7 @@ button {
 
 .password-change {
     height: 25px;
-    width: 200px;
+    width: 180px;
     border: 1px solid black;
     border-radius: 2px;
     font-size: 20px;
@@ -685,23 +704,34 @@ button {
     background-color: white;
 }
 
-.change-pass-btn {
+.change-pass-modal .password-change {
+    height: 20px;
+    width: 180px;
+    border: 1px solid black;
+    border-radius: 2px;
+    font-size: 16px;
+    padding: 5px 10px;
+    background-color: white;
+    margin-top: 14px;
+}
+
+.pass-btn {
     background-color: #eeeeee;
     border: none;
     border-radius: 2px;
     color: black;
     font-size: 14px;
-    padding: 8px;
-    font-weight: 700;
-    height: 40px;
-    margin-left: 40px;
+    padding: 10px;
+    font-weight: 600;
+    width: 150px;
+    margin-left: 20px;
 }
 
-.change-pass-btn:hover {
+.pass-btn:hover {
     background-color: #e3e3e3;
 }
 
-.delete-account-btn {
+.delete-account-btn, .change-pass-btn {
     margin-top: 20px;
     background-color: white;
     border: 2px solid #f5355f;
@@ -713,22 +743,22 @@ button {
     height: 40px;
 }
 
-.delete-account-btn:hover {
+.delete-account-btn:hover, .change-pass-btn:hover {
     background-color: #f5355f;
     color: white;
 }
 
-.delete-account-btn:active {
+.delete-account-btn:active, .change-pass-btn:active {
     background-color: #e72952;
     color: white;
 }
 
-.delete-modal {
+.delete-modal,
+.change-pass-modal {
     position: fixed;
     z-index: 1;
-    width: 450px;
-    height: 300px;
-    overflow: auto;
+    width: 400px;
+    height: 320px;
     background-color: white;
     border-radius: 4px;
     box-shadow: 0px 4px 40px grey;
@@ -766,6 +796,8 @@ button {
     display: inline-block;
     width: 55px;
     height: 28px;
+
+    margin-left: 10px;
 }
 
 /* Hide default HTML checkbox */

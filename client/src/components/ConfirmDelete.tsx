@@ -13,7 +13,7 @@ const ConfirmDelete = ({ show, onClose, onConfirm }) => {
                     This action cannot be undone.</h3>
                     <br></br>
                     <p>Enter your password to confirm:</p>
-                    <input type="password" />
+                    <input type="password" className="password-change" />
 
                     <div className="modal-buttons">
                         <button className="btn-cancel" onClick={onClose}>Cancel</button>

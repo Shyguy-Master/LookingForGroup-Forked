@@ -17,6 +17,7 @@ const Settings = (props) => {
   const [activeTheme, setActiveTheme] = useState('light'); // State to manage the active theme
   const [activeColor, setActiveColor] = useState('orange'); // State to manage the active color
   const [showDelete, setShowDelete] = useState(false);
+  const [changePass, setChangePass] = useState(false);
 
   // Function to handle the button clicks and update the h1 text
   const handleThemeChange = (theme) => {
@@ -27,17 +28,9 @@ const Settings = (props) => {
     setActiveColor(color);
   };
 
-  const handleDelete = () => {
-    setShowDelete(true);
-  };
-
-  const handleClose = () => {
-    setShowDelete(false);
-  };
-
-  const handleConfirmDelete = () => {
-    setShowDelete(false);
-    deleteAccount();
+  const changePassword = () => {
+    // Placeholder
+    alert('Password changed successfully');
   };
 
   const deleteAccount = () => {
@@ -70,12 +63,12 @@ const Settings = (props) => {
           </div>
           <div className="setting">
             <h5>Accent Color</h5>
-            <button style={{ backgroundColor: '#FF006D', width: '40px', height: '40px' }} className={`theme-btn ${activeColor === "red" ? "active-theme" : ""}`} onClick={() => handleColorChange('red')}></button>
-            <button style={{ backgroundColor: '#FF7D00', width: '40px', height: '40px' }} className={`theme-btn ${activeColor === "orange" ? "active-theme" : ""}`} onClick={() => handleColorChange('orange')}></button>
-            <button style={{ backgroundColor: '#FFDD00', width: '40px', height: '40px' }} className={`theme-btn ${activeColor === "yellow" ? "active-theme" : ""}`} onClick={() => handleColorChange('yellow')}></button>
-            <button style={{ backgroundColor: '#ADFF02', width: '40px', height: '40px' }} className={`theme-btn ${activeColor === "green" ? "active-theme" : ""}`} onClick={() => handleColorChange('green')}></button>
-            <button style={{ backgroundColor: '#01BEFE', width: '40px', height: '40px' }} className={`theme-btn ${activeColor === "blue" ? "active-theme" : ""}`} onClick={() => handleColorChange('blue')}></button>
-            <button style={{ backgroundColor: '#8F00FF', width: '40px', height: '40px' }} className={`theme-btn ${activeColor === "purple" ? "active-theme" : ""}`} onClick={() => handleColorChange('purple')}></button>
+            <button style={{ backgroundColor: '#FF006D', maxWidth: '40px', height: '40px' }} className={`theme-btn ${activeColor === "red" ? "active-theme" : ""}`} onClick={() => handleColorChange('red')}></button>
+            <button style={{ backgroundColor: '#FF7D00', maxWidth: '40px', height: '40px' }} className={`theme-btn ${activeColor === "orange" ? "active-theme" : ""}`} onClick={() => handleColorChange('orange')}></button>
+            <button style={{ backgroundColor: '#FFDD00', maxWidth: '40px', height: '40px' }} className={`theme-btn ${activeColor === "yellow" ? "active-theme" : ""}`} onClick={() => handleColorChange('yellow')}></button>
+            <button style={{ backgroundColor: '#ADFF02', maxWidth: '40px', height: '40px' }} className={`theme-btn ${activeColor === "green" ? "active-theme" : ""}`} onClick={() => handleColorChange('green')}></button>
+            <button style={{ backgroundColor: '#01BEFE', maxWidth: '40px', height: '40px' }} className={`theme-btn ${activeColor === "blue" ? "active-theme" : ""}`} onClick={() => handleColorChange('blue')}></button>
+            <button style={{ backgroundColor: '#8F00FF', maxWidth: '40px', height: '40px' }} className={`theme-btn ${activeColor === "purple" ? "active-theme" : ""}`} onClick={() => handleColorChange('purple')}></button>
           </div>
           <div className="setting">
             <h5>Language</h5>
@@ -88,11 +81,40 @@ const Settings = (props) => {
           </div>
           <div className="setting">
             <h5>Notifications</h5>
-            {/* slider check */}
-            <label className="switch">
-              <input type="checkbox" />
-              <span className="slider round"></span>
-            </label>
+            <div className="row">
+              <p className='text'>All notifications</p>
+              <label className="switch">
+                <input type="checkbox" checked />
+                <span className="slider round"></span>
+              </label>
+            </div>
+          </div>
+          <div className='setting'>
+            <h5></h5>
+            <div className="column">
+              <div className="row">
+                <p className='text'>Push/Desktop notifications</p>
+                <label className="switch">
+                  <input type="checkbox" />
+                  <span className="slider round"></span>
+                </label>
+              </div>
+
+              <div className="row">
+                <p className='text'>Chat messages</p>
+                <label className="switch">
+                  <input type="checkbox" />
+                  <span className="slider round"></span>
+                </label>
+              </div>
+              <div className="row">
+                <p className='text'>Friend requests</p>
+                <label className="switch">
+                  <input type="checkbox" />
+                  <span className="slider round"></span>
+                </label>
+              </div>
+            </div>
           </div>
         </div>
 
@@ -102,24 +124,31 @@ const Settings = (props) => {
           <div className="setting">
             <h5>Password</h5>
             <input type="password" className="password-change" name="password" value="password" disabled />
-            <button className="change-pass-btn" onClick={handleDelete}> Change Password</button>
+            <button className="pass-btn" onClick={() => { setChangePass(true); }}> Change Password</button>
           </div>
           <ChangePassword
-            show={showDelete}
-            onClose={handleClose}
-            onConfirm={handleConfirmDelete}
+            show={changePass}
+            onClose={() => { setChangePass(false); }}
+            onConfirm={() => {
+              setChangePass(false);
+              changePassword();
+            }}
           />
           <div className="setting">
+            <h5>Remove Account</h5>
             {/* Delete button: popup asking "are you sure" or require password to confirm */}
-            <button className="delete-account-btn" onClick={handleDelete}>Delete Account</button>
+            <button className="delete-account-btn" onClick={() => { setShowDelete(true); }}>Delete Account</button>
           </div>
           <ConfirmDelete
             show={showDelete}
-            onClose={handleClose}
-            onConfirm={handleConfirmDelete}
+            onClose={() => { setShowDelete(false); }}
+            onConfirm={() => {
+              setShowDelete(false);
+              deleteAccount();
+            }}
           />
         </div>
-      </div>
+      </div>F
     </div>
   );
 }

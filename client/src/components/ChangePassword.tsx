@@ -10,11 +10,10 @@ const ConfirmDelete = ({ show, onClose, onConfirm }) => {
             <div className="modal">
                 <div className="modal-content">
                     <h3>Change Password</h3>
-                    <br></br>
 
-                    <input type="password" />
                     <input type="password" className="password-change" name="oldPassword" placeholder='Old Password' />
                     <input type="password" className="password-change" name="newPassword" placeholder='New Password' />
+                    <input type="password" className="password-change" name="newPassword2" placeholder='Confirm New Password' />
 
                     <div className="modal-buttons">
                         <button className="btn-cancel" onClick={onClose}>Cancel</button>
