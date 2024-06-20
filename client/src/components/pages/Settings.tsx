@@ -58,17 +58,15 @@ const Settings = (props) => {
           <div>general settings go here,<br></br> these are just some placeholders/examples for now</div>
           <div className="setting">
             <h5>Main Theme</h5>
-            <button style={{ backgroundColor: 'white', }} className={`theme-btn ${activeTheme === "light" ? "active-theme" : ""}`} onClick={() => handleThemeChange('light')}></button>
-            <button style={{ backgroundColor: 'black', }} className={`theme-btn ${activeTheme === "dark" ? "active-theme" : ""}`} onClick={() => handleThemeChange('dark')}></button>
+            <button style={{ backgroundColor: '#FBFBFB', }} className={`theme-btn ${activeTheme === "light" ? "active-theme" : ""}`} onClick={() => handleThemeChange('light')}></button>
+            <button style={{ backgroundColor: '#414141', }} className={`theme-btn ${activeTheme === "dark" ? "active-theme" : ""}`} onClick={() => handleThemeChange('dark')}></button>
           </div>
           <div className="setting">
             <h5>Accent Color</h5>
-            <button style={{ backgroundColor: '#FF006D', maxWidth: '40px', height: '40px' }} className={`theme-btn ${activeColor === "red" ? "active-theme" : ""}`} onClick={() => handleColorChange('red')}></button>
-            <button style={{ backgroundColor: '#FF7D00', maxWidth: '40px', height: '40px' }} className={`theme-btn ${activeColor === "orange" ? "active-theme" : ""}`} onClick={() => handleColorChange('orange')}></button>
-            <button style={{ backgroundColor: '#FFDD00', maxWidth: '40px', height: '40px' }} className={`theme-btn ${activeColor === "yellow" ? "active-theme" : ""}`} onClick={() => handleColorChange('yellow')}></button>
-            <button style={{ backgroundColor: '#ADFF02', maxWidth: '40px', height: '40px' }} className={`theme-btn ${activeColor === "green" ? "active-theme" : ""}`} onClick={() => handleColorChange('green')}></button>
-            <button style={{ backgroundColor: '#01BEFE', maxWidth: '40px', height: '40px' }} className={`theme-btn ${activeColor === "blue" ? "active-theme" : ""}`} onClick={() => handleColorChange('blue')}></button>
-            <button style={{ backgroundColor: '#8F00FF', maxWidth: '40px', height: '40px' }} className={`theme-btn ${activeColor === "purple" ? "active-theme" : ""}`} onClick={() => handleColorChange('purple')}></button>
+            <button style={{ backgroundColor: '#F35835', maxWidth: '40px', height: '40px' }} className={`theme-btn ${activeColor === "orange" ? "active-theme" : ""}`} onClick={() => handleColorChange('orange')}></button>
+            <button style={{ backgroundColor: '#97E5AB', maxWidth: '40px', height: '40px' }} className={`theme-btn ${activeColor === "green" ? "active-theme" : ""}`} onClick={() => handleColorChange('green')}></button>
+            <button style={{ backgroundColor: '#99E6EA', maxWidth: '40px', height: '40px' }} className={`theme-btn ${activeColor === "blue" ? "active-theme" : ""}`} onClick={() => handleColorChange('blue')}></button>
+            <button style={{ backgroundColor: '#B1A2DB', maxWidth: '40px', height: '40px' }} className={`theme-btn ${activeColor === "purple" ? "active-theme" : ""}`} onClick={() => handleColorChange('purple')}></button>
           </div>
           <div className="setting">
             <h5>Language</h5>

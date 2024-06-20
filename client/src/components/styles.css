@@ -1,6 +1,12 @@
 :root {
-    --orange: #F76902;
-    --orange-hover: #DE6B17;
+    --orange: #F35835;
+    --orange-hover: #d83410;
+    --green: #97E5AB;
+    --blue: #99E6EA;
+    --purple: #B1A2DB;
+    --gray: #969696;
+    --darkGray: #414141;
+    --white: #FBFBFB;
 }
 
 .discover-card {
@@ -291,10 +297,11 @@
     position: absolute;
     bottom: 0;
     margin-bottom: 40px;
-    width: 100px;
+    width: 120px;
     height: 40px;
     font-size: 18px;
     border: none;
+    border-radius: 50px;
     outline: solid var(--orange) 2px;
     font-weight: 900;
 }
@@ -580,7 +587,7 @@
 }
 
 .post-content button:hover {
-    background-color: gray;
+    background-color: #969696;
 }
 
 .post-content img {
@@ -697,20 +704,24 @@ button {
 .password-change {
     height: 25px;
     width: 180px;
-    border: 1px solid black;
-    border-radius: 2px;
-    font-size: 20px;
+    border: 1px solid var(--darkGray);
+    border-radius: 4px;
+    font-size: 16px;
     padding: 5px 10px;
     background-color: white;
+}
+
+input[type="password"]:focus {
+    outline: none;
 }
 
 .change-pass-modal .password-change {
     height: 20px;
     width: 180px;
-    border: 1px solid black;
-    border-radius: 2px;
-    font-size: 16px;
-    padding: 5px 10px;
+    border: 1px solid var(--darkGray);
+    border-radius: 4px;
+    font-size: 14px;
+    padding: 8px 10px;
     background-color: white;
     margin-top: 14px;
 }
@@ -718,7 +729,7 @@ button {
 .pass-btn {
     background-color: #eeeeee;
     border: none;
-    border-radius: 2px;
+    border-radius: 50px;
     color: black;
     font-size: 14px;
     padding: 10px;
@@ -734,22 +745,23 @@ button {
 .delete-account-btn, .change-pass-btn {
     margin-top: 20px;
     background-color: white;
-    border: 2px solid #f5355f;
-    border-radius: 2px;
-    color: #f5355f;
+    border: 2px solid var(--orange);
+    border-radius: 50px;
+    color: var(--orange);
     font-size: 14px;
     padding: 8px;
     font-weight: 700;
+    width: 150px;
     height: 40px;
 }
 
 .delete-account-btn:hover, .change-pass-btn:hover {
-    background-color: #f5355f;
+    background-color: var(--orange);
     color: white;
 }
 
 .delete-account-btn:active, .change-pass-btn:active {
-    background-color: #e72952;
+    background-color: var(--orange);
     color: white;
 }
 
@@ -767,13 +779,14 @@ button {
 .btn-cancel {
     background-color: #eeeeee;
     border: 2px solid #eeeeee;
-    border-radius: 2px;
+    border-radius: 50px;
     color: black;
     font-size: 14px;
     padding: 8px;
     font-weight: 700;
     height: 40px;
     margin-top: 20px;
+    width: 80px;
 }
 
 .btn-cancel:hover {
@@ -786,7 +799,7 @@ button {
     justify-content: space-around;
     align-items: center;
     flex-direction: row;
-    margin-top: 30px;
+    margin-top: 20px;
 }
 
 /* From: https://www.w3schools.com/howto/howto_css_switch.asp */
