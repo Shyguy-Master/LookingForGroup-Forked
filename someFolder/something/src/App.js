@@ -10,6 +10,7 @@ import SideBar from "./Components/SideBar"
 import ForgotPassword from "./Pages/ForgotPassword";
 import AskEmail from "./Pages/AskEmail";
 import DropDown from "./Components/DropDown";
+import Button from "./Components/Button";
 function App() {
   return (
     <Router>
@@ -24,6 +25,7 @@ function App() {
         <Route path= "/ForgotPassword" element={<ForgotPassword />} />
         <Route path= "/AskEmail" element={<AskEmail />} />
         <Route path= "/DropDown" element={<DropDown />} />
+        <Route path = "/Button" element={<Button />} />
       </Routes>
     </Router>
   );
