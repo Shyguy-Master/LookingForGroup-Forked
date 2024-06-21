@@ -7,6 +7,88 @@
     --gray: #969696;
     --darkGray: #414141;
     --white: #FBFBFB;
+
+    --filled-btn: #F35835;
+    --filled-btn-hover: white;
+    --btn-outline: #F35835;
+    --filled-btn-text: white;
+    --text-color: black;
+    --sidebar-bgd: white;
+    --sidebar-btn: white;
+    --sidebar-btn-active: #e3e3e3;
+    --sidebar-btn-hover: #eeeeee;
+    --sidebar-btn-outline: #d0d0d0;
+    --page-bgd: white;
+    --icon-color: invert(0);
+}
+
+:root:has(#light:checked) {
+    --text-color: black;
+    --text-color: white;
+    --sidebar-bgd: white;
+    --sidebar-btn: white;
+    --sidebar-btn-active: #e3e3e3;
+    --sidebar-btn-hover: #eeeeee;
+    --page-bgd: white;
+    --icon-color: invert(0);
+
+    --filled-btn-hover: white;
+}
+
+:root:has(#dark:checked) {
+    --text-color: white;
+    --sidebar-bgd: var(--darkGray);
+    --sidebar-btn: var(--darkGray);
+    --sidebar-btn-active: #5c5c5c;
+    --sidebar-btn-hover: #6d6d6d;
+    --sidebar-btn-outline: #5c5c5c;
+    --page-bgd: var(--darkGray);
+    --icon-color: invert(1);
+
+    --filled-btn-hover: var(--darkGray);
+}
+
+:root:has(#orange:checked) {
+    --filled-btn: #F35835;
+    --btn-outline: #F35835;
+    --filled-btn-text: white;
+}
+
+:root:has(#green:checked) {
+    --filled-btn: #97E5AB;
+    --btn-outline: #97E5AB;
+    --filled-btn-text: #414141;
+}
+
+:root:has(#blue:checked) {
+    --filled-btn: #99E6EA;
+    --btn-outline: #99E6EA;
+    --filled-btn-text: #414141;
+}
+
+:root:has(#purple:checked) {
+    --filled-btn: #B1A2DB;
+    --btn-outline: #B1A2DB;
+    --filled-btn-text: white;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400&display=swap');
+
+.buttonOne {
+    font-family: 'Source Sans 3', sans-serif;
+    border: 3px solid #99E6EA;
+    border-radius: 8px; 
+    padding: 10px 25px;
+    background-color: transparent;
+    color: #99E6EA;
+    font-size: 20px; 
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.buttonOne:hover {
+    background-color: #99E6EA;
+    color: #fff;
 }
 
 .discover-card {
@@ -212,11 +294,13 @@
 .SideBarContainer {
     width: 220px;
     height: 100vh;
-    /* border: solid black 2px; */
     position: fixed;
     top: 0px;
     left: 0px;
     box-shadow: rgba(0, 0, 0, 0.25) 0px 8px 16px;
+    background-color: var(--sidebar-bgd);
+    color: var(--text-color);
+    outline: 1px solid var(--sidebar-btn-outline);
 }
 
 .SideBarContainer h1 {
@@ -250,9 +334,10 @@
 .containerButtonSideBar button {
     width: 220px;
     height: 6vh;
-    background-color: white;
+    background-color: var(--sidebar-btn);
+    color: var(--text-color);
     border: none;
-    outline: solid lightgrey 1px;
+    outline: 1px solid var(--sidebar-btn-outline);
     cursor: pointer;
     font-size: larger;
     text-align: left;
@@ -266,12 +351,16 @@
 .containerButtonSideBar button:hover {
     /* transform: scale(1.1); */
     transition-duration: 0.25s;
-    background-color: #e3e3e3;
+    background-color: var(--sidebar-btn-hover);
 }
 
 .containerButtonSideBar button.active {
     transition-duration: 0.25s;
-    background-color: #eeeeee;
+    background-color: var(--sidebar-btn-active);
+}
+
+.containerButtonSideBar button img {
+    filter: var(--icon-color);
 }
 
 .dot img {
@@ -292,8 +381,8 @@
 }
 
 .Logout button {
-    background-color: var(--orange);
-    color: white;
+    background-color: var(--filled-btn);
+    color: var(--filled-btn-text);
     position: absolute;
     bottom: 0;
     margin-bottom: 40px;
@@ -302,16 +391,16 @@
     font-size: 18px;
     border: none;
     border-radius: 50px;
-    outline: solid var(--orange) 2px;
+    outline: solid var(--btn-outline) 2px;
     font-weight: 900;
 }
 
 .Logout button:hover {
     /* transform: scale(1.1); */
     transition-duration: 0.25s;
-    background-color: white;
-    color: var(--orange);
-    outline: solid var(--orange) 2px;
+    background-color: var(--filled-btn-hover);
+    color: var(--btn-outline);
+    outline: solid var(--btn-outline) 2px;
     cursor: pointer;
 }
 
@@ -685,6 +774,7 @@ button {
 }
 
 .theme-btn {
+    appearance: none;
     border: 2px solid #eeeeee;
     outline: 2px solid white;
     border-radius: 50%;
@@ -745,9 +835,9 @@ input[type="password"]:focus {
 .delete-account-btn, .change-pass-btn {
     margin-top: 20px;
     background-color: white;
-    border: 2px solid var(--orange);
+    border: 2px solid var(--btn-outline);
     border-radius: 50px;
-    color: var(--orange);
+    color: var(--btn-outline);
     font-size: 14px;
     padding: 8px;
     font-weight: 700;
@@ -756,13 +846,8 @@ input[type="password"]:focus {
 }
 
 .delete-account-btn:hover, .change-pass-btn:hover {
-    background-color: var(--orange);
-    color: white;
-}
-
-.delete-account-btn:active, .change-pass-btn:active {
-    background-color: var(--orange);
-    color: white;
+    background-color: var(--filled-btn);
+    color: var(--filled-btn-text);
 }
 
 .delete-modal,
@@ -855,7 +940,7 @@ input[type="password"]:focus {
 }
 
 input:checked+.slider {
-    background-color: var(--orange);
+    background-color: var(--filled-btn);
 }
 
 input:focus+.slider {
