@@ -8,5 +8,6 @@ export const routes = {
     "PROJECT": "/project",
     "SETTINGS": "/settings",
     "NOTFOUND": "/notFound",
+    "HOMEPAGE": "/HomePage",
 }
 
