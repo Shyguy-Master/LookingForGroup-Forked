@@ -9,5 +9,11 @@ export const routes = {
     "SETTINGS": "/settings",
     "NOTFOUND": "/notFound",
     "HOMEPAGE": "/HomePage",
+    "HOMEPAGEPROJECT": "/ProjectHomePage",
+    "HOMEPAGEDEVELOPER": "/DeveloperHomePage",
+    "HOMEPAGEDESIGNER": "/DesignerHomePage",
+    "HOMEPAGEMENTOR": "/MentorHomePage",
+    
+
 }
 
