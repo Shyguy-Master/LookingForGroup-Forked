@@ -3,8 +3,8 @@ import { Button } from "@pixi/ui";
 
 export class DecorationMenuItem {
     constructor({textureUrl, sideLength, padding, colors}) {
-        this.colors = colors;
         this.texture = textureUrl;
+        this.colors = colors;
 
         let squareSide = sideLength - (padding * 2);
         let container = new Container({
