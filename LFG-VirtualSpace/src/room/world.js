@@ -76,6 +76,7 @@ export class World {
     }
 
     deleteDecoration = (dec) => {
+        console.log(this.decorations);
         let indexToRemove = this.decorations.indexOf(dec.decoration);
         console.log(`Index to Remove : ${indexToRemove}`);
         // remove sprite from reference array

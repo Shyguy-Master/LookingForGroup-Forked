@@ -19,16 +19,18 @@ export const setUpStageEvents = () => {
     });
     // app.stage.on('click', ()=>console.log(`mouse: ${mouseCoords.x}, ${mouseCoords.y}`));
     app.stage.on('pointerdown', () => {
-        console.log(world.decorations);
         for (let dec of world.decorations) {
             // Reset Changes
-            if(dec != null){
+            if (dec != null) {
                 dec.sprite.alpha = 1;
                 dec.sprite.tint = "#ffffff";
             }
+            else {
+                console.log('werijoidfskjfl');
+            }
         }
         // Check to see if we are outside the decoration menu slider
-        if(!decorationMenu.inSlider){ 
+        if (!decorationMenu.inSlider) {
             onPanStart();
         }
     });
@@ -83,11 +85,11 @@ export const onDragStart = (event) => {
     bringToFront(dragTarget); // Bring it back to the front of the screen
     dragTarget.parent.toLocal(event.global, null, dragTarget.position); // Set it back to screen position, not world position
     // Decide which grid to use
-    if(dragTarget.decoration.isWall){
+    if (dragTarget.decoration.isWall) {
         // TODO: Base which wall to use on rotation
         world.selectGrid('right');
     }
-    else{
+    else {
         world.selectGrid('floor');
     }
     // Procede to Move handling
@@ -99,7 +101,7 @@ const onDragMove = (event) => {
         // Sets drag target to the location of the mouse
         // Takes the parent (its container) and moves it along the mouse
         dragTarget.parent.toLocal(event.global, null, dragTarget.position); // https://pixijs.download/v4.8.9/docs/PIXI.Container.html#toLocal
-        
+
         // check if decoration has been dragged over top of decoration menu
         //console.log('decorationMenu.inSlider: ' + decorationMenu.inSlider);
         if (decorationMenu.inSlider) {
@@ -118,41 +120,47 @@ const onDragEnd = () => {
         app.stage.off('pointermove', onDragMove);
         // check if over decoration menu
         if (decorationMenu.inSlider) {
-           world.deleteDecoration(dragTarget);
+            world.deleteDecoration(dragTarget);
         }
-        // Check if on grid
-        if (world.selectedGrid.isInMap(mouseCoords)) {
-            // Check if the current position can fit the decoration by checking the extended coordinates.
-            // This is based on the decoration's size (2x2, 3x4)
-            if (checkIfDecorationFits()) {
-                // Get a list of all the tiles
-                let emptyTiles = obtainEmptyTiles(dragTarget);
-                // There must be enough empty tiles to fit the decoration
-                if (emptyTiles.length == dragTarget.decoration.size.x * dragTarget.decoration.size.y) {
-                    // attach all the tiles in the list to that decoration
-                    for (let i = 0; i < emptyTiles.length; i++) {
-                        let tile = emptyTiles[i];
-                        tile.addDecoration(dragTarget);
-                    } // ends with the first tile, so the decoration gets drawn on that tile
-                    emptyTiles[0].repositionChild();
-
-                    // hide tiles for visual effect
-                    // unhides when the decoration is dragged else where
-                    if(emptyTiles.length > 1){
-                        for(let i = 0; i < emptyTiles.length - 1; i++){
-                            // skip the first tile
-                            let tile = emptyTiles[i];
-                            tile.container.visible = false;
-                        }
-                    }
-                }
-                // If not, then don't do anything
-            }
+        else {
+            attatchDecoration();
         }
         // Get rid of drag target
         dragTarget = null;
         // ensure delete ui in hidden
         decorationMenu.hideDeleteUI();
+    }
+}
+
+const attatchDecoration = () => {
+    // Check if on grid
+    if (world.selectedGrid.isInMap(mouseCoords)) {
+        // Check if the current position can fit the decoration by checking the extended coordinates.
+        // This is based on the decoration's size (2x2, 3x4)
+        if (checkIfDecorationFits()) {
+            // Get a list of all the tiles
+            let emptyTiles = obtainEmptyTiles(dragTarget);
+            // There must be enough empty tiles to fit the decoration
+            if (emptyTiles.length == dragTarget.decoration.size.x * dragTarget.decoration.size.y) {
+                // attach all the tiles in the list to that decoration
+                for (let i = 0; i < emptyTiles.length; i++) {
+                    let tile = emptyTiles[i];
+                    tile.addDecoration(dragTarget);
+                } // ends with the first tile, so the decoration gets drawn on that tile
+                emptyTiles[0].repositionChild();
+
+                // hide tiles for visual effect
+                // unhides when the decoration is dragged else where
+                if (emptyTiles.length > 1) {
+                    for (let i = 0; i < emptyTiles.length - 1; i++) {
+                        // skip the first tile
+                        let tile = emptyTiles[i];
+                        tile.container.visible = false;
+                    }
+                }
+            }
+            // If not, then don't do anything
+        }
     }
 }
 
