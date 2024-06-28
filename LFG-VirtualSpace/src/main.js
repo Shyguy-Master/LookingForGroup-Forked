@@ -3,6 +3,8 @@ import * as PIXI from 'pixi.js';
 import { World } from './room/world';
 import * as EVENTS from './room/events';
 import { DecorationMenu } from './ui/decoration-menu.js';
+import { loadData } from './room/decorationData.js';
+
 
 // DRAG RESOURCE
 //https://pixijs.com/8.x/examples/events/dragging
@@ -11,6 +13,9 @@ export let world;
 export let decorationMenu;
 
 const init = async () => {
+    // Set up decorations
+    await loadData();
+    // Set up canvas
     await loadPixiCanvas();
     // Set up the textures
     await loadTextures();
@@ -29,14 +34,15 @@ const init = async () => {
         padding: 6,
         scrollMS: 150,
         scrollCount: 6
-    }); // Use app.screen.height instead to align at bottom, then update once the screen is resized
+    });
 
     // Create Decorations
-    createDecorations();
+    // createDecorations();
     
     // Set up stage events
     EVENTS.setUpStageEvents();
     console.log(app.stage);
+
     // // Update loop
     // app.ticker.add((time) => {
     //     const delta = time.deltaTime;
@@ -88,28 +94,18 @@ const loadTextures = async () => {
     await PIXI.Assets.loadBundle('rooms');
     await PIXI.Assets.load('assets/images/isoTable.png');
     await PIXI.Assets.load('assets/images/chest.png');
+
 }
 
 const createDecorations = () => {
     // Create Decorations
     let halenScale = 2.5;
-    // world.createDecorations({ count: 3, src: 'assets/images/chest.png', scale: 1.3, size: {x:1,y:2}, anchor: 0.35});
-    // world.createDecorations({ count: 1, src: 'fancyTable' });
-    // world.createDecorations({ count: 1, src: 'fancyTable', isWall: true});
-    // world.createDecorations({ count: 1, src: 'cozyRug',         scale:2.15, size: {x:2,y:2} });
-    // world.createDecorations({ count: 1, src: 'cozyBookshelf',   scale:2,    size: {x:1,y:2}, anchor: 0.2, offset: 12});
-    world.createDecorations({ count: 1, src: 'cozyBlankets',    scale:halenScale, offset: 12});
-    // world.createDecorations({ count: 1, src: 'cozyChair',       scale:halenScale, offset: 12});
-    // world.createDecorations({ count: 1, src: 'cozyCouch',       scale:2,    size: {x:1,y:2}, anchor: 0.35});
-    // world.createDecorations({ count: 1, src: 'cozyTable',       scale:2,    offset: 15});
-    // world.createDecorations({ count: 1, src: 'cozyLight',       scale:2,    offset: 15});
-    // world.createDecorations({ count: 1, src: 'cuteFish', scale:halenScale, offset: 12});
+    // world.createDecorations({});
+    // world.createDecorations({ count: 1, src: 'cuteFish',            scale: halenScale, offset: 12});
     // world.createDecorations({ count: 1, src: 'cyberArm',            scale: halenScale,});
     // world.createDecorations({ count: 1, src: 'fantasyCauldron',     scale: halenScale, offset: 12});
     // world.createDecorations({ count: 1, src: 'fantasyTelescope',    scale: halenScale, offset: 12});
-    // world.createDecorations({ count: 1, src: 'cozyLight',           scale: halenScale, offset: 12});
     // world.createDecorations({ count: 1, src: 'westernRack',         scale: halenScale, offset: 12});
-    // world.createDecorations({ count: 1, src: 'cozyPlant',           scale: halenScale, offset: 12});
 }
 
 const resizeWindow = () => {
