@@ -19,10 +19,13 @@ export const setUpStageEvents = () => {
     });
     // app.stage.on('click', ()=>console.log(`mouse: ${mouseCoords.x}, ${mouseCoords.y}`));
     app.stage.on('pointerdown', () => {
+        console.log(world.decorations);
         for (let dec of world.decorations) {
             // Reset Changes
-            dec.sprite.alpha = 1;
-            dec.sprite.tint = "#ffffff";
+            if(dec != null){
+                dec.sprite.alpha = 1;
+                dec.sprite.tint = "#ffffff";
+            }
         }
         // Check to see if we are outside the decoration menu slider
         if(!decorationMenu.inSlider){ 
@@ -115,12 +118,7 @@ const onDragEnd = () => {
         app.stage.off('pointermove', onDragMove);
         // check if over decoration menu
         if (decorationMenu.inSlider) {
-            console.log(world.decorations);
-            // remove sprite from reference array
-            delete world.decorations[dragTarget.index];
-            // remove sprite parent
-            dragTarget.parent.removeChild(dragTarget);
-            console.log(world.decorations);
+           world.deleteDecoration(dragTarget);
         }
         // Check if on grid
         if (world.selectedGrid.isInMap(mouseCoords)) {

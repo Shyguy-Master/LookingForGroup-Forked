@@ -75,6 +75,15 @@ export class World {
         // console.log(value + " selected!");
     }
 
+    deleteDecoration = (dec) => {
+        let indexToRemove = this.decorations.indexOf(dec.decoration);
+        console.log(`Index to Remove : ${indexToRemove}`);
+        // remove sprite from reference array
+        this.decorations.splice(indexToRemove, 1);
+        // remove sprite parent
+        dec.parent.removeChild(dec);
+    }
+
     createDecoration = ({ src = 'assets/images/isoTable.png', scale = 1, size = { x: 1, y: 1 }, anchor = 0.5, isWall = false, offset = 0 }) => {
         // Will be removed with the slider to pull out the decorations
         let newDec = new Decoration(src, size);
