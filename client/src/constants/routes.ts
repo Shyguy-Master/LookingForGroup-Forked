@@ -13,7 +13,7 @@ export const routes = {
     "HOMEPAGEDEVELOPER": "/DeveloperHomePage",
     "HOMEPAGEDESIGNER": "/DesignerHomePage",
     "HOMEPAGEMENTOR": "/MentorHomePage",
-    
+    "FOOTER": "/FooterHomePage",
 
 }
 

@@ -12,15 +12,40 @@ import NotFound from "./components/pages/NotFound";
 import SideBar from "./components/Sidebar";
 import NavbarMenu from './components/NavbarMenu';
 import HomePage from './components/pages/HomePage';
+import DesignerHomePage from './components/pages/DesignerHomePage';
+import DeveloperHomePage from './components/pages/DeveloperHomePage';
+import MentorHomePage from './components/pages/MentorHomePage';
+import ProjectHomePage from './components/pages/ProjectHomePage';
+import FooterHomePage from './components/FooterHomePage';
 
+function ConditionalComponents() {
+  const location = useLocation();
+  const isSpecialHomePage = [
+    paths.routes.HOMEPAGE,
+    paths.routes.HOMEPAGEPROJECT,
+    paths.routes.HOMEPAGEDESIGNER,
+    paths.routes.HOMEPAGEDEVELOPER,
+    paths.routes.HOMEPAGEMENTOR
+  ].includes(location.pathname);
 
+  if (isSpecialHomePage) {
+    return (
+      <>
+        <NavbarMenu />
+        <FooterHomePage />
+      </>
+    );
+  } else {
+    return <SideBar />;
+  }
+
+}
 
 function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <ConditionalNavbar />
-        <SideBar />
+        <ConditionalComponents />
         <Routes>
           <Route path={paths.routes.HOMEPAGE} element={<HomePage />} />
           <Route path={paths.routes.DEFAULT} element={<Home />} />
@@ -29,19 +54,18 @@ function App() {
           <Route path={paths.routes.MYFEED} element={<MyFeed />} />
           <Route path={paths.routes.MYPROJECTS} element={<MyProjects />} />
           <Route path={paths.routes.PROFILE} element={<Profile />} />
-          <Route path={paths.routes.PROJECT} element={<Project />}/>
+          <Route path={paths.routes.PROJECT} element={<Project />} />
           <Route path={paths.routes.SETTINGS} element={<Settings />} />
           <Route path={paths.routes.NOTFOUND} element={<NotFound />} />
+          <Route path={paths.routes.HOMEPAGEPROJECT} element={<ProjectHomePage />} />
+          <Route path={paths.routes.HOMEPAGEDESIGNER} element={<DesignerHomePage />} />
+          <Route path={paths.routes.HOMEPAGEDEVELOPER} element={<DeveloperHomePage />} />
+          <Route path={paths.routes.HOMEPAGEMENTOR} element={<MentorHomePage />} />
+          <Route path={paths.routes.FOOTER}element={<FooterHomePage />}/>
         </Routes>
       </div>
     </BrowserRouter>
   );
-}
-
-function ConditionalNavbar() {
-  const location = useLocation();
-  const isHomePage = location.pathname === paths.routes.HOMEPAGE;
-  return isHomePage ? <NavbarMenu /> : null;
 }
 
 export default App;

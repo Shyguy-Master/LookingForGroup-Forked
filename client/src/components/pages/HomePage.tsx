@@ -5,7 +5,9 @@ import NavbarMenu from '../NavbarMenu';
 
 const HomePage = () =>{
 return(
-    <div></div>
+    <div className=''>
+
+    </div>
 )
 }
 
