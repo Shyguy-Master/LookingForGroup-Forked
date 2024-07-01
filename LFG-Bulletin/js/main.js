@@ -4,7 +4,7 @@
 const app = new PIXI.Application({
     width: 1200,
     height: 800,
-    backgroundColor: 0xC7B99E
+    backgroundColor: 0x6e4901
 });
 document.body.appendChild(app.view);
 
@@ -16,6 +16,7 @@ const sceneHeight = app.view.height;
 
 //aliases
 let stage;
+let board;
 let dragTarget = null;
 let postTextures = [new PIXI.Texture(PIXI.BaseTexture.from("images/post1.png")), new PIXI.Texture(PIXI.BaseTexture.from("images/post2.png")), new PIXI.Texture(PIXI.BaseTexture.from("images/post3.png"))];
 let buttonTexture = new PIXI.Texture(PIXI.BaseTexture.from("images/button.png"));
@@ -41,13 +42,14 @@ let postGrabbed = false;
 function setup()
 {
     stage = app.stage;
+    
+    board = new PIXI.Graphics();
+    board.beginFill(0xC7B99E);
+    board.drawRect(20, 20, 1160, 760);
+    stage.addChild(board);
+
     //Create the labels
     createLabelsAndButtons();
-
-    for(let p of posts)
-    {
-        stage.addChild(p);
-    }
 
     //Set up the trash can
     trash = new PIXI.Sprite(trashTexture);
@@ -83,7 +85,7 @@ function createLabelsAndButtons()
     postButton = new PIXI.Text("Make a Post");
     postButton.style = buttonStyle;
     postButton.x = 910;
-    postButton.y = 0;
+    postButton.y = 15;
     postButton.interactive = true;
     postButton.buttonMode = true;
     postButton.on("pointerup", makePost); //startGame is a funtion reference
