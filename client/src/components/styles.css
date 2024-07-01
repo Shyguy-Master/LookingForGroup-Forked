@@ -987,3 +987,131 @@
     font-size: 20px;
     font-weight: bold;
 }
+ /*SignUp and Login */
+
+ .centerContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .flexRowContainer {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .flexRow3,
+  .flexRow4 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    width: 25vw;
+    height: 75vh;
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 8px 16px;
+  }
+  
+  .flexRow3 {
+    background-color: white;
+    border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+  }
+  
+  .flexRow3 .Name {
+    display: flex;
+    flex-direction: row;
+    padding-right: 10px;
+  }
+  
+  .flexRow3 input {
+    border-radius: 10px;
+    padding: 10px;
+    width: 20vw;
+    height: 2.5vh;
+    border: 1px solid grey;
+    margin-left: 5px;
+    margin-bottom: 10px;
+    font-size: 16px;
+  }
+  
+  .flexRow4 {
+    background-color: plum;
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+  }
+  
+  .flexRow3 h4 {
+    margin-bottom: 5px;
+  }
+  
+  .flexRow3 ul {
+    margin-top: 0;
+    padding-left: 20px;
+  }
+  
+  .flexRow3 h1,
+  .flexRow4 h1 {
+    margin: 0;
+    text-align: center;
+  }
+  
+  .flexRow3 h1 {
+    margin-bottom: 20px;
+  }
+  
+  .flexRow4 h1 {
+    margin-bottom: 10px;
+  }
+  
+  .flexRow4 h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .flexcolumn4 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .flexRow5 {
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    background-color: lightgray;
+    justify-content: space-between;
+    width: 75%;
+  }
+  
+  .flexRow5 h1 {
+    font-weight: bold;
+    font-size: 3vh;
+  }
+  
+  .flexColumn2 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /*Button*/
+  .button{
+    margin-right: 1vw;
+    border: solid #99e6ea 2px;
+    background-color: white;
+    border-radius: 8px;
+    width: 80px;
+    height: 40px;
+    font-family: "Source Sans 3", sans-serif;
+    font-weight: 700;    
+    cursor: pointer;
+    transition: linear 0.3s;
+  }
+
+  .button:hover{
+    background-color: #99e6ea;
+    color: white;
+  }

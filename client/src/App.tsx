@@ -17,6 +17,7 @@ import DeveloperHomePage from './components/pages/DeveloperHomePage';
 import MentorHomePage from './components/pages/MentorHomePage';
 import ProjectHomePage from './components/pages/ProjectHomePage';
 import FooterHomePage from './components/FooterHomePage';
+import Login from './components/pages/Login';
 
 function ConditionalComponents() {
   const location = useLocation();
@@ -27,6 +28,14 @@ function ConditionalComponents() {
     paths.routes.HOMEPAGEDEVELOPER,
     paths.routes.HOMEPAGEMENTOR
   ].includes(location.pathname);
+
+  const noNavBar = [
+    paths.routes.LOGIN,
+  ]
+
+  if (noNavBar.includes(location.pathname)){
+    return null
+  }
 
   if (isSpecialHomePage) {
     return (
@@ -62,6 +71,7 @@ function App() {
           <Route path={paths.routes.HOMEPAGEDEVELOPER} element={<DeveloperHomePage />} />
           <Route path={paths.routes.HOMEPAGEMENTOR} element={<MentorHomePage />} />
           <Route path={paths.routes.FOOTER}element={<FooterHomePage />}/>
+          <Route path={paths.routes.LOGIN}element={<Login/>}/>
         </Routes>
       </div>
     </BrowserRouter>

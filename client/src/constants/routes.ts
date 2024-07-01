@@ -14,6 +14,7 @@ export const routes = {
     "HOMEPAGEDESIGNER": "/DesignerHomePage",
     "HOMEPAGEMENTOR": "/MentorHomePage",
     "FOOTER": "/FooterHomePage",
+    "LOGIN": "/Login",
 
 }
 
