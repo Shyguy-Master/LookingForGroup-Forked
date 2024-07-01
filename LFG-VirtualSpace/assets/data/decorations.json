@@ -1,0 +1,73 @@
+{
+    "decorations": [
+        {
+            "name": "Chest",
+            "src": "assets/images/chest.png",
+            "size": {
+                "x": 1,
+                "y": 2
+            },
+            "scale": 1.3,
+            "anchor": 0.35
+        },
+        {
+            "name": "Fancy Table",
+            "src": "assets/images/fancyTable.png",
+            "scale": 0.9 
+        },
+        {
+            "name": "Cozy Rug",
+            "src": "cozyRug",
+            "size": {
+                "x": 2,
+                "y": 2
+            },
+            "scale": 2.15
+        },
+        {
+            "name": "Cozy Blankets",
+            "src": "cozyBlankets",
+            "scale": 2.15,
+            "offset": 12
+        },
+        {
+            "name": "Cozy Chair",
+            "src": "cozyChair",
+            "useHalen": true,
+            "offset": 12
+        },
+        {
+            "name": "Cozy Couch",
+            "src": "cozyCouch",
+            "size": {"x":1,"y":2},
+            "scale": 2,
+            "anchor": 0.35
+        },
+        {
+            "name": "Cozy Table",
+            "src": "cozyTable",
+            "scale": 2,
+            "offset": 15
+        },
+        {
+            "name": "Cozy Bookshelf",
+            "src": "cozyBookshelf",
+            "size": {"x":1,"y":2},
+            "scale": 2,
+            "anchor": 0.2,
+            "offset": 12
+        },
+        {
+            "name": "Cozy Lamps",
+            "src": "cozyLight",
+            "scale": 2.15,
+            "offset": 15
+        },
+        {
+            "name": "Cozy Plant",
+            "src": "cozyPlant",
+            "useHalen": true,
+            "offset": 12
+        }
+    ]
+}
