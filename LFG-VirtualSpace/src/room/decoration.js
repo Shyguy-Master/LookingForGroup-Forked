@@ -1,5 +1,6 @@
 // Wilson Xia
 import * as PIXI from 'pixi.js';
+import { disableEditing } from '../main';
 export class Decoration {
     constructor(src, size) {
         this.sprite = drawSprite(src);
@@ -32,7 +33,9 @@ export class Decoration {
             event.target.tint = '#fff';
         }
         this.sprite.onpointerdown = (e) => {
-            onDragStart(e);
+            if (!disableEditing) {
+                onDragStart(e);
+            }
             // console.log(this.sprite.position.y);
         };
     }

@@ -1,6 +1,5 @@
 // Wilson Xia
 import { app, world, decorationMenu } from '../main';
-import { isScrolling } from '../ui/scroll-box-events';
 
 const mouseCoords = { x: 0, y: 0 };
 let dragTarget = null;
@@ -26,7 +25,14 @@ export const setUpStageEvents = () => {
             dec.sprite.tint = "#ffffff";
         }
         // Check to see if we are outside the decoration menu slider
-        if(!decorationMenu.mouseInDecorationMenu){ 
+        // pan if mouse is not over decoration menu and if decoration menu doesnt exist
+        console.log(decorationMenu);
+        // if decoration menu doesnt exist dont bother checking where the mouse is
+        if (decorationMenu === null) {
+            onPanStart();
+        }
+        // if decoration menu does exist ensure the mouse is not inside of it
+        else if (!decorationMenu.mouseInDecorationMenu){ 
             onPanStart();
         }
     });

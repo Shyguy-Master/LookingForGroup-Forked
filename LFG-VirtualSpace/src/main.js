@@ -10,7 +10,10 @@ import { loadData } from './room/decorationData.js';
 //https://pixijs.com/8.x/examples/events/dragging
 export let app;
 export let world;
-export let decorationMenu;
+export let decorationMenu = null;
+
+// placeholder value until login and group creation/joining is implemented
+export let disableEditing = false;
 
 const init = async () => {
     // Set up decorations
@@ -26,15 +29,18 @@ const init = async () => {
     world.setUpGrid(app);
 
     // Create the UI
-    decorationMenu = new DecorationMenu({
-        app: app,
-        parent: app.stage,
-        margins: 100,
-        height: 120,
-        padding: 6,
-        scrollMS: 150,
-        scrollCount: 6
-    });
+    if (!disableEditing) {
+        decorationMenu = new DecorationMenu({
+            app: app,
+            parent: app.stage,
+            margins: 100,
+            height: 120,
+            padding: 6,
+            scrollMS: 150,
+            scrollCount: 6
+        });
+    }
+    
 
     // Create Decorations
     // createDecorations();
