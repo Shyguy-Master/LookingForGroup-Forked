@@ -12,9 +12,9 @@ const arrowTexture = await Assets.load('assets/images/ui/arrow.png');
 
 // object contaiting all of the colors used by this UI element. Could possibly be imported from a parent as a space/site wide theme
 const colors = {
-    BG_COLOR: 0X393E40,
-    FORE_COLOR: 0XD9D9D9,
-    DISABLED_COLOR: 0X898B8C,
+    BG_COLOR: 0X414141,
+    FORE_COLOR: 0XFBFBFB,
+    DISABLED_COLOR: 0X969696,
 };
 
 // categories used by filter
