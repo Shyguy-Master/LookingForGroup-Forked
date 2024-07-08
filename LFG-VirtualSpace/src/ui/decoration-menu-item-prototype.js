@@ -1,3 +1,6 @@
+// Decoration Menu Item Prototype
+// Thomas Martinez and Wilson Xia
+// Clickable icon that item that creates a decoration item displayed by decoration menu scrollbox
 
 import {Container, Graphics, Sprite} from "pixi.js";
 import { Button } from "@pixi/ui";
@@ -12,14 +15,17 @@ export class DecorationMenuItemPrototype {
         this.setUpEvents();
     }
     
+    // create container sprite
     setUpContainer = (sideLength, padding) => {
         let squareSide = sideLength - (padding * 2);
+        // Sprite Code
         let sprite = Sprite.from(this.data.src);
         sprite.anchor.set(0.5);
         sprite.position.set(squareSide/2);
         if(sprite.width > squareSide){
             sprite.scale.set(0.5);
         }
+        // Background Code
         this.background = new Graphics().roundRect(padding, padding, squareSide, squareSide, padding * 1.5).fill(this.colors.FORE_COLOR);
         // Container Code
         this.menuItem = new Container({
@@ -31,6 +37,8 @@ export class DecorationMenuItemPrototype {
         this.menuItem.addChild(this.background);
         this.menuItem.addChild(sprite);
     }
+
+    // EVENTS and EVENT HANDLERS
 
     setUpEvents = () => {
         this.menuItem.on('click', this.onClick);

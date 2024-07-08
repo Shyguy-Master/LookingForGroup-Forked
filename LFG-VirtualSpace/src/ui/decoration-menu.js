@@ -10,17 +10,21 @@ import { DecorationMenuItemPrototype } from "./decoration-menu-item-prototype.js
 
 const arrowTexture = await Assets.load('assets/images/ui/arrow.png');
 
+// object contaiting all of the colors used by this UI element. Could possibly be imported from a parent as a space/site wide theme
 const colors = {
     BG_COLOR: 0X393E40,
     FORE_COLOR: 0XD9D9D9,
     DISABLED_COLOR: 0X898B8C,
 };
 
+// categories used by filter
 const categories = ["All", "Floor", "Ceiling", "Wall"];
 
 export class DecorationMenu {
     constructor({ app, parent, margins, height, padding, scrollMS, scrollCount }) {
         this.parent = parent;
+
+        // sizing parameters
         this.LEFT_RIGHT_MARGINS = margins;
         this.FILTER_BAR_TEXT_SIZE = 2;
         this.FILTER_BAR_HEIGHT = height * 0.3;
@@ -31,7 +35,6 @@ export class DecorationMenu {
         this.ITEM_PADDING = padding;
         this.BUTTON_MOVE_MS = scrollMS;
         this.SCROLL_COUNT = scrollCount;
-        this.inSlider = false;
 
         // Create this.moveTicker
         this.moveTicker = new Ticker();
@@ -55,16 +58,21 @@ export class DecorationMenu {
         // background for entire menu
         let menuBackground = new Graphics().rect(0, 0, this.MENU_WIDTH, this.MENU_HEIGHT).fill(colors.BG_COLOR);
         this.decorationMenuContainer.addChild(menuBackground);
+
+        // detect when mouse is over top of decoration menu
+        //  - used by ../room/events.js to distinguish between drags on the world and drags on the decoration menu
+        this.mouseInDecorationMenu = false;
         this.decorationMenuContainer.on('mouseover', () => {
             // console.log('inside');
-            this.inSlider = true;
+            this.mouseInDecorationMenu = true;
         });
         this.decorationMenuContainer.on('mouseout', () => {
             // console.log('out');
-            this.inSlider = false;
+            this.mouseInDecorationMenu = false;
         });
 
 
+        // create scrolling box that displays item buttons
         this.scrollBox = new HorizontalScrollBox({
             app: app,
             parent: this.decorationMenuContainer,
@@ -75,9 +83,6 @@ export class DecorationMenu {
             item_padding: this.ITEM_PADDING,
             colors: colors,
         });
-
-        // populate scrollBox
-        //loadScrollBoxTextures(scrollBox);
 
         this.createButtons();
 
@@ -90,7 +95,9 @@ export class DecorationMenu {
         parent.addChild(this.decorationMenuContainer);
     }
 
+    // buttons on right and left of scroll through menu
     createButtons = async () => {
+        // create sprites
         const rightArrow = new Sprite({
             texture: arrowTexture,
             anchor: 0.5,
@@ -100,7 +107,6 @@ export class DecorationMenu {
             y: this.SCROLL_BOX_HEIGHT / 2 + this.FILTER_BAR_HEIGHT,
             tint: colors.FORE_COLOR
         });
-
         const leftArrow = new Sprite({
             texture: arrowTexture,
             anchor: 0.5,
@@ -112,12 +118,15 @@ export class DecorationMenu {
             tint: colors.FORE_COLOR
         });
 
+        // make sprites into button
         const rightButton = new Button(rightArrow);
         const leftButton = new Button(leftArrow);
 
+        // add functionality to buttons
         rightButton.onPress.connect(() => this.scroll(-this.MENU_HEIGHT * this.SCROLL_COUNT));
         leftButton.onPress.connect(() => this.scroll(this.MENU_HEIGHT * this.SCROLL_COUNT));
 
+        // add buttons to UI
         this.decorationMenuContainer.addChild(rightArrow);
         this.decorationMenuContainer.addChild(leftArrow);
 
@@ -147,9 +156,11 @@ export class DecorationMenu {
         this.buttonEnabledTicker.start();
     }
 
+    // animated smooth scroll a certain distance
     scroll = (scrollDistance) => {
-        console.log(`scrolling: ${Math.abs(scrollDistance)} ${scrollDistance > 0 ? "left" : "right"}`);
+        //console.log(`scrolling: ${Math.abs(scrollDistance)} ${scrollDistance > 0 ? "left" : "right"}`);
 
+        // moves scrollBox scroll position based on given amount and deltaTime
         const moveScrollBar = (deltaTime) => {
             let distancePerTick = (scrollDistance / this.BUTTON_MOVE_MS) * this.moveTicker.elapsedMS;
             //console.log(`moved: ${distancePerTick} `);
@@ -161,7 +172,7 @@ export class DecorationMenu {
         this.moveTicker.start();
         //console.log("start this.moveTicker");
 
-        // stop movement after x milliseconds
+        // stop movement after [BUTTON_MOVE_MS] milliseconds
         setTimeout(() => {
             this.moveTicker.stop();
             this.moveTicker.remove(moveScrollBar);
@@ -281,36 +292,11 @@ export class DecorationMenu {
 
         sprite.rotation += Math.PI;
 
-        /*/ this code for an animated open and closing of the menu works but always puts the menu in a different position.
-        It is supposed to run after the above if/else is completed instead of using "decorationMenuContainer.y = ".
-        const moveMenuAnimated = (deltaTime) =>
-        {
-            let distancePerTick = (MENU_HEIGHT / BUTTON_MOVE_MS) * this.moveTicker.elapsedMS;
-            decorationMenuContainer.y += menuOpen ? -distancePerTick : distancePerTick;
-        }
-        this.moveTicker.add(moveMenuAnimated);
-        this.moveTicker.start();
-    
-        // stop movement after x milliseconds
-        setTimeout(() => {
-            this.moveTicker.stop();
-            this.moveTicker.remove(moveMenu);
-        }, BUTTON_MOVE_MS); 
-        //*/
-
         this.menuOpen = !this.menuOpen;
     }
 
     loadScrollBoxTextures = async () => {
         let prefabTextures = DEC_PREFABS;
-        // console.log(prefabTextures);
-        // // console.log(Texture.from(prefabTextures[0]));
-        // this.textures = prefabTextures;
-        // this.textures = [
-        //     await Assets.load('assets/images/cozy/blankets-cozy.png'),
-        //     await Assets.load('assets/images/cozy/lamp-cozy-v2.png'),
-        //     await Assets.load('assets/images/cozy/plant-cozy.png'),
-        // ];
         
         for (let i = 0; i < 20; i++) {
             let decorationMenuItem = new DecorationMenuItemPrototype({

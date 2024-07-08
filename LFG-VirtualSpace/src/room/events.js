@@ -26,7 +26,7 @@ export const setUpStageEvents = () => {
             dec.sprite.tint = "#ffffff";
         }
         // Check to see if we are outside the decoration menu slider
-        if(!decorationMenu.inSlider){ 
+        if(!decorationMenu.mouseInDecorationMenu){ 
             onPanStart();
         }
     });

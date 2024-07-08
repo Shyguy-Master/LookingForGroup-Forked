@@ -1,5 +1,5 @@
 // Thomas Martinez
-// drag events used by scroll box
+// events used by scroll box
 
 import { app } from '../main.js';
 
@@ -20,23 +20,17 @@ export const setUpScrollBoxEvents = () => {
 export const onMouseUp = () => {
     mousedown = false;
     // console.log("mouse down = false");
-    // console.log("-------------------------------------------");
 } 
 
 export const onDragStart = (event) => {
     //console.log('entering onDragStart');
-    // Store a reference to the data
-    // * The reason for this is because of multitouch *
-    // * We want to track the movement of this particular touch *
-    //dragTarget = event.target;
-
-    // NOTE FOR TOMORROW TRY A SET TIMOUT TO DISTINGUISH BETWEEN CLICK AND DRAG
-
     // console.log('mouse down = true');
-    mousedown = true;
 
+    mousedown = true;
     dragTarget = event.target;
 
+    // if mouse is released within a certain threshold then a click has occured and no dragging functionality should run
+    //      - clicks on menu items are handled by decoration_menu_item.js or decoratin_menu_item_prototype.js
     setTimeout(() => {
         if (mousedown) {
             // console.log("dragging: " + dragTarget.name);
@@ -52,6 +46,7 @@ export const onDragStart = (event) => {
             app.stage.on('pointermove', onDragMove);
         }
         // else {
+        //     // CLICK HAS OCCURED
         //     // console.log("click");
         // }
     }, 50); 

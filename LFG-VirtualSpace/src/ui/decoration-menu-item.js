@@ -1,3 +1,7 @@
+// Decoration Menu Item Prototype
+// Thomas Martinez
+// Clickable icon of decoration item displayed by decoration menu scrollbox
+
 import {Container, Graphics, Sprite} from "pixi.js";
 import { Button } from "@pixi/ui";
 
