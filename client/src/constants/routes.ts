@@ -15,6 +15,8 @@ export const routes = {
     "HOMEPAGEMENTOR": "/MentorHomePage",
     "FOOTER": "/FooterHomePage",
     "LOGIN": "/Login",
+    "SIGNUP": "/SignUp",
+    "PROFICIENCIES": "/Proficiencies"
 
 }
 
