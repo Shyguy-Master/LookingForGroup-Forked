@@ -9,6 +9,7 @@ import { DEC_PREFABS } from "../room/decorationData.js";
 import { DecorationMenuItemPrototype } from "./decoration-menu-item-prototype.js";
 
 const arrowTexture = await Assets.load('assets/images/ui/arrow.png');
+const trashcanTexture = await Assets.load('assets/images/ui/trashcan.png');
 
 // object contaiting all of the colors used by this UI element. Could possibly be imported from a parent as a space/site wide theme
 const colors = {
@@ -36,10 +37,12 @@ export class DecorationMenu {
         this.BUTTON_MOVE_MS = scrollMS;
         this.SCROLL_COUNT = scrollCount;
 
-        // Create this.moveTicker
-        this.moveTicker = new Ticker();
-        this.moveTicker.autoStart = false;
-        this.moveTicker.stop();
+        this.inSlider = false;
+
+        // Create this.animationTicker
+        this.animationTicker = new Ticker();
+        this.animationTicker.autoStart = false;
+        this.animationTicker.stop();
         this.buttonEnabledTicker = new Ticker();
 
         // display settings
@@ -91,6 +94,8 @@ export class DecorationMenu {
         this.createClosePanelButton();
 
         this.loadScrollBoxTextures();
+
+        this.createDeleteUI();
 
         parent.addChild(this.decorationMenuContainer);
     }
@@ -174,9 +179,9 @@ export class DecorationMenu {
 
         // stop movement after [BUTTON_MOVE_MS] milliseconds
         setTimeout(() => {
-            this.moveTicker.stop();
-            this.moveTicker.remove(moveScrollBar);
-        }, this.BUTTON_MOVE_MS);
+            this.animationTicker.stop();
+            this.animationTicker.remove(moveScrollBar);
+        }, this.BUTTON_MOVE_MS); 
     }
 
     // FILTER BAR
@@ -293,6 +298,58 @@ export class DecorationMenu {
         sprite.rotation += Math.PI;
 
         this.menuOpen = !this.menuOpen;
+    }
+
+    createDeleteUI = () => {
+        this.deleteOverlayUI = new Container({
+            width: this.MENU_WIDTH,
+            height: this.MENU_HEIGHT,
+            visible: false
+        });
+        let bg = new Graphics({alpha: 0.6}).rect(0,0,this.MENU_WIDTH,this.MENU_HEIGHT).fill(0x000000);
+        this.deleteOverlayUI.addChild(bg);
+        let trashcan = new Sprite({
+            texture: trashcanTexture,
+            anchor: 0.5,
+            x: this.MENU_WIDTH / 2,
+            y: this.MENU_HEIGHT / 2,
+            width: this.MENU_HEIGHT * 0.64,
+            height: this.MENU_HEIGHT * 0.64,
+            tint: colors.FORE_COLOR
+        });
+        this.deleteOverlayUI.addChild(trashcan);
+        this.decorationMenuContainer.addChild(this.deleteOverlayUI);
+    }
+
+    showDeleteUI = () => {
+        this.deleteOverlayUI.visible = true;
+        //animateOpacity(0.6, true);
+        //this.deleteOverlayUI.alpha = 0.6;
+    }
+
+    hideDeleteUI = () => {
+        this.deleteOverlayUI.visible = false;
+        //animateOpacity(-0.6, false);
+        //this.deleteOverlayUI.alpha = 0;
+    }
+
+    animateOpacity = (opacityChange, visibility) => {
+        this.deleteOverlayUI.visible = false;
+
+        const animateOpacity = (deltaTime) =>
+        {
+            let opacityPerTick = (opacityChange / this.BUTTON_MOVE_MS) * this.animationTicker.elapsedMS;
+            decorationMenuContainer.y += opacityPerTick;
+        }
+        this.animationTicker.add(animateOpacity);
+        this.animationTicker.start();
+    
+        // stop movement after x milliseconds
+        setTimeout(() => {
+            this.animationTicker.stop();
+            this.animationTicker.remove(animateOpacity);
+            this.deleteOverlayUI.visible = visibility;
+        }, this.BUTTON_MOVE_MS);
     }
 
     loadScrollBoxTextures = async () => {
