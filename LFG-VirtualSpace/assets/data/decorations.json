@@ -53,6 +53,53 @@
             "src": "cozyPlant",
             "useHalen": true,
             "offset": 12
+        },
+        {
+            "name": "Cyber Arm",
+            "src": "cyberArm",
+            "useHalen": true
+        },
+        {
+            "name": "Cyber Chair",
+            "src": "cyberChair",
+            "useHalen": true
+        },
+        {
+            "name": "Cyber Couch",
+            "src": "cyberCouch",
+            "size": {"x":1,"y":2},
+            "scale": 2,
+            "anchor": 0.35
+        },
+        {
+            "name": "Cyber Lamp",
+            "src": "cyberLamp",
+            "useHalen": true,
+            "offset": 12
+        },
+        {
+            "name": "Cyber Rug",
+            "src": "cyberRug",
+            "size": {
+                "x": 2,
+                "y": 2
+            },
+            "scale": 2.15
+        },
+        {
+            "name": "Cyber Side Table",
+            "src": "cyberSideTable",
+            "useHalen": true
+        },
+        {
+            "name": "Cyber Table",
+            "src": "cyberTable",
+            "useHalen": true
+        },
+        {
+            "name": "Cyber Table 2",
+            "src": "cyberTableOld",
+            "useHalen": true
         }
     ]
 }

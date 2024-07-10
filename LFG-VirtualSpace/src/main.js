@@ -76,7 +76,6 @@ const loadTextures = async () => {
     PIXI.Assets.addBundle('decorations', [
         { alias: 'cuteBear', src: 'assets/images/VS_Cute(Bear).png'},
         { alias: 'cuteFish', src: 'assets/images/VS_Cute(Fish).png'},
-        { alias: 'cyberArm', src: 'assets/images/VS_Cyber(Arm).png'},
         { alias: 'fantasyCauldron', src: 'assets/images/VS_Fantasy(Cauldron).png'},
         { alias: 'fantasyTelescope', src: 'assets/images/VS_Fantasy(Telescope).png'},
         { alias: 'westernRack', src: 'assets/images/VS_Western(Rack).png'},
@@ -91,30 +90,30 @@ const loadTextures = async () => {
         { alias: 'cozyRug', src: 'assets/images/cozy/VS_Rug(Cozy).png'},
         { alias: 'cozyTable', src: 'assets/images/cozy/VS_Table(Cozy).png'},
     ]);
+    PIXI.Assets.addBundle('cyber', [
+        { alias: 'cyberArm', src: 'assets/images/cyber/VS_Arm(Cyber).png' },
+        { alias: 'cyberChair', src: 'assets/images/cyber/VS_Chair(Cyber).png'},
+        { alias: 'cyberLamp', src: 'assets/images/cyber/VS_Lamp(Cyber-updated).png'},
+        { alias: 'cyberSideTable', src: 'assets/images/cyber/VS_SideTable(Cyber).png'},
+        { alias: 'cyberCouch', src: 'assets/images/cyber/VS_Couch(Cyber).png'},
+        { alias: 'cyberRug', src: 'assets/images/cyber/VS_Rug(Cyber).png'},
+        { alias: 'cyberTable', src: 'assets/images/cyber/VS_Table(Cyber).png'},
+        { alias: 'cyberTableOld', src: 'assets/images/cyber/VS_Table(Cyber-new).png'},
+    ]);
     PIXI.Assets.addBundle('rooms', [
-        { alias: 'westernRoom', src: 'assets/images/rooms/VS_Room(Western).png'}
+        { alias: 'westernRoom', src: 'assets/images/rooms/VS_Room(Western).png'},
+        { alias: 'cyberRoom', src: 'assets/images/rooms/VS_Room(Cyber).png'}
     ]);
     await PIXI.Assets.loadBundle('decorations');
     await PIXI.Assets.loadBundle('cozy');
+    await PIXI.Assets.loadBundle('cyber');
     await PIXI.Assets.loadBundle('rooms');
-}
-
-const createDecorations = () => {
-    // Create Decorations
-    let halenScale = 2.5;
-    // world.createDecorations({});
-    // world.createDecorations({ count: 1, src: 'cuteFish',            scale: halenScale, offset: 12});
-    // world.createDecorations({ count: 1, src: 'cyberArm',            scale: halenScale,});
-    // world.createDecorations({ count: 1, src: 'fantasyCauldron',     scale: halenScale, offset: 12});
-    // world.createDecorations({ count: 1, src: 'fantasyTelescope',    scale: halenScale, offset: 12});
-    // world.createDecorations({ count: 1, src: 'westernRack',         scale: halenScale, offset: 12});
 }
 
 const resizeWindow = () => {
     console.log('window resized');
     app.resize();
     console.log('Stage height:' + app.stage.height);
-    
 }
 
 init();

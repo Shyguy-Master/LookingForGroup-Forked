@@ -4,7 +4,6 @@
 import { Container, Graphics, Assets, Sprite, Text, Texture, TextStyle, Ticker } from "pixi.js";
 import { Button } from "@pixi/ui";
 import { HorizontalScrollBox } from "./scroll-box.js";
-import { DecorationMenuItem } from "./decoration-menu-item.js";
 import { DEC_PREFABS } from "../room/decorationData.js";
 import { DecorationMenuItemPrototype } from "./decoration-menu-item-prototype.js";
 
@@ -68,10 +67,12 @@ export class DecorationMenu {
         this.decorationMenuContainer.on('mouseover', () => {
             // console.log('inside');
             this.mouseInDecorationMenu = true;
+            this.inSlider = true;
         });
         this.decorationMenuContainer.on('mouseout', () => {
             // console.log('out');
             this.mouseInDecorationMenu = false;
+            this.inSlider = false;
         });
 
 

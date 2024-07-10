@@ -15,7 +15,11 @@ export class Decoration {
     }
 
     save = () => {
-        return this.attachedTiles[0].id;
+        if(this.attachedTiles[0])
+            return this.attachedTiles[0].id;
+        else{
+            return null
+        }
     }
 
     removeTiles = () => {

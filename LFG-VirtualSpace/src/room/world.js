@@ -12,7 +12,7 @@ export class World {
         this.container = new PIXI.Container();
         this.gridSize = { rows, columns };
         this.grid; // floor
-        this.background = 'westernRoom';
+        this.background = 'cyberRoom';
         this.leftWall;
         this.rightWall;
         this.selectedGrid;
