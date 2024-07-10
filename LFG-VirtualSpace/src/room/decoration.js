@@ -3,13 +3,18 @@ import * as PIXI from 'pixi.js';
 export class Decoration {
     constructor(src, size) {
         this.sprite = drawSprite(src);
-        this.attachedTiles = [];
-        this.isWall = false;
-        // Display Properties
         this.size = size; // {x:1,y:1};
         this.offset = 0;
+        this.isWall = false;
+        this.attachedGrid; // String
+        this.attachedTiles = []; // List of tile ids
+        // Display Properties
         // Attatch this info to the sprite
         this.sprite.decoration = this;
+    }
+
+    save = () => {
+        return this.attachedTiles[0].id;
     }
 
     removeTiles = () => {

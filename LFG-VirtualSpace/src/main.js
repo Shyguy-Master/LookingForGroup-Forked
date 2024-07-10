@@ -68,7 +68,6 @@ const loadTextures = async () => {
     // load the texture
     // Reference: https://pixijs.download/release/docs/assets.Assets.html#addBundle
     PIXI.Assets.addBundle('decorations', [
-        { alias: 'fancyTable', src: 'assets/images/fancyTable.png' },
         { alias: 'cuteBear', src: 'assets/images/VS_Cute(Bear).png'},
         { alias: 'cuteFish', src: 'assets/images/VS_Cute(Fish).png'},
         { alias: 'cyberArm', src: 'assets/images/VS_Cyber(Arm).png'},
@@ -92,9 +91,6 @@ const loadTextures = async () => {
     await PIXI.Assets.loadBundle('decorations');
     await PIXI.Assets.loadBundle('cozy');
     await PIXI.Assets.loadBundle('rooms');
-    await PIXI.Assets.load('assets/images/isoTable.png');
-    await PIXI.Assets.load('assets/images/chest.png');
-
 }
 
 const createDecorations = () => {
