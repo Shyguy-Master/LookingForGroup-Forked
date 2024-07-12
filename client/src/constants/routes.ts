@@ -16,7 +16,7 @@ export const routes = {
     "FOOTER": "/FooterHomePage",
     "LOGIN": "/Login",
     "SIGNUP": "/SignUp",
-    "PROFICIENCIES": "/Proficiencies"
-
+    "PROFICIENCIES": "/Proficiencies",
+    "HARDSOFTSKILLS": "/HardSoftSkills",
 }
 

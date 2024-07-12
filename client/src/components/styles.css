@@ -1221,3 +1221,26 @@ form {
 .prof-button.selected {
     border-color: orange;
 }
+
+/* HardSoftSkills */
+.skills-buttons-container{
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); /* Adjust button width here */
+    gap: 10px; 
+}
+.skill-button{
+    padding: 5px 10px; 
+    border: 2px solid grey;
+    border-radius: 8px;
+    cursor: pointer;
+    margin: 5px;
+    background-color: white;
+    height: 40px; 
+    font-size: 12px; 
+    text-align: center; 
+}
+
+.skill-button.selected{
+    border-color: orange;
+}

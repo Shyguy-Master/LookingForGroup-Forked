@@ -20,6 +20,7 @@ import FooterHomePage from './components/FooterHomePage';
 import Login from './components/pages/Login';
 import SignUp from './components/pages/SignUp';
 import Proficiencies from './components/pages/Proficiencies';
+import HardSoftSkills from './components/pages/HardSoftSkills';
 
 function ConditionalComponents() {
   const location = useLocation();
@@ -34,7 +35,8 @@ function ConditionalComponents() {
   const noNavBar = [
     paths.routes.LOGIN,
     paths.routes.SIGNUP,
-    paths.routes.PROFICIENCIES
+    paths.routes.PROFICIENCIES,
+    paths.routes.HARDSOFTSKILLS,
   ]
 
   if (noNavBar.includes(location.pathname)){
@@ -78,6 +80,7 @@ function App() {
           <Route path={paths.routes.LOGIN}element={<Login/>}/>
           <Route path={paths.routes.SIGNUP}element={<SignUp/>}/>
           <Route path={paths.routes.PROFICIENCIES}element={<Proficiencies/>}/>
+          <Route path={paths.routes.HARDSOFTSKILLS}element={<HardSoftSkills/>}/>
         </Routes>
       </div>
     </BrowserRouter>

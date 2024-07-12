@@ -1,20 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import '../styles.css';
 
-export const Proficiencies = () => {
-    const [selectedProfButtons, setSelectedProfButtons] = useState([]);
-    const [canProceed, setCanProceed] = useState(false);
-    const [searchQuery, setSearchQuery] = useState('');
+const Proficiencies = () => {
+    const [selectedProfButtons, setSelectedProfButtons] = useState<string[]>([]);
+    const [canProceed, setCanProceed] = useState<boolean>(false);
+    const [searchQuery, setSearchQuery] = useState<string>('');
 
     useEffect(() => {
-        setCanProceed(selectedProfButtons.length >= 5);
+        setCanProceed(selectedProfButtons.length >= 3);
     }, [selectedProfButtons]);
 
-    const toggleButton = (buttonLabel) => {
+    const toggleButton = (buttonLabel: string) => {
         setSelectedProfButtons(prevState => {
             if (prevState.includes(buttonLabel)) {
                 return prevState.filter(label => label !== buttonLabel);
-            } else if (prevState.length < 5) {
+            } else if (prevState.length < 3) {
                 return [...prevState, buttonLabel];
             } else {
                 return prevState;
@@ -70,7 +70,7 @@ export const Proficiencies = () => {
         <div className='flexColumn9'>
             <div className='flexContainer'>
                 <div className='flexRow11'>
-                    <h1>Select at least 5 Proficiencies you would like to show</h1>
+                    <h1>Select at least 3 Proficiencies you would like to show</h1>
                     <h4>You can add more or edit later</h4>
                 </div>
 
@@ -95,13 +95,13 @@ export const Proficiencies = () => {
                     </div>
 
                     <div className="stickySection">
-                        <button className="button-sticky" type="button" onClick={() => window.location.href = '/Proficiencies'}>Back</button>
+                        <button className="button-sticky" type="button" onClick={() => window.location.href = '/SignUp'}>Back</button>
                         <button
                             className="button-sticky"
                             type="button"
-                            onClick={() => window.location.href = '/'}
+                            onClick={() => window.location.href = '/HardSoftSkills'}
                             disabled={!canProceed}
-                            style={{ backgroundColor: canProceed ? 'orange' : 'grey', color: canProceed ? 'white' : 'white' }}
+                            style={{ backgroundColor: canProceed ? 'orange' : 'grey', color: 'white' }}
                         >
                             Next
                         </button>
