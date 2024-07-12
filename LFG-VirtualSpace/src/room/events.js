@@ -26,13 +26,16 @@ export const setUpStageEvents = () => {
                 dec.sprite.tint = "#ffffff";
             }
         }
-        if (!disableEditing) {
-            if (!decorationMenu.inSlider) onPanStart();
-        }
-        else {
+        // if editing is disabled just pan
+        if (disableEditing) {
             onPanStart();
         }
-        // Check to see if we are outside the decoration menu slider
+        // if editing is enabled (if decoration menu exists)
+        else {
+            // Check if cursor is outside the decoration menu slider
+            if (!decorationMenu.inSlider) onPanStart();
+        }
+        
     });
     app.stage.on('pointermove', onPanMove);
     app.stage.on('pointerup', () => {
