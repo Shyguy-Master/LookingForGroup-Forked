@@ -1,5 +1,5 @@
 // Wilson Xia
-import { app, world, decorationMenu } from '../main';
+import { app, world, decorationMenu, disableEditing } from '../main';
 
 const mouseCoords = { x: 0, y: 0 };
 let dragTarget = null;
@@ -26,10 +26,13 @@ export const setUpStageEvents = () => {
                 dec.sprite.tint = "#ffffff";
             }
         }
-        // Check to see if we are outside the decoration menu slider
-        if (!decorationMenu.inSlider) {
+        if (!disableEditing) {
+            if (!decorationMenu.inSlider) onPanStart();
+        }
+        else {
             onPanStart();
         }
+        // Check to see if we are outside the decoration menu slider
     });
     app.stage.on('pointermove', onPanMove);
     app.stage.on('pointerup', () => {
