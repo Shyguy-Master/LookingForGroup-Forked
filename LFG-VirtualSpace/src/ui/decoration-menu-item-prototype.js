@@ -26,7 +26,7 @@ export class DecorationMenuItemPrototype {
             sprite.scale.set(0.5);
         }
         // Background Code
-        this.background = new Graphics().roundRect(padding, padding, squareSide, squareSide, padding * 1.5).fill(this.colors.FORE_COLOR);
+        this.background = new Graphics().roundRect(padding, padding, squareSide, squareSide, padding * 1.5).fill(this.colors.LIGHT_GREY).stroke({ width: 2, color: this.colors.ORANGE });
         // Container Code
         this.menuItem = new Container({
             width: squareSide,
@@ -52,7 +52,7 @@ export class DecorationMenuItemPrototype {
     }
 
     hover = () => {
-        this.background.tint = this.colors.DISABLED_COLOR;
+        this.background.tint = this.colors.MEDIUM_GREY;
     }
 
     endHover = () => {

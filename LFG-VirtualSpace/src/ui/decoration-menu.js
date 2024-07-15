@@ -1,7 +1,7 @@
 // Thomas Martinez
 // Menu for accessing decoration items in virtual space
 
-import { Container, Graphics, Assets, Sprite, Text, Texture, TextStyle, Ticker } from "pixi.js";
+import { Container, Graphics, Assets, Sprite, Text, FillGradient, TextStyle, Ticker } from "pixi.js";
 import { Button } from "@pixi/ui";
 import { HorizontalScrollBox } from "./scroll-box.js";
 import { DEC_PREFABS } from "../room/decorationData.js";
@@ -11,10 +11,13 @@ const arrowTexture = await Assets.load('assets/images/ui/arrow.png');
 const trashcanTexture = await Assets.load('assets/images/ui/trashcan.png');
 
 // object contaiting all of the colors used by this UI element. Could possibly be imported from a parent as a space/site wide theme
-const colors = {
-    BG_COLOR: 0X414141,
-    FORE_COLOR: 0XFBFBFB,
-    DISABLED_COLOR: 0X969696,
+const colors = { // dark gray: 0X414141, white: 0XFBFBFB, medium grey: 0X969696
+    ORANGE: 0XF76902,
+    WHITE: 0XFBFBFB,
+    LIGHT_GREY: 0XDDDDDD,
+    MEDIUM_GREY: 0X969696,
+    DARK_GREY: 0X414141,
+    BLACK: 0X00000,
 };
 
 // categories used by filter
@@ -58,7 +61,7 @@ export class DecorationMenu {
         });
 
         // background for entire menu
-        let menuBackground = new Graphics().rect(0, 0, this.MENU_WIDTH, this.MENU_HEIGHT).fill(colors.BG_COLOR);
+        let menuBackground = new Graphics().rect(0, 0, this.MENU_WIDTH, this.MENU_HEIGHT).fill(colors.WHITE);
         this.decorationMenuContainer.addChild(menuBackground);
 
         // detect when mouse is over top of decoration menu
@@ -111,7 +114,7 @@ export class DecorationMenu {
             height: this.SCROLL_BOX_HEIGHT / 2,
             x: this.MENU_WIDTH - this.LEFT_RIGHT_MARGINS / 2,
             y: this.SCROLL_BOX_HEIGHT / 2 + this.FILTER_BAR_HEIGHT,
-            tint: colors.FORE_COLOR
+            tint: colors.BLACK
         });
         const leftArrow = new Sprite({
             texture: arrowTexture,
@@ -121,7 +124,7 @@ export class DecorationMenu {
             x: (this.LEFT_RIGHT_MARGINS / 2),
             y: this.SCROLL_BOX_HEIGHT / 2 + this.FILTER_BAR_HEIGHT,
             rotation: Math.PI,
-            tint: colors.FORE_COLOR
+            tint: colors.BLACK
         });
 
         // make sprites into button
@@ -142,21 +145,21 @@ export class DecorationMenu {
             if (this.scrollBox.itemsContainer.position.x === 0) {
                 //console.log('LEFT BUTTON DISABLED');
                 leftButton.enabled = false;
-                leftArrow.tint = colors.DISABLED_COLOR;
+                leftArrow.tint = colors.MEDIUM_GREY;
             } else {
                 //console.log('LEFT BUTTON ENABLED');
                 leftButton.enabled = true;
-                leftArrow.tint = colors.FORE_COLOR;
+                leftArrow.tint = colors.BLACK;
             }
             // right button
             if (this.scrollBox.itemsContainer.position.x < -this.scrollBox.maxDistance + this.ITEM_PADDING) {
                 //console.log('RIGHT BUTTON DISABLED');
                 rightButton.enabled = false;
-                rightArrow.tint = colors.DISABLED_COLOR;
+                rightArrow.tint = colors.MEDIUM_GREY;
             } else {
                 //console.log('RIGHT BUTTON ENABLED');
                 rightButton.enabled = true;
-                rightArrow.tint = colors.FORE_COLOR;
+                rightArrow.tint = colors.BLACK;
             }
         });
         this.buttonEnabledTicker.start();
@@ -168,15 +171,15 @@ export class DecorationMenu {
 
         // moves scrollBox scroll position based on given amount and deltaTime
         const moveScrollBar = (deltaTime) => {
-            let distancePerTick = (scrollDistance / this.BUTTON_MOVE_MS) * this.moveTicker.elapsedMS;
+            let distancePerTick = (scrollDistance / this.BUTTON_MOVE_MS) * this.animationTicker.elapsedMS;
             //console.log(`moved: ${distancePerTick} `);
             this.scrollBox.scroll(distancePerTick);
         }
 
         // start movement
-        this.moveTicker.add(moveScrollBar);
-        this.moveTicker.start();
-        //console.log("start this.moveTicker");
+        this.animationTicker.add(moveScrollBar);
+        this.animationTicker.start();
+        //console.log("start this.animationTicker");
 
         // stop movement after [BUTTON_MOVE_MS] milliseconds
         setTimeout(() => {
@@ -198,7 +201,7 @@ export class DecorationMenu {
         let distance = 0;
         for (let i = 0; i < categories.length; i++) {
 
-            let color = (this.currentFilter === categories[i]) ? colors.FORE_COLOR : colors.DISABLED_COLOR;
+            let color = (this.currentFilter === categories[i]) ? colors.BLACK : colors.MEDIUM_GREY;
             const style = new TextStyle({
                 fill: { color }
             });
@@ -225,9 +228,13 @@ export class DecorationMenu {
         this.decorationMenuContainer.addChild(filterBarContainer);
     }
 
+    // change selected filter 
     changeFilter = (filterBar, newFilter) => {
+        // if selected filter is different from current
         if (this.currentFilter !== newFilter) {
+            // set new filter
             this.currentFilter = newFilter;
+            // refresh filter bar
             while (filterBar.children[0]) {
                 filterBar.removeChild(filterBar.children[0]);
             }
@@ -256,7 +263,7 @@ export class DecorationMenu {
             .lineTo(btnWid, btnHgt)
             .lineTo(0, btnHgt)
             .arcTo(0, 0, buttonPadding, 0, buttonPadding)
-            .fill(colors.BG_COLOR);
+            .fill(colors.WHITE);
         openCloseButtonContainer.addChild(openCloseButtonContainerBG);
 
         // Create the arrow sprite
@@ -268,7 +275,7 @@ export class DecorationMenu {
             x: btnWid / 2,
             y: btnHgt / 2,
             rotation: Math.PI / 2, // Rotate the arrow 270 degrees
-            tint: colors.FORE_COLOR,
+            tint: colors.BLACK,
         })
 
         openCloseButtonContainer.addChild(arrow);
@@ -307,7 +314,9 @@ export class DecorationMenu {
             height: this.MENU_HEIGHT,
             visible: false
         });
+
         let bg = new Graphics({alpha: 0.6}).rect(0,0,this.MENU_WIDTH,this.MENU_HEIGHT).fill(0x000000);
+
         this.deleteOverlayUI.addChild(bg);
         let trashcan = new Sprite({
             texture: trashcanTexture,
@@ -316,7 +325,7 @@ export class DecorationMenu {
             y: this.MENU_HEIGHT / 2,
             width: this.MENU_HEIGHT * 0.64,
             height: this.MENU_HEIGHT * 0.64,
-            tint: colors.FORE_COLOR
+            tint: colors.WHITE
         });
         this.deleteOverlayUI.addChild(trashcan);
         this.decorationMenuContainer.addChild(this.deleteOverlayUI);
@@ -324,33 +333,10 @@ export class DecorationMenu {
 
     showDeleteUI = () => {
         this.deleteOverlayUI.visible = true;
-        //animateOpacity(0.6, true);
-        //this.deleteOverlayUI.alpha = 0.6;
     }
 
     hideDeleteUI = () => {
         this.deleteOverlayUI.visible = false;
-        //animateOpacity(-0.6, false);
-        //this.deleteOverlayUI.alpha = 0;
-    }
-
-    animateOpacity = (opacityChange, visibility) => {
-        this.deleteOverlayUI.visible = false;
-
-        const animateOpacity = (deltaTime) =>
-        {
-            let opacityPerTick = (opacityChange / this.BUTTON_MOVE_MS) * this.animationTicker.elapsedMS;
-            decorationMenuContainer.y += opacityPerTick;
-        }
-        this.animationTicker.add(animateOpacity);
-        this.animationTicker.start();
-    
-        // stop movement after x milliseconds
-        setTimeout(() => {
-            this.animationTicker.stop();
-            this.animationTicker.remove(animateOpacity);
-            this.deleteOverlayUI.visible = visibility;
-        }, this.BUTTON_MOVE_MS);
     }
 
     loadScrollBoxTextures = async () => {

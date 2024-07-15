@@ -37,7 +37,7 @@ const init = async () => {
             height: 120,
             padding: 6,
             scrollMS: 150,
-            scrollCount: 6
+            scrollCount: 6,
         });
     }
     
@@ -62,7 +62,7 @@ const loadPixiCanvas = async () => {
     app = new PIXI.Application();
 
     // Intialize the application.
-    await app.init({ background: '#2943AD', resizeTo: window });
+    await app.init({ background: '#2943AD', resizeTo: window, antialias: true, });
 
     // Then adding the application's canvas to the DOM body.
     document.body.appendChild(app.canvas);
