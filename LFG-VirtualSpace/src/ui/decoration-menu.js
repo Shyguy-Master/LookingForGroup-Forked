@@ -356,7 +356,7 @@ export class DecorationMenu {
     loadScrollBoxTextures = async () => {
         let prefabTextures = DEC_PREFABS;
         
-        for (let i = 0; i < 20; i++) {
+        for (let i = 0; i < DEC_PREFABS.length; i++) {
             let decorationMenuItem = new DecorationMenuItemPrototype({
                 data: prefabTextures[i % prefabTextures.length],
                 sideLength: this.SCROLL_BOX_HEIGHT,

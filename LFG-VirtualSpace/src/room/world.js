@@ -55,13 +55,17 @@ export class World {
         this.container.position.x = app.screen.width / 2;
         this.container.position.y = app.screen.height / 2;
     }
-
-    selectGrid = (value) => {
+    deselectGrid = () => {
         // Deselect the currently selected grid
         for (let tile of this.selectedGrid.tiles) {
             tile.useStroke = false;
             tile.drawMethod(tile);
         }
+        this.selectedGrid = null 
+    }
+
+    selectGrid = (value) => {
+        
         // For implementing the state change
         const selectTiles = (tiles) => {
             for (let tile of tiles) {

@@ -100,6 +100,51 @@
             "name": "Cyber Table 2",
             "src": "cyberTableOld",
             "useHalen": true
+        },
+        {
+            "name": "Cute Chair",
+            "src": "cuteChair",
+            "useHalen": true
+        },
+        {
+            "name": "Cute Couch",
+            "src": "cuteCouch",
+            "size": {"x":1,"y":2},
+            "scale": 2,
+            "anchor": 0.35
+        },
+        {
+            "name": "Cute Table",
+            "src": "cuteTable",
+            "useHalen": true
+        },
+        {
+            "name": "Cute Rug",
+            "src": "cuteRug",
+            "useHalen": true
+        },
+        {
+            "name": "Cute Lamp",
+            "src": "cuteLamp",
+            "useHalen": true
+        },
+        {
+            "name": "Cute Bookshelf",
+            "src": "cuteBookshelf",
+            "size": {"x":1,"y":2},
+            "useHalen": true,
+            "anchor": 0.2,
+            "offset": 12
+        },
+        {
+            "name": "Cute Bear",
+            "src": "cuteBear",
+            "useHalen": true
+        },
+        {
+            "name": "Cute Fish",
+            "src": "cuteFish",
+            "useHalen": true
         }
     ]
 }

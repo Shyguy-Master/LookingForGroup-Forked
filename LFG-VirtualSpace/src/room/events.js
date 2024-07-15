@@ -45,7 +45,9 @@ export const setUpStageEvents = () => {
 
 // Panning
 const onPanStart = () => {
-    world.selectedGrid.update();
+    if(world.selectedGrid){
+        world.selectedGrid.update();
+    }
     if (panMode && !dragTarget) {
         startPanX = mouseCoords.x;
         startPanY = mouseCoords.y;
@@ -127,15 +129,15 @@ const onDragEnd = () => {
                 // This is based on the decoration's size (2x2, 3x4)
                 world.attatchDecoration(dragTarget, mouseCoords);
             }
-
         }
         // Get rid of drag target
         dragTarget = null;
         // ensure delete ui in hidden
         decorationMenu.hideDeleteUI();
-
         world.saveWorld();
     }
+    if(world.selectedGrid)
+        world.deselectGrid();
 }
 
 // Zoom
@@ -147,7 +149,8 @@ const onZoom = (e) => {
     world.container.scale.set(newScale);
     // Bind Extents
     world.bindExtents(app);
-    world.selectedGrid.update();
+    if(world.selectedGrid)
+        world.selectedGrid.update();
 }
 
 // Utility

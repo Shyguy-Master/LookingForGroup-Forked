@@ -74,16 +74,14 @@ const loadTextures = async () => {
     // load the texture
     // Reference: https://pixijs.download/release/docs/assets.Assets.html#addBundle
     PIXI.Assets.addBundle('decorations', [
-        { alias: 'cuteBear', src: 'assets/images/VS_Cute(Bear).png'},
-        { alias: 'cuteFish', src: 'assets/images/VS_Cute(Fish).png'},
         { alias: 'fantasyCauldron', src: 'assets/images/VS_Fantasy(Cauldron).png'},
         { alias: 'fantasyTelescope', src: 'assets/images/VS_Fantasy(Telescope).png'},
         { alias: 'westernRack', src: 'assets/images/VS_Western(Rack).png'},
        ]);
     PIXI.Assets.addBundle('cozy', [
-        { alias: 'cozyBlankets', src: 'assets/images/cozy/blankets-cozy.png' },
-        { alias: 'cozyPlant', src: 'assets/images/cozy/plant-cozy.png'},
-        { alias: 'cozyLight', src: 'assets/images/cozy/lamp-cozy-v2.png'},
+        { alias: 'cozyBlankets', src: 'assets/images/cozy/VS_Blankets(Cozy).png' },
+        { alias: 'cozyPlant', src: 'assets/images/cozy/VS_Plant(Cozy).png'},
+        { alias: 'cozyLight', src: 'assets/images/cozy/VS_Lamp(Cozy).png'},
         { alias: 'cozyBookshelf', src: 'assets/images/cozy/VS_Bookshelf(Cozy).png'},
         { alias: 'cozyChair', src: 'assets/images/cozy/VS_Chair(Cozy).png'},
         { alias: 'cozyCouch', src: 'assets/images/cozy/VS_Couch(Cozy).png'},
@@ -100,13 +98,25 @@ const loadTextures = async () => {
         { alias: 'cyberTable', src: 'assets/images/cyber/VS_Table(Cyber).png'},
         { alias: 'cyberTableOld', src: 'assets/images/cyber/VS_Table(Cyber-new).png'},
     ]);
+    PIXI.Assets.addBundle('cute', [
+        { alias: 'cuteChair', src: 'assets/images/cute/VS_Chair(Cute).png'},
+        { alias: 'cuteCouch', src: 'assets/images/cute/VS_Couch(Cute).png'},
+        { alias: 'cuteLamp', src: 'assets/images/cute/VS_Lamp(Cute).png'},
+        { alias: 'cuteRug', src: 'assets/images/cute/VS_Rug(Cute).png'},
+        { alias: 'cuteTable', src: 'assets/images/cute/VS_Table(Cute).png'},
+        { alias: 'cuteFish', src: 'assets/images/cute/VS_Fish(Cute).png'},
+        { alias: 'cuteBear', src: 'assets/images/cute/VS_Bear(Cute).png'},
+        { alias: 'cuteBookshelf', src: 'assets/images/cute/VS_Bookshelf(Cute).png'},
+    ]);
     PIXI.Assets.addBundle('rooms', [
         { alias: 'westernRoom', src: 'assets/images/rooms/VS_Room(Western).png'},
-        { alias: 'cyberRoom', src: 'assets/images/rooms/VS_Room(Cyber).png'}
+        { alias: 'cyberRoom', src: 'assets/images/rooms/VS_Room(Cyber).png'},
+        { alias: 'cuteRoom', src: 'assets/images/rooms/VS_Room(Cute).png'}
     ]);
     await PIXI.Assets.loadBundle('decorations');
     await PIXI.Assets.loadBundle('cozy');
     await PIXI.Assets.loadBundle('cyber');
+    await PIXI.Assets.loadBundle('cute');
     await PIXI.Assets.loadBundle('rooms');
 }
 
