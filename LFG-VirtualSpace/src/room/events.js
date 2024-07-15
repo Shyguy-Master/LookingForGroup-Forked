@@ -1,5 +1,5 @@
 // Wilson Xia
-import { app, world, decorationMenu } from '../main';
+import { app, world, decorationMenu, disableEditing } from '../main';
 
 const mouseCoords = { x: 0, y: 0 };
 let dragTarget = null;
@@ -26,10 +26,16 @@ export const setUpStageEvents = () => {
                 dec.sprite.tint = "#ffffff";
             }
         }
-        // Check to see if we are outside the decoration menu slider
-        if (!decorationMenu.inSlider) {
+        // if editing is disabled just pan
+        if (disableEditing) {
             onPanStart();
         }
+        // if editing is enabled (if decoration menu exists)
+        else {
+            // Check if cursor is outside the decoration menu slider
+            if (!decorationMenu.inSlider) onPanStart();
+        }
+        
     });
     app.stage.on('pointermove', onPanMove);
     app.stage.on('pointerup', () => {
