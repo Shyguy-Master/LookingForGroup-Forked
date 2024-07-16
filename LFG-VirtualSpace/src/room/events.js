@@ -110,7 +110,7 @@ const onDragMove = (event) => {
 
         // check if decoration has been dragged over top of decoration menu
         //console.log('decorationMenu.inSlider: ' + decorationMenu.inSlider);
-        if (decorationMenu.inSlider) {
+        if (decorationMenu.inSlider && decorationMenu.menuOpen) {
             decorationMenu.showDeleteUI();
         }
         else {
@@ -125,7 +125,7 @@ const onDragEnd = () => {
         // Turn off
         app.stage.off('pointermove', onDragMove);
         // check if over decoration menu
-        if (decorationMenu.inSlider) {
+        if (decorationMenu.inSlider && decorationMenu.menuOpen) {
             world.deleteDecoration(dragTarget);
         }
         else {
