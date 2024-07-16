@@ -20,7 +20,7 @@ const colors = { // dark gray: 0X414141, white: 0XFBFBFB, medium grey: 0X969696
     BLACK: 0X00000,
 };
 
-// categories used by filter
+// filter categories
 const categories = ["All", "Cozy", "Cute", "Cyber"];
 
 export class DecorationMenu {
@@ -39,12 +39,14 @@ export class DecorationMenu {
         this.BUTTON_MOVE_MS = scrollMS;
         this.SCROLL_COUNT = scrollCount;
 
+        // property used by room/events.js to detect if the cursor is hovering over decoration menu
         this.inSlider = false;
 
-        // Create this.animationTicker
+        // ticker for animations
         this.animationTicker = new Ticker();
         this.animationTicker.autoStart = false;
         this.animationTicker.stop();
+        // ticker for updating button status
         this.buttonEnabledTicker = new Ticker();
 
         // display settings
@@ -60,7 +62,7 @@ export class DecorationMenu {
             eventMode: 'static'
         });
 
-        // background for entire menu
+        // menu background
         let menuBackground = new Graphics().rect(0, 0, this.MENU_WIDTH, this.MENU_HEIGHT).fill(colors.WHITE);
         this.decorationMenuContainer.addChild(menuBackground);
 
@@ -297,7 +299,7 @@ export class DecorationMenu {
         else {
             this.decorationMenuContainer.y -= this.MENU_HEIGHT;
         }
-        
+
         // flip arrow sprite
         arrowSprite.rotation += Math.PI;
 
