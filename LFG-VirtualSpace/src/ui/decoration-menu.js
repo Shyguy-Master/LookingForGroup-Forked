@@ -21,7 +21,7 @@ const colors = { // dark gray: 0X414141, white: 0XFBFBFB, medium grey: 0X969696
 };
 
 // categories used by filter
-const categories = ["All", "Floor", "Ceiling", "Wall"];
+const categories = ["All", "Cozy", "Cute", "Cyber"];
 
 export class DecorationMenu {
     constructor({ app, parent, margins, height, padding, scrollMS, scrollCount }) {
@@ -240,6 +240,7 @@ export class DecorationMenu {
             }
             this.createFilterBar();
         }
+        this.loadScrollBoxTextures();
     }
 
     createClosePanelButton = () => {
@@ -287,27 +288,24 @@ export class DecorationMenu {
         this.decorationMenuContainer.addChild(openCloseButtonContainer);
     };
 
-    toggleMenu = (sprite) => {
-        //console.log("toggleMenu: menuOpen = " + menuOpen);
-
+    // opens and closed decoration menu
+    toggleMenu = (arrowSprite) => {
+        // move menu 
         if (this.menuOpen) {
-            //console.log("Closing Menu");
-            //sprite.rotation = Math.PI * 1.5;
-
             this.decorationMenuContainer.y += this.MENU_HEIGHT;
         }
         else {
-            //console.log("Opening Menu");
-            //sprite.rotation = Math.PI / 2;
-
             this.decorationMenuContainer.y -= this.MENU_HEIGHT;
         }
-
-        sprite.rotation += Math.PI;
+        
+        // flip arrow sprite
+        arrowSprite.rotation += Math.PI;
 
         this.menuOpen = !this.menuOpen;
     }
 
+    // a transparent overlay with a trashcan that appears when the user drags an existing decoration item back onto the menu
+    // to indicate that it wll be deleted
     createDeleteUI = () => {
         this.deleteOverlayUI = new Container({
             width: this.MENU_WIDTH,
@@ -331,25 +329,43 @@ export class DecorationMenu {
         this.decorationMenuContainer.addChild(this.deleteOverlayUI);
     }
 
+    // controls for decoration deletion overlay
     showDeleteUI = () => {
         this.deleteOverlayUI.visible = true;
     }
-
     hideDeleteUI = () => {
         this.deleteOverlayUI.visible = false;
     }
 
+    // gets decoration data from room/decorationData.js to create decoration menu items and add them to scrollBox
     loadScrollBoxTextures = async () => {
         let prefabTextures = DEC_PREFABS;
+        this.scrollBox.resetScrollMenu();
         
         for (let i = 0; i < DEC_PREFABS.length; i++) {
-            let decorationMenuItem = new DecorationMenuItemPrototype({
-                data: prefabTextures[i % prefabTextures.length],
-                sideLength: this.SCROLL_BOX_HEIGHT,
-                padding: this.ITEM_PADDING,
-                colors: colors,
-            });
-            this.scrollBox.addItem(decorationMenuItem.menuItem);
+            const data = prefabTextures[i % prefabTextures.length];
+
+            // get theme type from name
+            let themeType = '';
+            let inType = false;
+            for (let i = 0; i < data.name.length; i++) {
+                let char = data.name[i];
+
+                if (char === ' ') break;
+
+                themeType = themeType + char;
+            }
+
+            // if this DEC_PREFAB fits the filter then add it to the menu
+            if (themeType === this.currentFilter || this.currentFilter === 'All') {
+                let decorationMenuItem = new DecorationMenuItemPrototype({
+                    data: data,
+                    sideLength: this.SCROLL_BOX_HEIGHT,
+                    padding: this.ITEM_PADDING,
+                    colors: colors,
+                });
+                this.scrollBox.addItem(decorationMenuItem.menuItem);
+            }
         }
     }
 }
