@@ -1,10 +1,12 @@
 const decorationsURL = './assets/data/decorations.json';
 export const DEC_PREFABS = [];
+export const DEC_TEXTURES = [];
 
 // Loading Data
 const createDecData = ({ name = 'DecName', src = 'spriteURL', scale = 1, size = { x: 1, y: 1 }, anchor = 0.5, offset = 0, isWall = false, useHalen = false }) => {
     if (useHalen)
         scale = 2.5;
+
     return {
         name,
         src,
@@ -36,9 +38,15 @@ const onLoad = (e, resolve) => {
         console.log("Parse failed...");
         return;
     }
+    // Receive the stored data
     let loadedDecs = json.decorations;
-    for (let dec of loadedDecs) {
-        DEC_PREFABS.push(createDecData(dec));
+    for (let theme of loadedDecs) {
+        // Save a reference to each theme data (loading textures)
+        DEC_TEXTURES.push(theme);
+        for(let dec of theme.data) {
+            // Save a prefab of each decoration
+            DEC_PREFABS.push(createDecData(dec));
+        }
     }
     console.log('done loading prefabs');
     resolve();
