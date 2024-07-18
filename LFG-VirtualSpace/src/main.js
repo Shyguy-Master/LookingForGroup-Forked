@@ -85,10 +85,9 @@ const loadTextures = async () => {
         { alias: 'cozyRoom',    src: 'assets/images/rooms/VS_Room(Cozy).png'},
         { alias: 'fantasyRoom',    src: 'assets/images/rooms/VS_Room(Fantasy).png'},
     ]);
-    await PIXI.Assets.loadBundle('cozy');
-    await PIXI.Assets.loadBundle('cyber');
-    await PIXI.Assets.loadBundle('cute');
-    await PIXI.Assets.loadBundle('fantasy');
+    for(let theme of DEC_TEXTURES) {
+        await PIXI.Assets.loadBundle(theme.theme);
+    }
     await PIXI.Assets.loadBundle('rooms');
 }
 

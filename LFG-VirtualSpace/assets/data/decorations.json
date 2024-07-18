@@ -245,6 +245,47 @@
                     "offset": 12
                 }
             ]
+        },
+        {
+            "theme": "western",
+            "data": [
+                {
+                    "name": "Western Chair",
+                    "src": "assets/images/western/VS_Chair(Western-new).png",
+                    "useHalen": true,
+                    "offset": 12
+                },
+                {
+                    "name": "Western Couch",
+                    "src": "assets/images/western/VS_Couch(Western).png",
+                    "size": {
+                        "x": 1,
+                        "y": 2
+                    },
+                    "scale": 2,
+                    "anchor": 0.35
+                },
+                {
+                    "name": "Western Lamp",
+                    "src": "assets/images/western/VS_Lamp(Western-new).png",
+                    "useHalen": true,
+                    "offset": 12
+                },
+                {
+                    "name": "Western Rug",
+                    "src": "assets/images/western/VS_Rug(Western).png",
+                    "size": {
+                        "x": 2,
+                        "y": 2
+                    },
+                    "scale": 2.15
+                },
+                {
+                    "name": "Western Table",
+                    "src": "assets/images/western/VS_Table(Western-new).png",
+                    "useHalen": true
+                }
+            ]
         }
     ]
 }
