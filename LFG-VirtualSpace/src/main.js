@@ -23,7 +23,7 @@ const init = async () => {
     // Set up the textures
     await loadTextures();
 
-    // Create new world
+    // Create a new world
     world = new World({ rows: 6, columns: 6 });
     app.stage.addChild(world.container);
     world.setUpGrid(app);
@@ -40,10 +40,6 @@ const init = async () => {
             scrollCount: 6,
         });
     }
-    
-
-    // Create Decorations
-    // createDecorations();
     
     // Set up stage events
     EVENTS.setUpStageEvents();
@@ -80,13 +76,14 @@ const loadTextures = async () => {
         }
         PIXI.Assets.addBundle(theme.theme, bundle);
     }
-    
+    // Add the room bundle
+    // Alternatively, room bundle can also be loaded in algorithmically
     PIXI.Assets.addBundle('rooms', [
         { alias: 'westernRoom', src: 'assets/images/rooms/VS_Room(Western).png'},
         { alias: 'cyberRoom',   src: 'assets/images/rooms/VS_Room(Cyber).png'},
         { alias: 'cuteRoom',    src: 'assets/images/rooms/VS_Room(Cute).png'},
-        { alias: 'cuteRoom',    src: 'assets/images/rooms/VS_Room(Cozy).png'},
-        { alias: 'cuteRoom',    src: 'assets/images/rooms/VS_Room(Fantasy).png'},
+        { alias: 'cozyRoom',    src: 'assets/images/rooms/VS_Room(Cozy).png'},
+        { alias: 'fantasyRoom',    src: 'assets/images/rooms/VS_Room(Fantasy).png'},
     ]);
     await PIXI.Assets.loadBundle('cozy');
     await PIXI.Assets.loadBundle('cyber');

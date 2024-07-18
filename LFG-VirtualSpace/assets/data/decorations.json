@@ -111,12 +111,14 @@
                 {
                     "name": "Cyber Table",
                     "src": "assets/images/cyber/VS_Table(Cyber-new).png",
-                    "useHalen": true
+                    "useHalen": true,
+                    "offset": 12
                 },
                 {
                     "name": "Old Cyber Table",
                     "src": "assets/images/cyber/VS_Table(Cyber).png",
-                    "useHalen": true
+                    "useHalen": true,
+                    "offset": 12
                 }
             ]
         },
@@ -167,7 +169,11 @@
                 {
                     "name": "Cute Rug",
                     "src": "assets/images/cute/VS_Rug(Cute).png",
-                    "useHalen": true
+                    "size": {
+                        "x": 2,
+                        "y": 2
+                    },
+                    "scale": 2.15
                 },
                 {
                     "name": "Cute Table",
@@ -182,32 +188,50 @@
                 {
                     "name": "Fantasy Bookshelf",
                     "src": "assets/images/fantasy/VS_Bookshelf(Fantasy).png",
-                    "useHalen": true
+                    "size": {
+                        "x": 1,
+                        "y": 2
+                    },
+                    "scale": 2,
+                    "anchor": 0.2,
+                    "offset": 12
                 },
                 {
                     "name": "Fantasy Cauldron",
                     "src": "assets/images/fantasy/VS_Cauldron(Fantasy).png",
-                    "useHalen": true
+                    "useHalen": true,
+                    "offset": 12
                 },
                 {
                     "name": "Fantasy Chair",
                     "src": "assets/images/fantasy/VS_Chair(Fantasy).png",
-                    "useHalen": true
+                    "useHalen": true,
+                    "offset": 12
                 },
                 {
                     "name": "Fantasy Couch",
                     "src": "assets/images/fantasy/VS_Couch(Fantasy).png",
-                    "useHalen": true
+                    "size": {
+                        "x": 1,
+                        "y": 2
+                    },
+                    "scale": 2,
+                    "anchor": 0.35
                 },
                 {
                     "name": "Fantasy Lamp",
                     "src": "assets/images/fantasy/VS_Lamp(Fantasy).png",
-                    "useHalen": true
+                    "useHalen": true,
+                    "offset": 12
                 },
                 {
                     "name": "Fantasy Rug",
                     "src": "assets/images/fantasy/VS_Rug(Fantasy).png",
-                    "useHalen": true
+                    "size": {
+                        "x": 2,
+                        "y": 2
+                    },
+                    "scale": 2.15
                 },
                 {
                     "name": "Fantasy Table",
@@ -217,7 +241,8 @@
                 {
                     "name": "Fantasy Telescope",
                     "src": "assets/images/fantasy/VS_Telescope(Fantasy).png",
-                    "useHalen": true
+                    "useHalen": true,
+                    "offset": 12
                 }
             ]
         }
