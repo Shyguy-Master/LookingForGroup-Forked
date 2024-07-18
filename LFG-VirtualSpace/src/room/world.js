@@ -8,11 +8,11 @@ import { onDragStart } from './events';
 export class World {
     // Acts as a world sized container, holding all the components for the room, such as the grids and the decorations.
     // Allows for panning and zooming
-    constructor({ rows, columns }) {
+    constructor({ rows, columns, background = 'cozyRoom' }) {
         this.container = new PIXI.Container();
         this.gridSize = { rows, columns };
         this.grid; // floor
-        this.background = 'cyberRoom';
+        this.background = background;
         this.leftWall;
         this.rightWall;
         this.selectedGrid;
@@ -61,11 +61,11 @@ export class World {
             tile.useStroke = false;
             tile.drawMethod(tile);
         }
-        this.selectedGrid = null 
+        this.selectedGrid = null
     }
 
     selectGrid = (value) => {
-        
+
         // For implementing the state change
         const selectTiles = (tiles) => {
             for (let tile of tiles) {
@@ -99,7 +99,7 @@ export class World {
         dec.parent.removeChild(dec);
     }
 
-    createDecoration = ({ src = 'assets/images/isoTable.png', scale = 1, size = { x: 1, y: 1 }, anchor = 0.5, isWall = false, offset = 0 }) => {
+    createDecoration = ({ src, scale = 1, size = { x: 1, y: 1 }, anchor = 0.5, isWall = false, offset = 0 }) => {
         // Will be removed with the slider to pull out the decorations
         let newDec = new Decoration(src, size);
         newDec.sprite.scale.set(scale);
@@ -140,16 +140,16 @@ export class World {
 
     // Utility
     translateSelectedGrid = () => {
-        if(this.selectedGrid == this.grid){
+        if (this.selectedGrid == this.grid) {
             return 'floor';
         }
-        else if(this.selectedGrid == this.rightWall){
+        else if (this.selectedGrid == this.rightWall) {
             return 'right';
         }
-        else if(this.selectedGrid == this.leftWall){
+        else if (this.selectedGrid == this.leftWall) {
             return 'left';
         }
-        else{
+        else {
             return null;
         }
     }
@@ -178,7 +178,7 @@ export class World {
         let lastMouseY = mouseCoords.y - (dec.decoration.size.y - 1) * this.selectedGrid.tileSize.halfHeight;
         return this.selectedGrid.isInMap({ x: lastMouseX, y: lastMouseY });
     }
-    
+
     obtainEmptyTiles = (dec, mouseCoords) => {
         // Currently, checks the first tile and then the tiles behind it, up-right
         // TODO: Change the offset by looking at the dragTarget's rotation or size

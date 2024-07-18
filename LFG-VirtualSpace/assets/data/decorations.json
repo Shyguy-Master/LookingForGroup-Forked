@@ -137,7 +137,7 @@
                         "x": 1,
                         "y": 2
                     },
-                    "useHalen": true,
+                    "scale": 2,
                     "anchor": 0.2,
                     "offset": 12
                 },

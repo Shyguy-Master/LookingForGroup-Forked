@@ -24,7 +24,7 @@ const init = async () => {
     await loadTextures();
 
     // Create a new world
-    world = new World({ rows: 6, columns: 6 });
+    world = new World({ rows: 6, columns: 6 , background: "cuteRoom"});
     app.stage.addChild(world.container);
     world.setUpGrid(app);
 
