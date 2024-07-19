@@ -65,6 +65,7 @@ export class HorizontalScrollBox {
     resetScrollMenu = () => {
         // clear all children
         this.itemsContainer.children = [];
+        this.itemsContainer.x = 0;
         this.items = [];
     }
 
