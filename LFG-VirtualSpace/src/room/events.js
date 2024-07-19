@@ -142,8 +142,9 @@ const onDragEnd = () => {
         decorationMenu.hideDeleteUI();
         world.saveWorld();
     }
-    if(world.selectedGrid)
-        world.deselectGrid();
+    // if(world.selectedGrid){
+    //     world.deselectGrid();
+    // }
 }
 
 // Zoom

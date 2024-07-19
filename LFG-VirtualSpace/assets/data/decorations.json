@@ -1,150 +1,291 @@
 {
     "decorations": [
         {
-            "name": "Cozy Rug",
-            "src": "cozyRug",
-            "size": {
-                "x": 2,
-                "y": 2
-            },
-            "scale": 2.15
+            "theme": "cozy",
+            "data": [
+                {
+                    "name": "Cozy Blankets",
+                    "src": "assets/images/cozy/VS_Blankets(Cozy).png",
+                    "scale": 2.15,
+                    "offset": 12
+                },
+                {
+                    "name": "Cozy Bookshelf",
+                    "src": "assets/images/cozy/VS_Bookshelf(Cozy).png",
+                    "size": {
+                        "x": 1,
+                        "y": 2
+                    },
+                    "scale": 2,
+                    "anchor": 0.2,
+                    "offset": 12
+                },
+                {
+                    "name": "Cozy Chair",
+                    "src": "assets/images/cozy/VS_Chair(Cozy).png",
+                    "useHalen": true,
+                    "offset": 12
+                },
+                {
+                    "name": "Cozy Couch",
+                    "src": "assets/images/cozy/VS_Couch(Cozy).png",
+                    "size": {
+                        "x": 1,
+                        "y": 2
+                    },
+                    "scale": 2,
+                    "anchor": 0.35
+                },
+                {
+                    "name": "Cozy Lamp",
+                    "src": "assets/images/cozy/VS_Lamp(Cozy).png",
+                    "scale": 2.15,
+                    "offset": 15
+                },
+                {
+                    "name": "Cozy Plant",
+                    "src": "assets/images/cozy/VS_Plant(Cozy).png",
+                    "useHalen": true,
+                    "offset": 12
+                },
+                {
+                    "name": "Cozy Rug",
+                    "src": "assets/images/cozy/VS_Rug(Cozy).png",
+                    "size": {
+                        "x": 2,
+                        "y": 2
+                    },
+                    "scale": 2.15
+                },
+                {
+                    "name": "Cozy Table",
+                    "src": "assets/images/cozy/VS_Table(Cozy).png",
+                    "scale": 2,
+                    "offset": 15
+                }
+            ]
         },
         {
-            "name": "Cozy Blankets",
-            "src": "cozyBlankets",
-            "scale": 2.15,
-            "offset": 12
+            "theme": "cyber",
+            "data": [
+                {
+                    "name": "Cyber Arm",
+                    "src": "assets/images/cyber/VS_Arm(Cyber).png",
+                    "useHalen": true
+                },
+                {
+                    "name": "Cyber Chair",
+                    "src": "assets/images/cyber/VS_Chair(Cyber).png",
+                    "useHalen": true
+                },
+                {
+                    "name": "Cyber Couch",
+                    "src": "assets/images/cyber/VS_Couch(Cyber).png",
+                    "size": {
+                        "x": 1,
+                        "y": 2
+                    },
+                    "scale": 2,
+                    "anchor": 0.35
+                },
+                {
+                    "name": "Cyber Lamp",
+                    "src": "assets/images/cyber/VS_Lamp(Cyber-updated).png",
+                    "useHalen": true,
+                    "offset": 12
+                },
+                {
+                    "name": "Cyber Rug",
+                    "src": "assets/images/cyber/VS_Rug(Cyber).png",
+                    "size": {
+                        "x": 2,
+                        "y": 2
+                    },
+                    "scale": 2.15
+                },
+                {
+                    "name": "Cyber SideTable",
+                    "src": "assets/images/cyber/VS_SideTable(Cyber).png",
+                    "useHalen": true
+                },
+                {
+                    "name": "Cyber Table",
+                    "src": "assets/images/cyber/VS_Table(Cyber-new).png",
+                    "useHalen": true,
+                    "offset": 12
+                },
+                {
+                    "name": "Old Cyber Table",
+                    "src": "assets/images/cyber/VS_Table(Cyber).png",
+                    "useHalen": true,
+                    "offset": 12
+                }
+            ]
         },
         {
-            "name": "Cozy Chair",
-            "src": "cozyChair",
-            "useHalen": true,
-            "offset": 12
+            "theme": "cute",
+            "data": [
+                {
+                    "name": "Cute Bear",
+                    "src": "assets/images/cute/VS_Bear(Cute).png",
+                    "useHalen": true
+                },
+                {
+                    "name": "Cute Bookshelf",
+                    "src": "assets/images/cute/VS_Bookshelf(Cute).png",
+                    "size": {
+                        "x": 1,
+                        "y": 2
+                    },
+                    "scale": 2,
+                    "anchor": 0.2,
+                    "offset": 12
+                },
+                {
+                    "name": "Cute Chair",
+                    "src": "assets/images/cute/VS_Chair(Cute).png",
+                    "useHalen": true
+                },
+                {
+                    "name": "Cute Couch",
+                    "src": "assets/images/cute/VS_Couch(Cute).png",
+                    "size": {
+                        "x": 1,
+                        "y": 2
+                    },
+                    "scale": 2,
+                    "anchor": 0.35
+                },
+                {
+                    "name": "Cute Fish",
+                    "src": "assets/images/cute/VS_Fish(Cute).png",
+                    "useHalen": true
+                },
+                {
+                    "name": "Cute Lamp",
+                    "src": "assets/images/cute/VS_Lamp(Cute).png",
+                    "useHalen": true
+                },
+                {
+                    "name": "Cute Rug",
+                    "src": "assets/images/cute/VS_Rug(Cute).png",
+                    "size": {
+                        "x": 2,
+                        "y": 2
+                    },
+                    "scale": 2.15
+                },
+                {
+                    "name": "Cute Table",
+                    "src": "assets/images/cute/VS_Table(Cute).png",
+                    "useHalen": true
+                }
+            ]
         },
         {
-            "name": "Cozy Couch",
-            "src": "cozyCouch",
-            "size": {"x":1,"y":2},
-            "scale": 2,
-            "anchor": 0.35
+            "theme": "fantasy",
+            "data": [
+                {
+                    "name": "Fantasy Bookshelf",
+                    "src": "assets/images/fantasy/VS_Bookshelf(Fantasy).png",
+                    "size": {
+                        "x": 1,
+                        "y": 2
+                    },
+                    "scale": 2,
+                    "anchor": 0.2,
+                    "offset": 12
+                },
+                {
+                    "name": "Fantasy Cauldron",
+                    "src": "assets/images/fantasy/VS_Cauldron(Fantasy).png",
+                    "useHalen": true,
+                    "offset": 12
+                },
+                {
+                    "name": "Fantasy Chair",
+                    "src": "assets/images/fantasy/VS_Chair(Fantasy).png",
+                    "useHalen": true,
+                    "offset": 12
+                },
+                {
+                    "name": "Fantasy Couch",
+                    "src": "assets/images/fantasy/VS_Couch(Fantasy).png",
+                    "size": {
+                        "x": 1,
+                        "y": 2
+                    },
+                    "scale": 2,
+                    "anchor": 0.35
+                },
+                {
+                    "name": "Fantasy Lamp",
+                    "src": "assets/images/fantasy/VS_Lamp(Fantasy).png",
+                    "useHalen": true,
+                    "offset": 12
+                },
+                {
+                    "name": "Fantasy Rug",
+                    "src": "assets/images/fantasy/VS_Rug(Fantasy).png",
+                    "size": {
+                        "x": 2,
+                        "y": 2
+                    },
+                    "scale": 2.15
+                },
+                {
+                    "name": "Fantasy Table",
+                    "src": "assets/images/fantasy/VS_Table(Fantasy).png",
+                    "useHalen": true
+                },
+                {
+                    "name": "Fantasy Telescope",
+                    "src": "assets/images/fantasy/VS_Telescope(Fantasy).png",
+                    "useHalen": true,
+                    "offset": 12
+                }
+            ]
         },
         {
-            "name": "Cozy Table",
-            "src": "cozyTable",
-            "scale": 2,
-            "offset": 15
-        },
-        {
-            "name": "Cozy Bookshelf",
-            "src": "cozyBookshelf",
-            "size": {"x":1,"y":2},
-            "scale": 2,
-            "anchor": 0.2,
-            "offset": 12
-        },
-        {
-            "name": "Cozy Lamps",
-            "src": "cozyLight",
-            "scale": 2.15,
-            "offset": 15
-        },
-        {
-            "name": "Cozy Plant",
-            "src": "cozyPlant",
-            "useHalen": true,
-            "offset": 12
-        },
-        {
-            "name": "Cyber Arm",
-            "src": "cyberArm",
-            "useHalen": true
-        },
-        {
-            "name": "Cyber Chair",
-            "src": "cyberChair",
-            "useHalen": true
-        },
-        {
-            "name": "Cyber Couch",
-            "src": "cyberCouch",
-            "size": {"x":1,"y":2},
-            "scale": 2,
-            "anchor": 0.35
-        },
-        {
-            "name": "Cyber Lamp",
-            "src": "cyberLamp",
-            "useHalen": true,
-            "offset": 12
-        },
-        {
-            "name": "Cyber Rug",
-            "src": "cyberRug",
-            "size": {
-                "x": 2,
-                "y": 2
-            },
-            "scale": 2.15
-        },
-        {
-            "name": "Cyber Side Table",
-            "src": "cyberSideTable",
-            "useHalen": true
-        },
-        {
-            "name": "Cyber Table",
-            "src": "cyberTable",
-            "useHalen": true
-        },
-        {
-            "name": "Cyber Table 2",
-            "src": "cyberTableOld",
-            "useHalen": true
-        },
-        {
-            "name": "Cute Chair",
-            "src": "cuteChair",
-            "useHalen": true
-        },
-        {
-            "name": "Cute Couch",
-            "src": "cuteCouch",
-            "size": {"x":1,"y":2},
-            "scale": 2,
-            "anchor": 0.35
-        },
-        {
-            "name": "Cute Table",
-            "src": "cuteTable",
-            "useHalen": true
-        },
-        {
-            "name": "Cute Rug",
-            "src": "cuteRug",
-            "useHalen": true
-        },
-        {
-            "name": "Cute Lamp",
-            "src": "cuteLamp",
-            "useHalen": true
-        },
-        {
-            "name": "Cute Bookshelf",
-            "src": "cuteBookshelf",
-            "size": {"x":1,"y":2},
-            "useHalen": true,
-            "anchor": 0.2,
-            "offset": 12
-        },
-        {
-            "name": "Cute Bear",
-            "src": "cuteBear",
-            "useHalen": true
-        },
-        {
-            "name": "Cute Fish",
-            "src": "cuteFish",
-            "useHalen": true
+            "theme": "western",
+            "data": [
+                {
+                    "name": "Western Chair",
+                    "src": "assets/images/western/VS_Chair(Western-new).png",
+                    "useHalen": true,
+                    "offset": 12
+                },
+                {
+                    "name": "Western Couch",
+                    "src": "assets/images/western/VS_Couch(Western).png",
+                    "size": {
+                        "x": 1,
+                        "y": 2
+                    },
+                    "scale": 2,
+                    "anchor": 0.35
+                },
+                {
+                    "name": "Western Lamp",
+                    "src": "assets/images/western/VS_Lamp(Western-new).png",
+                    "useHalen": true,
+                    "offset": 12
+                },
+                {
+                    "name": "Western Rug",
+                    "src": "assets/images/western/VS_Rug(Western).png",
+                    "size": {
+                        "x": 2,
+                        "y": 2
+                    },
+                    "scale": 2.15
+                },
+                {
+                    "name": "Western Table",
+                    "src": "assets/images/western/VS_Table(Western-new).png",
+                    "useHalen": true
+                }
+            ]
         }
     ]
 }
