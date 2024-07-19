@@ -21,7 +21,7 @@ const colors = { // dark gray: 0X414141, white: 0XFBFBFB, medium grey: 0X969696
 };
 
 // filter categories
-const categories = ["All", "Cozy", "Cute", "Cyber"];
+const categories = ["All", "Cozy", "Cute", "Cyber", "Fantasy"];
 
 export class DecorationMenu {
     constructor({ app, parent, margins, height, padding, scrollMS, scrollCount }) {
