@@ -65,9 +65,10 @@ export class World {
     }
 
     selectGrid = (value) => {
-
-        // For implementing the state change
+        // Selects a grid to configure changes with
+        // Preferably, would use a switch case to do so
         const selectTiles = (tiles) => {
+            // For implementing the state change
             for (let tile of tiles) {
                 tile.useStroke = true;
                 tile.drawMethod(tile);
@@ -82,11 +83,13 @@ export class World {
             this.selectedGrid = this.leftWall;
             selectTiles(this.leftWall.tiles);
         }
-        else {
+        else if (value == 'floor'){
             this.selectedGrid = this.grid;
             selectTiles(this.grid.tiles);
         }
-        // console.log(value + " selected!");
+        else{
+            this.selectedGrid = null;
+        }
     }
 
     deleteDecoration = (dec) => {
@@ -113,29 +116,30 @@ export class World {
         this.container.addChild(newDec.sprite);
     }
 
-    attatchDecoration = (dec, mouseCoords) => {
-        // Get a list of all the tiles
-        let emptyTiles = this.obtainEmptyTiles(dec, mouseCoords);
+    attatchDecoration = (dec, pos) => {
+        // Get a list of all the tiles that fit the dec at the given pos
+        let emptyTiles = this.obtainEmptyTiles(dec, pos);
         // There must be enough empty tiles to fit the decoration
-        if (emptyTiles.length == dec.decoration.size.x * dec.decoration.size.y) {
-            // attach all the tiles in the list to that decoration
-            for (let i = 0; i < emptyTiles.length; i++) {
+        // If not, then don't do anything
+        if (emptyTiles.length != dec.decoration.size.x * dec.decoration.size.y) {
+            return;
+        }
+        // attach all the tiles in the list to that decoration
+        for (let i = 0; i < emptyTiles.length; i++) {
+            let tile = emptyTiles[i];
+            tile.addDecoration(dec);
+        } // ends with the first tile, so the decoration gets drawn on that tile
+        emptyTiles[0].repositionChild();
+        dec.attatchedGrid = this.translateSelectedGrid();
+        // hide tiles for visual effect
+        // unhides when the decoration is dragged else where
+        if (emptyTiles.length > 1) {
+            for (let i = 0; i < emptyTiles.length - 1; i++) {
+                // skip the first tile
                 let tile = emptyTiles[i];
-                tile.addDecoration(dec);
-            } // ends with the first tile, so the decoration gets drawn on that tile
-            emptyTiles[0].repositionChild();
-            dec.attatchedGrid = this.translateSelectedGrid();
-            // hide tiles for visual effect
-            // unhides when the decoration is dragged else where
-            if (emptyTiles.length > 1) {
-                for (let i = 0; i < emptyTiles.length - 1; i++) {
-                    // skip the first tile
-                    let tile = emptyTiles[i];
-                    tile.container.visible = false;
-                }
+                tile.container.visible = false;
             }
         }
-        // If not, then don't do anything
     }
 
     // Utility

@@ -15,6 +15,7 @@ export class Decoration {
     }
 
     save = () => {
+        // save the location this decoration is attached to
         if(this.attachedTiles[0])
             return this.attachedTiles[0].id;
         else{
@@ -23,6 +24,7 @@ export class Decoration {
     }
 
     removeTiles = () => {
+        // removes all the attached tiles from 
         for (let tile of this.attachedTiles) {
             tile.container.visible = true;
             tile.removeDecoration();
@@ -45,7 +47,6 @@ export class Decoration {
             if (!disableEditing) {
                 onDragStart(e);
             }
-            // console.log(this.sprite.position.y);
         };
     }
 }

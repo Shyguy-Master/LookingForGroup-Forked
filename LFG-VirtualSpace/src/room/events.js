@@ -19,8 +19,8 @@ export const setUpStageEvents = () => {
     });
     // app.stage.on('click', ()=>console.log(`mouse: ${mouseCoords.x}, ${mouseCoords.y}`));
     app.stage.on('pointerdown', () => {
+        // Reset Changes
         for (let dec of world.decorations) {
-            // Reset Changes
             if (dec != null) {
                 dec.sprite.alpha = 1;
                 dec.sprite.tint = "#ffffff";
@@ -35,7 +35,7 @@ export const setUpStageEvents = () => {
             // Check if cursor is outside the decoration menu slider
             if (!decorationMenu.inSlider) onPanStart();
         }
-        
+
     });
     app.stage.on('pointermove', onPanMove);
     app.stage.on('pointerup', () => {
@@ -51,7 +51,8 @@ export const setUpStageEvents = () => {
 
 // Panning
 const onPanStart = () => {
-    if(world.selectedGrid){
+    // If there is a selected grid
+    if (world.selectedGrid) {
         world.selectedGrid.update();
     }
     if (panMode && !dragTarget) {
@@ -142,9 +143,6 @@ const onDragEnd = () => {
         decorationMenu.hideDeleteUI();
         world.saveWorld();
     }
-    // if(world.selectedGrid){
-    //     world.deselectGrid();
-    // }
 }
 
 // Zoom
@@ -156,7 +154,7 @@ const onZoom = (e) => {
     world.container.scale.set(newScale);
     // Bind Extents
     world.bindExtents(app);
-    if(world.selectedGrid)
+    if (world.selectedGrid)
         world.selectedGrid.update();
 }
 

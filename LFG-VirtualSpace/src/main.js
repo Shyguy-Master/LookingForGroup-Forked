@@ -49,7 +49,6 @@ const init = async () => {
     // app.ticker.add((time) => {
     //     const delta = time.deltaTime;
     //     // console.log(delta);
-    //     // grid.container.position.y += delta;
     // });
 }
 
@@ -94,7 +93,6 @@ const loadTextures = async () => {
 const resizeWindow = () => {
     console.log('window resized');
     app.resize();
-    console.log('Stage height:' + app.stage.height);
 }
 
 init();
