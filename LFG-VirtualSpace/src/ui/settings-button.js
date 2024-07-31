@@ -7,7 +7,7 @@ const openMenuButtonTexture = await Assets.load('assets/images/ui/theme_select_i
 
 // button that opens theme selection menu
 export class SettingsButton {
-    constructor({app, x, y, sideLength, parent, colors}) {
+    constructor({x, y, sideLength, parent, colors}) {
         this.colors = colors;
 
         // icon
@@ -22,7 +22,6 @@ export class SettingsButton {
         parent.addChild(sprite);
 
         this.settingsMenu = new SettingsMenu({
-            app: app,
             width: parent.width * 0.7,
             height: parent.height * 0.9,
             parent: parent,

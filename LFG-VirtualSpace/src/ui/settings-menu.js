@@ -1,3 +1,4 @@
+import { app } from '../main';
 import {Container, Graphics, Assets, Sprite} from "pixi.js";
 import { Button } from "@pixi/ui";
 import { HorizontalScrollBox } from "./scroll-box.js";
@@ -12,9 +13,10 @@ const roomTextures = [
     await Assets.load('assets/images/rooms/VS_Room(Fantasy).png'),
     await Assets.load('assets/images/rooms/VS_Room(Western).png'),
 ]
+const bgColors = ['#000000', '#222222', '#2943AD',]
 
 export class SettingsMenu {
-    constructor({app, width, height, parent, colors}) {
+    constructor({width, height, parent, colors}) {
 
         this.container = new Container({
             x: (parent.width / 2) - (width/2),
@@ -25,14 +27,14 @@ export class SettingsMenu {
         let bg = new Graphics().roundRect(0, 0, width, height, 15).fill(colors.WHITE).stroke(colors.BLACK);
         this.container.addChild(bg);
 
-        this.createThemeSelect(app, 200, colors);
+        this.createThemeSelect(200, colors);
 
-        this.createBackgroundSelect();
+        this.createBackgroundSelect(200, colors);
 
         parent.addChild(this.container);
     }
 
-    createThemeSelect = (app, height, colors) => {
+    createThemeSelect = (height, colors) => {
         let themeScroll = new HorizontalScrollBox({
             app: app,
             parent: this.container,
@@ -56,7 +58,27 @@ export class SettingsMenu {
         this.container.addChild(themeScroll.container); 
     }
 
-    createBackgroundSelect = () => {
+    createBackgroundSelect = (height, colors) => {
+        let themeScroll = new HorizontalScrollBox({
+            app: app,
+            parent: this.container,
+            x: 10,
+            y: 300,
+            width: this.container.width - 20,
+            height: height,
+            item_padding: 100,
+            colors: colors
+        });
 
+        bgColors.forEach((bgColor) => {
+            let color = new Graphics().roundRect(0,0,height,height,5).fill(bgColor);
+            let button = new Button(color);
+            button.onPress.connect(() => {
+                app.renderer.background.color = bgColor;
+            });
+            themeScroll.addItem(color);
+        })
+
+        this.container.addChild(themeScroll.container); 
     }
 }
