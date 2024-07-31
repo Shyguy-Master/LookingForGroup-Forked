@@ -4,6 +4,7 @@ import { World } from './room/world';
 import * as EVENTS from './room/events';
 import { DecorationMenu } from './ui/decoration-menu.js';
 import { loadData, DEC_TEXTURES } from './room/decorationData.js';
+import { SettingsButton } from './ui/settings-button.js'
 
 
 // DRAG RESOURCE
@@ -11,9 +12,20 @@ import { loadData, DEC_TEXTURES } from './room/decorationData.js';
 export let app;
 export let world;
 export let decorationMenu = null;
+let settingsButton = null;
 
 // placeholder value until login and group creation/joining is implemented
 export let disableEditing = false;
+
+// object contaiting all of the colors used by UI elements.
+const colors = {
+    ORANGE: 0XF76902,
+    WHITE: 0XFBFBFB,
+    LIGHT_GREY: 0XDDDDDD,
+    MEDIUM_GREY: 0X969696,
+    DARK_GREY: 0X414141,
+    BLACK: 0X00000,
+};
 
 const init = async () => {
     // Set up decorations
@@ -38,6 +50,15 @@ const init = async () => {
             padding: 6,
             scrollMS: 150,
             scrollCount: 6,
+            colors: colors,
+        });
+
+        settingsButton = new SettingsButton({
+            x: 100,
+            y: 100,
+            sideLength: 100, 
+            parent: app.stage, 
+            colors: colors
         });
     }
     

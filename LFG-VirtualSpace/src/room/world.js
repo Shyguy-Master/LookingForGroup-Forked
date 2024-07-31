@@ -29,12 +29,22 @@ export class World {
         console.log(this.gridSize)
     }
 
-    setUpGrid = (app) => {
-        // Create a room texture
-        let sprite = PIXI.Sprite.from(this.background);
+    setBackground = (bg) => {
+        let sprite = PIXI.Sprite.from(bg);
         sprite.scale.set(2.06);
         sprite.anchor.set(0.5);
         this.container.addChild(sprite);
+    }
+
+    setUpGrid = (app) => {
+        // Create a room texture
+        this.setBackground(this.background);
+        //let sprite = PIXI.Sprite.from(this.background);
+        //sprite.scale.set(2.06);
+        //sprite.anchor.set(0.5);
+        //this.container.addChild(sprite);
+
+
         // Walls
         // this.rightWall = new IsometricWall({ size: { x: this.gridSize.rows, y: this.gridSize.columns }}); //  { x: this.gridSize.rows, y: this.gridSize.columns }
         // this.rightWall.createTiles(this.container);

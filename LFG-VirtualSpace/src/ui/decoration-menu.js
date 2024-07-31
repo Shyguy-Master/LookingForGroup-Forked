@@ -10,21 +10,11 @@ import { DecorationMenuItemPrototype } from "./decoration-menu-item-prototype.js
 const arrowTexture = await Assets.load('assets/images/ui/arrow.png');
 const trashcanTexture = await Assets.load('assets/images/ui/trashcan.png');
 
-// object contaiting all of the colors used by this UI element. Could possibly be imported from a parent as a space/site wide theme
-const colors = { // dark gray: 0X414141, white: 0XFBFBFB, medium grey: 0X969696
-    ORANGE: 0XF76902,
-    WHITE: 0XFBFBFB,
-    LIGHT_GREY: 0XDDDDDD,
-    MEDIUM_GREY: 0X969696,
-    DARK_GREY: 0X414141,
-    BLACK: 0X00000,
-};
-
 // filter categories
 const categories = ["All", "Cozy", "Cute", "Cyber", "Fantasy"];
 
 export class DecorationMenu {
-    constructor({ app, parent, margins, height, padding, scrollMS, scrollCount }) {
+    constructor({ app, parent, margins, height, padding, scrollMS, scrollCount, colors }) {
         this.parent = parent;
 
         // sizing parameters
@@ -38,6 +28,9 @@ export class DecorationMenu {
         this.ITEM_PADDING = padding;
         this.BUTTON_MOVE_MS = scrollMS;
         this.SCROLL_COUNT = scrollCount;
+
+        // object contaiting all of the colors used by this UI element. Imported from a parent as a space/site wide theme
+        this.colors = colors;
 
         // property used by room/events.js to detect if the cursor is hovering over decoration menu
         this.inSlider = false;
@@ -63,7 +56,7 @@ export class DecorationMenu {
         });
 
         // menu background
-        let menuBackground = new Graphics().rect(0, 0, this.MENU_WIDTH, this.MENU_HEIGHT).fill(colors.WHITE);
+        let menuBackground = new Graphics().rect(0, 0, this.MENU_WIDTH, this.MENU_HEIGHT).fill(this.colors.WHITE);
         this.decorationMenuContainer.addChild(menuBackground);
 
         // detect when mouse is over top of decoration menu
@@ -90,7 +83,7 @@ export class DecorationMenu {
             width: this.SCROLL_BOX_WIDTH,
             height: this.SCROLL_BOX_HEIGHT,
             item_padding: this.ITEM_PADDING,
-            colors: colors,
+            colors: this.colors,
         });
 
         this.createButtons();
@@ -116,7 +109,7 @@ export class DecorationMenu {
             height: this.SCROLL_BOX_HEIGHT / 2,
             x: this.MENU_WIDTH - this.LEFT_RIGHT_MARGINS / 2,
             y: this.SCROLL_BOX_HEIGHT / 2 + this.FILTER_BAR_HEIGHT,
-            tint: colors.BLACK
+            tint: this.colors.BLACK
         });
         const leftArrow = new Sprite({
             texture: arrowTexture,
@@ -126,7 +119,7 @@ export class DecorationMenu {
             x: (this.LEFT_RIGHT_MARGINS / 2),
             y: this.SCROLL_BOX_HEIGHT / 2 + this.FILTER_BAR_HEIGHT,
             rotation: Math.PI,
-            tint: colors.BLACK
+            tint: this.colors.BLACK
         });
 
         // make sprites into button
@@ -147,21 +140,21 @@ export class DecorationMenu {
             if (this.scrollBox.itemsContainer.position.x === 0) {
                 //console.log('LEFT BUTTON DISABLED');
                 leftButton.enabled = false;
-                leftArrow.tint = colors.MEDIUM_GREY;
+                leftArrow.tint = this.colors.MEDIUM_GREY;
             } else {
                 //console.log('LEFT BUTTON ENABLED');
                 leftButton.enabled = true;
-                leftArrow.tint = colors.BLACK;
+                leftArrow.tint = this.colors.BLACK;
             }
             // right button
             if (this.scrollBox.itemsContainer.position.x < -this.scrollBox.maxDistance + this.ITEM_PADDING) {
                 //console.log('RIGHT BUTTON DISABLED');
                 rightButton.enabled = false;
-                rightArrow.tint = colors.MEDIUM_GREY;
+                rightArrow.tint = this.colors.MEDIUM_GREY;
             } else {
                 //console.log('RIGHT BUTTON ENABLED');
                 rightButton.enabled = true;
-                rightArrow.tint = colors.BLACK;
+                rightArrow.tint = this.colors.BLACK;
             }
         });
         this.buttonEnabledTicker.start();
@@ -203,7 +196,7 @@ export class DecorationMenu {
         let distance = 0;
         for (let i = 0; i < categories.length; i++) {
 
-            let color = (this.currentFilter === categories[i]) ? colors.BLACK : colors.MEDIUM_GREY;
+            let color = (this.currentFilter === categories[i]) ? this.colors.BLACK : this.colors.MEDIUM_GREY;
             const style = new TextStyle({
                 fill: { color }
             });
@@ -266,7 +259,7 @@ export class DecorationMenu {
             .lineTo(btnWid, btnHgt)
             .lineTo(0, btnHgt)
             .arcTo(0, 0, buttonPadding, 0, buttonPadding)
-            .fill(colors.WHITE);
+            .fill(this.colors.WHITE);
         openCloseButtonContainer.addChild(openCloseButtonContainerBG);
 
         // Create the arrow sprite
@@ -278,7 +271,7 @@ export class DecorationMenu {
             x: btnWid / 2,
             y: btnHgt / 2,
             rotation: Math.PI / 2, // Rotate the arrow 270 degrees
-            tint: colors.BLACK,
+            tint: this.colors.BLACK,
         })
 
         openCloseButtonContainer.addChild(arrow);
@@ -325,7 +318,7 @@ export class DecorationMenu {
             y: this.MENU_HEIGHT / 2,
             width: this.MENU_HEIGHT * 0.64,
             height: this.MENU_HEIGHT * 0.64,
-            tint: colors.WHITE
+            tint: this.colors.WHITE
         });
         this.deleteOverlayUI.addChild(trashcan);
         this.decorationMenuContainer.addChild(this.deleteOverlayUI);
@@ -364,7 +357,7 @@ export class DecorationMenu {
                     data: data,
                     sideLength: this.SCROLL_BOX_HEIGHT,
                     padding: this.ITEM_PADDING,
-                    colors: colors,
+                    colors: this.colors,
                 });
                 this.scrollBox.addItem(decorationMenuItem.menuItem);
             }
