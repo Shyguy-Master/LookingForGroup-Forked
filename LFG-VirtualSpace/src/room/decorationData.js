@@ -1,3 +1,8 @@
+// Wilson Xia
+/// Decoration Data
+/// This class acts as a way to load in the decoration data.
+/// It stores a prefab of every Decoration it loads from the decorations.json file.
+/// Edit the decorations.json file to allow for easier decoration edits.
 const decorationsURL = './assets/data/decorations.json';
 export const DEC_PREFABS = [];
 export const DEC_TEXTURES = [];

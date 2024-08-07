@@ -1,4 +1,6 @@
 // Wilson Xia
+/// Events
+/// This class is designed to manage all the events necessary for the room.
 import { app, world, decorationMenu, settingsButton, disableEditing } from '../main';
 
 const mouseCoords = { x: 0, y: 0 };
@@ -26,7 +28,7 @@ export const setUpStageEvents = () => {
                 dec.sprite.tint = "#ffffff";
             }
         }
-        // if editing is disabled just pan
+        // if editing is disabled, just pan
         if (disableEditing) {
             onPanStart();
         }
@@ -53,7 +55,7 @@ export const setUpStageEvents = () => {
 const onPanStart = () => {
     // If there is a selected grid
     if (world.selectedGrid) {
-        world.selectedGrid.update();
+        world.selectedGrid.update(); // necessary to update the map coordinates of a grid
     }
     if (panMode && !dragTarget) {
         startPanX = mouseCoords.x;
@@ -80,29 +82,27 @@ const onPanMove = () => {
 
 // Drag Events
 export const onDragStart = (event) => {
-    //if (!settingsButton.settingsMenu.container.visible) {
-        // Store a reference to the data
-        dragTarget = event.target;
-        dragTarget.alpha = 0.5;
-        // Clean up the reference
-        if (dragTarget.decoration.attachedTiles.length > 0) {
-            // Remove it from its attached tiles
-            dragTarget.decoration.removeTiles();
-            dragTarget.decoration.attachedGrid = null;
-        }
-        bringToFront(dragTarget); // Bring it back to the front of the screen
-        dragTarget.parent.toLocal(event.global, null, dragTarget.position); // Set it back to screen position, not world position
-        // Decide which grid to use
-        if (dragTarget.decoration.isWall) {
-            // TODO: Base which wall to use on rotation
-            world.selectGrid('right');
-        }
-        else {
-            world.selectGrid('floor');
-        }
-        // Procede to Move handling
-        app.stage.on('pointermove', onDragMove);
-    //}
+    // Store a reference to the data
+    dragTarget = event.target;
+    dragTarget.alpha = 0.5;
+    // Clean up the reference
+    if (dragTarget.decoration.attachedTiles.length > 0) {
+        // Remove it from its attached tiles
+        dragTarget.decoration.removeTiles();
+        dragTarget.decoration.attachedGrid = null;
+    }
+    bringToFront(dragTarget); // Bring it back to the front of the screen
+    dragTarget.parent.toLocal(event.global, null, dragTarget.position); // Set it back to screen position, not world position
+    // Decide which grid to use
+    if (dragTarget.decoration.isWall) {
+        // TODO: Decide which wall to use based on decoration's rotation
+        world.selectGrid('right');
+    }
+    else {
+        world.selectGrid('floor');
+    }
+    // Procede to Move handling
+    app.stage.on('pointermove', onDragMove);
 }
 
 const onDragMove = (event) => {

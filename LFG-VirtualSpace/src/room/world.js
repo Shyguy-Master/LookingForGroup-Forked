@@ -40,11 +40,6 @@ export class World {
     setUpGrid = (app) => {
         // Create a room texture
         this.setBackground(this.background);
-        //let sprite = PIXI.Sprite.from(this.background);
-        //sprite.scale.set(2.06);
-        //sprite.anchor.set(0.5);
-        //this.container.addChild(sprite);
-
 
         // Walls
         // this.rightWall = new IsometricWall({ size: { x: this.gridSize.rows, y: this.gridSize.columns }}); //  { x: this.gridSize.rows, y: this.gridSize.columns }
@@ -216,7 +211,6 @@ export class World {
             tempPos.y--;
             tempPos.x += dec.decoration.size.x; // Resets X count
         }
-        // console.log(tileList);
         return tileList;
     }
 }
