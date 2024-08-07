@@ -8,21 +8,24 @@ const app = new PIXI.Application({
 });
 document.body.appendChild(app.view);
 
-app.loader.add(["images/post1.png", "images/post2.png", "images/post3.png", "images/button.png", "images/trash.png"]);
-
 // constants
 const sceneWidth = app.view.width;
 const sceneHeight = app.view.height;
 
-//aliases
+//Initialie all variables
 let stage;
 let board;
 let dragTarget = null;
-let postTextures = [new PIXI.Texture(PIXI.BaseTexture.from("images/post1.png")), new PIXI.Texture(PIXI.BaseTexture.from("images/post2.png")), new PIXI.Texture(PIXI.BaseTexture.from("images/post3.png"))];
+//Post textures has three different texture meant for the posts
+let postTextures = [new PIXI.Texture(PIXI.BaseTexture.from("images/post1.png")), new PIXI.Texture(PIXI.BaseTexture.from("images/post2.png")), new PIXI.Texture(PIXI.BaseTexture.from("images/post3.png")),
+    new PIXI.Texture(PIXI.BaseTexture.from("images/post4.png")), new PIXI.Texture(PIXI.BaseTexture.from("images/post5.png")), new PIXI.Texture(PIXI.BaseTexture.from("images/post6.png"))
+];
 let buttonTexture = new PIXI.Texture(PIXI.BaseTexture.from("images/button.png"));
+//Trash texture is just a placeholder for now
 let trashTexture = new PIXI.Texture(PIXI.BaseTexture.from("images/trash.png"));
 let trash;
 let postButton;
+//Text style for the board
 let textStyle = new PIXI.TextStyle(    
 {
     font: '12px Arial',
@@ -34,7 +37,6 @@ let textStyle = new PIXI.TextStyle(
     //maxWidth: 200
 });
 
-//game variables
 let posts = [];
 let postGrabbed = false;
 
@@ -43,6 +45,7 @@ function setup()
 {
     stage = app.stage;
     
+    //Rectangle for the main board area
     board = new PIXI.Graphics();
     board.beginFill(0xC7B99E);
     board.drawRect(20, 20, 1160, 760);
@@ -56,24 +59,9 @@ function setup()
     stage.addChild(trash);
     trash.x = 1110;
     trash.y = 690;
-
-    //Set the game loop
-    app.ticker.add(gameLoop);
-
-
-    //test
-    //editText();
 }
 
-//The primary loop of the game
-function gameLoop()
-{
-    //Have the player succumb to gravity
-    let dt = 1/app.ticker.FPS;
-    if (dt > 1/12) dt=1/12;
-}
-
-//Makes the labels and buttons that will be used on the start, win, and loss screens
+//Makes the 'Make a Post' button
 function createLabelsAndButtons()
 {
 
@@ -97,9 +85,11 @@ function createLabelsAndButtons()
 //Makes a post
 function makePost()
 {
-    const post = new PIXI.Sprite(postTextures[Math.floor(Math.random() * 3)]);
+    //Choose a random color from the 6
+    const post = new PIXI.Sprite(postTextures[Math.floor(Math.random() * 6)]);
     post.x = 100;
     post.y = 100;
+    //Make the post interactable and draggable
     post.interactive = true;
     post.buttonMode = true;
     post.eventMode = 'static';
@@ -110,6 +100,8 @@ function makePost()
     .on('pointerup', onDragEnd)
     .on('pointerupoutside', onDragEnd)
     .on('pointermove', onDragMove);
+
+    //Add the text to the post and put it in the center
     let text = new PIXI.Text('Click to edit...', textStyle);
     text.anchor.set(0.5);
     text.scale.set(.75);
@@ -118,6 +110,8 @@ function makePost()
     text.eventMode = 'static';
     text.cursor = 'pointer';
     text.on('pointerdown', editText);
+    
+    //Add them to the scene
     post.addChild(text);
     posts.push(post);
     stage.addChild(post);
@@ -125,10 +119,9 @@ function makePost()
 
 function editText()
 {
-    //Make a text input at the bottom of the screen
+    //Make a text input where the mouse is (which should be within the post itself)
     let text = this;
     let mousePosition = app.renderer.plugins.interaction.mouse.global;
-
     var input = document.createElement("input");
     input.style.position = "absolute";
     input.style.left = (mousePosition.x - 75).toString() + "px";
@@ -136,7 +129,7 @@ function editText()
     input.type = "text";
     input.value = text.text;
     document.body.appendChild(input);
-    //Disable interaction
+    //Disable interaction with everything
     for(let p of posts){
         p.interactive = false;
         p.buttonMode = false;
@@ -144,7 +137,7 @@ function editText()
     }
     postButton.interactive = false;
     postButton.buttonMode = false;
-    //Make a confirmation button
+    //Make a confirmation button (Which takes up the entire screen and is translucent, so that when clicking anywhere, edit mode is turned off)
     let button = new PIXI.Sprite(buttonTexture);
     button.alpha = 0.5;
     button.interactive = true;
@@ -168,44 +161,11 @@ function editText()
     stage.addChild(button);
 }
 
-function change(postText, inputText)
-{
-    postText = inputText;
-}
-
+//Set up drag properties in main
 app.stage.eventMode = 'static';
 app.stage.hitArea = app.screen;
 app.stage.on('pointerup', onDragEnd);
 app.stage.on('pointerupoutside', onDragEnd);
-
-function onDragMove(event)
-{
-    if (dragTarget)
-    {
-        let mousePosition = app.renderer.plugins.interaction.mouse.global;
-        dragTarget.position = mousePosition;
-    }
-}
-
-function onDragStart()
-{
-    dragTarget = this;
-    this.alpha = 0.5;
-    stage.on('pointermove', onDragMove);
-}
-
-function onDragEnd()
-{
-    if (dragTarget)
-    {
-        stage.off('pointermove', onDragMove);
-        dragTarget.alpha = 1;
-        if(rectsIntersect(dragTarget, trash)){
-            stage.removeChild(dragTarget);
-        }
-        dragTarget = null;
-    }
-}
 
 app.loader.onProgress.add(e => { console.log(`progress=${e.progress}`) });
 app.loader.onComplete.add(setup);
