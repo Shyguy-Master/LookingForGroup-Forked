@@ -3,14 +3,29 @@ import * as PIXI from 'pixi.js';
 import { World } from './room/world';
 import * as EVENTS from './room/events';
 import { DecorationMenu } from './ui/decoration-menu.js';
-import { loadData } from './room/decorationData.js';
+import { loadData, DEC_TEXTURES } from './room/decorationData.js';
+import { SettingsButton } from './ui/settings-button.js'
 
 
 // DRAG RESOURCE
 //https://pixijs.com/8.x/examples/events/dragging
 export let app;
 export let world;
-export let decorationMenu;
+export let decorationMenu = null;
+let settingsButton = null;
+
+// placeholder value until login and group creation/joining is implemented
+export let disableEditing = false;
+
+// object contaiting all of the colors used by UI elements.
+const colors = {
+    ORANGE: 0XF76902,
+    WHITE: 0XFBFBFB,
+    LIGHT_GREY: 0XDDDDDD,
+    MEDIUM_GREY: 0X969696,
+    DARK_GREY: 0X414141,
+    BLACK: 0X00000,
+};
 
 const init = async () => {
     // Set up decorations
@@ -20,24 +35,32 @@ const init = async () => {
     // Set up the textures
     await loadTextures();
 
-    // Create new world
-    world = new World({ rows: 6, columns: 6 });
+    // Create a new world
+    world = new World({ rows: 6, columns: 6 , background: "cuteRoom"});
     app.stage.addChild(world.container);
     world.setUpGrid(app);
 
     // Create the UI
-    decorationMenu = new DecorationMenu({
-        app: app,
-        parent: app.stage,
-        margins: 100,
-        height: 120,
-        padding: 6,
-        scrollMS: 150,
-        scrollCount: 6
-    });
+    if (!disableEditing) {
+        decorationMenu = new DecorationMenu({
+            app: app,
+            parent: app.stage,
+            margins: 100,
+            height: 120,
+            padding: 6,
+            scrollMS: 150,
+            scrollCount: 6,
+            colors: colors,
+        });
 
-    // Create Decorations
-    // createDecorations();
+        settingsButton = new SettingsButton({
+            x: 100,
+            y: 100,
+            sideLength: 100, 
+            parent: app.stage, 
+            colors: colors
+        });
+    }
     
     // Set up stage events
     EVENTS.setUpStageEvents();
@@ -47,7 +70,6 @@ const init = async () => {
     // app.ticker.add((time) => {
     //     const delta = time.deltaTime;
     //     // console.log(delta);
-    //     // grid.container.position.y += delta;
     // });
 }
 
@@ -56,7 +78,7 @@ const loadPixiCanvas = async () => {
     app = new PIXI.Application();
 
     // Intialize the application.
-    await app.init({ background: '#2943AD', resizeTo: window });
+    await app.init({ background: '#2943AD', resizeTo: window, antialias: true, });
 
     // Then adding the application's canvas to the DOM body.
     document.body.appendChild(app.canvas);
@@ -67,52 +89,31 @@ const loadPixiCanvas = async () => {
 const loadTextures = async () => {
     // load the texture
     // Reference: https://pixijs.download/release/docs/assets.Assets.html#addBundle
-    PIXI.Assets.addBundle('decorations', [
-        { alias: 'fancyTable', src: 'assets/images/fancyTable.png' },
-        { alias: 'cuteBear', src: 'assets/images/VS_Cute(Bear).png'},
-        { alias: 'cuteFish', src: 'assets/images/VS_Cute(Fish).png'},
-        { alias: 'cyberArm', src: 'assets/images/VS_Cyber(Arm).png'},
-        { alias: 'fantasyCauldron', src: 'assets/images/VS_Fantasy(Cauldron).png'},
-        { alias: 'fantasyTelescope', src: 'assets/images/VS_Fantasy(Telescope).png'},
-        { alias: 'westernRack', src: 'assets/images/VS_Western(Rack).png'},
-       ]);
-    PIXI.Assets.addBundle('cozy', [
-        { alias: 'cozyBlankets', src: 'assets/images/cozy/blankets-cozy.png' },
-        { alias: 'cozyPlant', src: 'assets/images/cozy/plant-cozy.png'},
-        { alias: 'cozyLight', src: 'assets/images/cozy/lamp-cozy-v2.png'},
-        { alias: 'cozyBookshelf', src: 'assets/images/cozy/VS_Bookshelf(Cozy).png'},
-        { alias: 'cozyChair', src: 'assets/images/cozy/VS_Chair(Cozy).png'},
-        { alias: 'cozyCouch', src: 'assets/images/cozy/VS_Couch(Cozy).png'},
-        { alias: 'cozyRug', src: 'assets/images/cozy/VS_Rug(Cozy).png'},
-        { alias: 'cozyTable', src: 'assets/images/cozy/VS_Table(Cozy).png'},
-    ]);
+    for(let theme of DEC_TEXTURES){
+        let bundle = [];
+        for(let dec of theme.data){
+            bundle.push({alias: dec.name, src: dec.src})
+        }
+        PIXI.Assets.addBundle(theme.theme, bundle);
+    }
+    // Add the room bundle
+    // Alternatively, room bundle can also be loaded in algorithmically
     PIXI.Assets.addBundle('rooms', [
-        { alias: 'westernRoom', src: 'assets/images/rooms/VS_Room(Western).png'}
+        { alias: 'westernRoom', src: 'assets/images/rooms/VS_Room(Western).png'},
+        { alias: 'cyberRoom',   src: 'assets/images/rooms/VS_Room(Cyber).png'},
+        { alias: 'cuteRoom',    src: 'assets/images/rooms/VS_Room(Cute).png'},
+        { alias: 'cozyRoom',    src: 'assets/images/rooms/VS_Room(Cozy).png'},
+        { alias: 'fantasyRoom',    src: 'assets/images/rooms/VS_Room(Fantasy).png'},
     ]);
-    await PIXI.Assets.loadBundle('decorations');
-    await PIXI.Assets.loadBundle('cozy');
+    for(let theme of DEC_TEXTURES) {
+        await PIXI.Assets.loadBundle(theme.theme);
+    }
     await PIXI.Assets.loadBundle('rooms');
-    await PIXI.Assets.load('assets/images/isoTable.png');
-    await PIXI.Assets.load('assets/images/chest.png');
-
-}
-
-const createDecorations = () => {
-    // Create Decorations
-    let halenScale = 2.5;
-    // world.createDecorations({});
-    // world.createDecorations({ count: 1, src: 'cuteFish',            scale: halenScale, offset: 12});
-    // world.createDecorations({ count: 1, src: 'cyberArm',            scale: halenScale,});
-    // world.createDecorations({ count: 1, src: 'fantasyCauldron',     scale: halenScale, offset: 12});
-    // world.createDecorations({ count: 1, src: 'fantasyTelescope',    scale: halenScale, offset: 12});
-    // world.createDecorations({ count: 1, src: 'westernRack',         scale: halenScale, offset: 12});
 }
 
 const resizeWindow = () => {
     console.log('window resized');
     app.resize();
-    console.log('Stage height:' + app.stage.height);
-    
 }
 
 init();

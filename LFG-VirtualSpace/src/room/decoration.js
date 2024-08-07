@@ -1,18 +1,30 @@
 // Wilson Xia
 import * as PIXI from 'pixi.js';
+import { disableEditing } from '../main';
 export class Decoration {
     constructor(src, size) {
         this.sprite = drawSprite(src);
-        this.attachedTiles = [];
-        this.isWall = false;
-        // Display Properties
         this.size = size; // {x:1,y:1};
         this.offset = 0;
+        this.isWall = false;
+        this.attachedGrid; // String
+        this.attachedTiles = []; // List of tile ids
+        // Display Properties
         // Attatch this info to the sprite
         this.sprite.decoration = this;
     }
 
+    save = () => {
+        // save the location this decoration is attached to
+        if(this.attachedTiles[0])
+            return this.attachedTiles[0].id;
+        else{
+            return null
+        }
+    }
+
     removeTiles = () => {
+        // removes all the attached tiles from 
         for (let tile of this.attachedTiles) {
             tile.container.visible = true;
             tile.removeDecoration();
@@ -32,8 +44,9 @@ export class Decoration {
             event.target.tint = '#fff';
         }
         this.sprite.onpointerdown = (e) => {
-            onDragStart(e);
-            // console.log(this.sprite.position.y);
+            if (!disableEditing) {
+                onDragStart(e);
+            }
         };
     }
 }

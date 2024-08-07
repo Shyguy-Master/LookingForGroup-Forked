@@ -1,5 +1,5 @@
 // Thomas Martinez
-// Scroll Box used by decoration menu
+// Scroll box used by decoration menu to display scrolling list of items
 
 import {Container, Graphics} from "pixi.js";
 import * as Events from "./scroll-box-events.js";
@@ -61,22 +61,26 @@ export class HorizontalScrollBox {
         );
     }
 
+    // delete all items in scroll box
     resetScrollMenu = () => {
         // clear all children
         this.itemsContainer.children = [];
+        this.itemsContainer.x = 0;
         this.items = [];
     }
 
+    // move a set distance (can be positive or negative)
+    // NOTE: this scroll is not animated it just changes the x position. Animation is controlled by decoration_menu.js
     scroll = (distance) => {
         this.maxDistance = this.itemsContainer.width - this.width;
 
         //console.log(`x: ${this.itemsContainer.position.x}, distance: ${distance}`);
         let projectedFinalPos = this.itemsContainer.position.x + distance;
 
-        // i do not know why i cant get this wont work the same way as in the drag event but this is still simple enough and works
         //console.log(`distance: ${distance}, projectedFinalPos: ${projectedFinalPos}, maxDistance: ${maxDistance},  ${this.itemsContainer.position.x < -maxDistance}`);
-        let startX = this.itemsContainer.position.x;
+        //let startX = this.itemsContainer.position.x;
 
+        // keep scroll position within bounds
         this.itemsContainer.position.x = Math.max(projectedFinalPos, -this.maxDistance);
         this.itemsContainer.position.x = Math.min(this.itemsContainer.position.x, 0);
 

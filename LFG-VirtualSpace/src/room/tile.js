@@ -36,19 +36,18 @@ export class Tile {
         this.text.x = this.position.x;
         this.text.y = this.position.y;
         this.setZIndex(this.id.x);
-        this.container.addChild(this.text);
+        // this.container.addChild(this.text); //--------------------------------------------------------
         // Events
         this.setUpEvents();
     }
 
     setZIndex = (zIndex) => {
          // Rendering Order
-         this.container.zIndex = zIndex;//this.position.y / this.height * 2; // For rendering, so things in the back get drawn first, then get overlapped by things in the front
-         // this.container.zIndex += this.position.x / this.width; // For rendering, so things side by side are drawn from left to right
-         this.text.text = this.container.zIndex; //this.id.x + (this.id.y * parent.size.y)
+         this.container.zIndex = zIndex;
+         this.text.text = this.container.zIndex;
     }
 
-    setUpEvents = () => { // TODO: Get rid of events, and change to a constant update for hovering
+    setUpEvents = () => {
         // Events & Interaction
         this.sprite.eventMode = 'static';
         this.sprite.onpointerover = (event) => {
