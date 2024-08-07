@@ -1,4 +1,6 @@
 // Wilson Xia
+/// Events
+/// This class is designed to manage all the events necessary for the room.
 import { app, world, decorationMenu, disableEditing } from '../main';
 
 const mouseCoords = { x: 0, y: 0 };
@@ -26,7 +28,7 @@ export const setUpStageEvents = () => {
                 dec.sprite.tint = "#ffffff";
             }
         }
-        // if editing is disabled just pan
+        // if editing is disabled, just pan
         if (disableEditing) {
             onPanStart();
         }
@@ -53,7 +55,7 @@ export const setUpStageEvents = () => {
 const onPanStart = () => {
     // If there is a selected grid
     if (world.selectedGrid) {
-        world.selectedGrid.update();
+        world.selectedGrid.update(); // necessary to update the map coordinates of a grid
     }
     if (panMode && !dragTarget) {
         startPanX = mouseCoords.x;
@@ -93,7 +95,7 @@ export const onDragStart = (event) => {
     dragTarget.parent.toLocal(event.global, null, dragTarget.position); // Set it back to screen position, not world position
     // Decide which grid to use
     if (dragTarget.decoration.isWall) {
-        // TODO: Base which wall to use on rotation
+        // TODO: Decide which wall to use based on decoration's rotation
         world.selectGrid('right');
     }
     else {

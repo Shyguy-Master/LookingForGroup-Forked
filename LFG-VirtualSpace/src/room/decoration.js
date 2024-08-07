@@ -1,13 +1,16 @@
 // Wilson Xia
 import * as PIXI from 'pixi.js';
 import { disableEditing } from '../main';
+
+/// Decoration Class
+/// Serves as a way to organize all the data of a decoration object, from its creation to its utilization.
 export class Decoration {
     constructor(src, size) {
         this.sprite = drawSprite(src);
         this.size = size; // {x:1,y:1};
-        this.offset = 0;
+        this.offset = 0; // the vertical offset for the placement of objects anchored to the center
         this.isWall = false;
-        this.attachedGrid; // String
+        this.attachedGrid; // String -> could work better as a enum
         this.attachedTiles = []; // List of tile ids
         // Display Properties
         // Attatch this info to the sprite
