@@ -12,7 +12,7 @@ import { SettingsButton } from './ui/settings-button.js'
 export let app;
 export let world;
 export let decorationMenu = null;
-let settingsButton = null;
+export let settingsButton = null;
 
 // placeholder value until login and group creation/joining is implemented
 export let disableEditing = false;

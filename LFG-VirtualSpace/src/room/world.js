@@ -29,10 +29,11 @@ export class World {
         console.log(this.gridSize)
     }
 
-    setBackground = (bg) => {
-        let sprite = PIXI.Sprite.from(bg);
+    setBackground = (texture) => {
+        let sprite = PIXI.Sprite.from(texture);
         sprite.scale.set(2.06);
         sprite.anchor.set(0.5);
+        sprite.zIndex = -1;
         this.container.addChild(sprite);
     }
 

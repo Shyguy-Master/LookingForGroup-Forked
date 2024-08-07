@@ -1,5 +1,5 @@
 // Wilson Xia
-import { app, world, decorationMenu, disableEditing } from '../main';
+import { app, world, decorationMenu, settingsButton, disableEditing } from '../main';
 
 const mouseCoords = { x: 0, y: 0 };
 let dragTarget = null;
@@ -33,7 +33,7 @@ export const setUpStageEvents = () => {
         // if editing is enabled (if decoration menu exists)
         else {
             // Check if cursor is outside the decoration menu slider
-            if (!decorationMenu.inSlider) onPanStart();
+            if (!decorationMenu.inSlider && !settingsButton.settingsMenu.container.visible) onPanStart();
         }
 
     });
@@ -80,27 +80,29 @@ const onPanMove = () => {
 
 // Drag Events
 export const onDragStart = (event) => {
-    // Store a reference to the data
-    dragTarget = event.target;
-    dragTarget.alpha = 0.5;
-    // Clean up the reference
-    if (dragTarget.decoration.attachedTiles.length > 0) {
-        // Remove it from its attached tiles
-        dragTarget.decoration.removeTiles();
-        dragTarget.decoration.attachedGrid = null;
-    }
-    bringToFront(dragTarget); // Bring it back to the front of the screen
-    dragTarget.parent.toLocal(event.global, null, dragTarget.position); // Set it back to screen position, not world position
-    // Decide which grid to use
-    if (dragTarget.decoration.isWall) {
-        // TODO: Base which wall to use on rotation
-        world.selectGrid('right');
-    }
-    else {
-        world.selectGrid('floor');
-    }
-    // Procede to Move handling
-    app.stage.on('pointermove', onDragMove);
+    //if (!settingsButton.settingsMenu.container.visible) {
+        // Store a reference to the data
+        dragTarget = event.target;
+        dragTarget.alpha = 0.5;
+        // Clean up the reference
+        if (dragTarget.decoration.attachedTiles.length > 0) {
+            // Remove it from its attached tiles
+            dragTarget.decoration.removeTiles();
+            dragTarget.decoration.attachedGrid = null;
+        }
+        bringToFront(dragTarget); // Bring it back to the front of the screen
+        dragTarget.parent.toLocal(event.global, null, dragTarget.position); // Set it back to screen position, not world position
+        // Decide which grid to use
+        if (dragTarget.decoration.isWall) {
+            // TODO: Base which wall to use on rotation
+            world.selectGrid('right');
+        }
+        else {
+            world.selectGrid('floor');
+        }
+        // Procede to Move handling
+        app.stage.on('pointermove', onDragMove);
+    //}
 }
 
 const onDragMove = (event) => {
