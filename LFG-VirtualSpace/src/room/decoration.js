@@ -8,9 +8,9 @@ export class Decoration {
     constructor(src, size) {
         this.sprite = drawSprite(src);
         this.size = size; // {x:1,y:1};
-        this.offset = 0; // the vertical offset for the placement of objects anchored to the center
-        this.isWall = false; // Allows the decoration to be placed on a wall
-        this.attachedGrid; // String -> could work better as a enum
+        this.offset = 0; // the vertical offset for the placement of objects anchored to the center of the tile
+        this.isWallDec = false; // Allows the decoration to be placed on a wall
+        this.attachedGrid; // String -> could work better as a enum, Which surface it is attached to (ex. floor, leftwall, rightwall)
         this.attachedTiles = []; // List of tile ids
         // Display Properties
         // Attatch this info to the sprite

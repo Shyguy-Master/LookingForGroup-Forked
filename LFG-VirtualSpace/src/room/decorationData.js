@@ -8,7 +8,7 @@ export const DEC_PREFABS = []; // stores the prefabs of decorations
 export const DEC_TEXTURES = []; // stores the themes
 
 // Loading Data
-const createDecData = ({ name = 'DecName', src = 'spriteURL', scale = 1, size = { x: 1, y: 1 }, anchor = 0.5, offset = 0, isWall = false, useHalen: useSpecial = false }) => {
+const createDecData = ({ name = 'DecName', src = 'spriteURL', scale = 1, size = { x: 1, y: 1 }, anchor = 0.5, offset = 0, isWallDec = false, useHalen: useSpecial = false }) => {
     // Takes in the loaded object data and sets the defaults
     if (useSpecial)
         scale = 2.5;
@@ -18,9 +18,9 @@ const createDecData = ({ name = 'DecName', src = 'spriteURL', scale = 1, size = 
         src,
         size,
         scale,
-        anchor,
-        offset,
-        isWall,
+        anchor, // the point where transformations such as rotations occur
+        offset, // the vertical offset
+        isWallDec,
     }
 }
 

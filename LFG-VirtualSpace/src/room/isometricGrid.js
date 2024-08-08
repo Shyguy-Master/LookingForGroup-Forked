@@ -6,12 +6,13 @@ export class IsometricGrid {
     // Diagonally right = x
     // Diagonally left = y
     constructor({size, origin={x:0,y:0}}) {
-        this.isWall = false;
-        this.originalOrigin = {...origin};
+        this.isWall = false; // to distinguish between wall grid and floor grid
         this.origin = origin;
         this.size = size; // x, y = row and columns
         this.tiles = [];
         this.container = new Container();
+        // Original Variables are used for updating the grid
+        this.originalOrigin = {...origin};
         this.originalWidth = 128;
         this.tileSize = {
             width: this.originalWidth,

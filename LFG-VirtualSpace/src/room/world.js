@@ -11,12 +11,14 @@ export class World {
     constructor({ rows, columns, background = 'cozyRoom' }) {
         this.container = new PIXI.Container();
         this.gridSize = { rows, columns };
+        this.background = background; // the room's background
+        // References to grids
         this.grid; // floor
-        this.background = background;
         this.leftWall;
         this.rightWall;
         this.selectedGrid;
-        this.decorations = [];
+        
+        this.decorations = []; // holds all decorations in the world 
     }
 
     saveWorld = () => {
@@ -41,7 +43,7 @@ export class World {
         // Create a room texture
         this.setBackground(this.background);
 
-        // Walls
+        // Walls (currently disabled because we have no wall assets)
         // this.rightWall = new IsometricWall({ size: { x: this.gridSize.rows, y: this.gridSize.columns }}); //  { x: this.gridSize.rows, y: this.gridSize.columns }
         // this.rightWall.createTiles(this.container);
         // this.rightWall.update();
@@ -104,16 +106,16 @@ export class World {
         console.log(`Index to Remove : ${indexToRemove}`);
         // remove sprite from reference array
         this.decorations.splice(indexToRemove, 1);
-        // remove sprite parent
+        // remove sprite from parent (the tile)
         dec.parent.removeChild(dec);
     }
 
-    createDecoration = ({ src, scale = 1, size = { x: 1, y: 1 }, anchor = 0.5, isWall = false, offset = 0 }) => {
+    createDecoration = ({ src, scale = 1, size = { x: 1, y: 1 }, anchor = 0.5, isWallDec = false, offset = 0 }) => {
         // Will be removed with the slider to pull out the decorations
         let newDec = new Decoration(src, size);
         newDec.sprite.scale.set(scale);
         newDec.sprite.anchor.set(anchor, 1);
-        newDec.isWall = isWall;
+        newDec.isWallDec = isWallDec;
         newDec.offset = offset;
         // Finish set up
         newDec.setUpEvents(onDragStart);

@@ -4,7 +4,7 @@ import * as PIXI from 'pixi.js';
 export class Tile {
     constructor({ x, y, width, i, j}) {
         this.container = new PIXI.Container();
-        this.drawMethod;
+        this.drawMethod; // floor and wall tiles draw differently
         this.position = {x, y}; // For Drawing sprites
         this.id = {x:i, y:j}; // Acts as a position in a grid
         this.width = width;
@@ -27,7 +27,7 @@ export class Tile {
         }
         this.drawMethod(this);
         this.container.addChild(this.sprite);
-        // Text
+        // Text, for debug
         this.text = new PIXI.Text({
             text: 'Test',
             align: 'center'

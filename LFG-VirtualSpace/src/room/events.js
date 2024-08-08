@@ -84,15 +84,17 @@ const onPanMove = () => {
 export const onDragStart = (event) => {
     // Store a reference to the data
     dragTarget = event.target;
-    dragTarget.alpha = 0.5;
+    dragTarget.alpha = 0.5; // small visual change
     // Clean up the reference
     if (dragTarget.decoration.attachedTiles.length > 0) {
         // Remove it from its attached tiles
         dragTarget.decoration.removeTiles();
         dragTarget.decoration.attachedGrid = null;
     }
-    bringToFront(dragTarget); // Bring it back to the front of the screen
-    dragTarget.parent.toLocal(event.global, null, dragTarget.position); // Set it back to screen position, not world position
+        // Bring it back to the front of the screen
+    bringToFront(dragTarget);
+        // Set it back to screen position, not world position
+    dragTarget.parent.toLocal(event.global, null, dragTarget.position); 
     // Decide which grid to use
     if (dragTarget.decoration.isWall) {
         // TODO: Decide which wall to use based on decoration's rotation
