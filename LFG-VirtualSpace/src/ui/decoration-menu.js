@@ -5,7 +5,7 @@ import { Container, Graphics, Assets, Sprite, Text, FillGradient, TextStyle, Tic
 import { Button } from "@pixi/ui";
 import { HorizontalScrollBox } from "./scroll-box.js";
 import { DEC_PREFABS } from "../room/decorationData.js";
-import { DecorationMenuItemPrototype } from "./decoration-menu-item-prototype.js";
+import { DecorationMenuItemPrototype } from "./decoration-menu-item.js";
 
 const arrowTexture = await Assets.load('assets/images/ui/arrow.png');
 const trashcanTexture = await Assets.load('assets/images/ui/trashcan.png');

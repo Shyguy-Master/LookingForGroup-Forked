@@ -1,4 +1,10 @@
-import { app } from '../main';
+// Thomas Martinez
+// background-settings-menu.js
+// control menu for selecting virtual studio space theme. 
+
+// TODO: Right now this only changes the background sprite. It should control the overall theme (background sprite AND available decorations)
+
+import { app } from '../main.js';
 import {Container, Graphics, Assets, Sprite} from "pixi.js";
 import { Button } from "@pixi/ui";
 import { HorizontalScrollBox } from "./scroll-box.js";

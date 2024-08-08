@@ -34,6 +34,7 @@ export class HorizontalScrollBox {
         // And add the container to the window
         this.container.addChild(this.maskContainer);
 
+        // this container holds all of the decoration menu items in a horizontal row. it is what gets moved when scrolling
         this.itemsContainer = new Container({
             height: this.height,
             width: 0,
@@ -50,6 +51,7 @@ export class HorizontalScrollBox {
         this.parent.addChild(this.container);
     }
 
+    // adds an item to scroll box
     addItem = (item) => {
         item.position.x = this.items.length * this.height;//(this.height + this.item_padding);
         this.items.push(item);
@@ -61,7 +63,7 @@ export class HorizontalScrollBox {
         );
     }
 
-    // delete all items in scroll box
+    // delete all items in scroll box and reset position
     resetScrollMenu = () => {
         // clear all children
         this.itemsContainer.children = [];
@@ -70,7 +72,7 @@ export class HorizontalScrollBox {
     }
 
     // move a set distance (can be positive or negative)
-    // NOTE: this scroll is not animated it just changes the x position. Animation is controlled by decoration_menu.js
+    // NOTE: this scroll is not animated it just changes the x position.
     scroll = (distance) => {
         this.maxDistance = this.itemsContainer.width - this.width;
 
@@ -78,8 +80,7 @@ export class HorizontalScrollBox {
         let projectedFinalPos = this.itemsContainer.position.x + distance;
 
         //console.log(`distance: ${distance}, projectedFinalPos: ${projectedFinalPos}, maxDistance: ${maxDistance},  ${this.itemsContainer.position.x < -maxDistance}`);
-        //let startX = this.itemsContainer.position.x;
-
+        
         // keep scroll position within bounds
         this.itemsContainer.position.x = Math.max(projectedFinalPos, -this.maxDistance);
         this.itemsContainer.position.x = Math.min(this.itemsContainer.position.x, 0);

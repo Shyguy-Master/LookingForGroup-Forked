@@ -1,48 +1,57 @@
-// Decoration Menu Item Prototype
-// Thomas Martinez
-// Clickable icon of decoration item displayed by decoration menu scrollbox
+// Decoration Menu Item
+// Thomas Martinez and Wilson Xia
+// Clickable icon that item that creates a decoration item displayed by decoration menu scrollbox
 
 import {Container, Graphics, Sprite} from "pixi.js";
-import { Button } from "@pixi/ui";
+import { world } from "../main";
 
-export class DecorationMenuItem {
-    constructor({textureUrl, sideLength, padding, colors}) {
-        this.texture = textureUrl;
+export class DecorationMenuItemPrototype {
+    constructor({data, sideLength, padding, colors}) {
+        // Creation Fields
+        this.data = data;
         this.colors = colors;
-
+        this.setUpContainer(sideLength, padding);
+        this.setUpEvents();
+    }
+    
+    // create container sprite
+    setUpContainer = (sideLength, padding) => {
         let squareSide = sideLength - (padding * 2);
-        let container = new Container({
+        // Sprite Code
+        let sprite = Sprite.from(this.data.src);
+        sprite.anchor.set(0.5);
+        sprite.position.set(squareSide/2);
+        if(sprite.width > squareSide){
+            sprite.scale.set(0.5);
+        }
+        // Background Code
+        this.background = new Graphics().roundRect(padding, padding, squareSide, squareSide, padding * 1.5).fill(this.colors.LIGHT_GREY).stroke({ width: 2, color: this.colors.ORANGE });
+        // Container Code
+        this.menuItem = new Container({
             width: squareSide,
             height: squareSide,
             eventMode: 'static',
             name: "item_button",
-        })
-
-        this.background = new Graphics().roundRect(padding, padding, squareSide, squareSide, padding * 1.5).fill(colors.FORE_COLOR);
-        container.addChild(this.background);
-
-        let sprite = new Sprite({
-            texture: this.texture,
-            x: padding,
-            y: padding,
-            width: squareSide,
-            height: squareSide,
         });
-        container.addChild(sprite);
+        this.menuItem.addChild(this.background);
+        this.menuItem.addChild(sprite);
+    }
 
-        container.on('click', this.onClick);
-        container.on('mouseenter', this.hover);
-        container.on('mouseleave', this.endHover);
+    // EVENTS and EVENT HANDLERS
 
-        this.menuItem = container;
+    setUpEvents = () => {
+        this.menuItem.on('click', this.onClick);
+        this.menuItem.on('mouseenter', this.hover);
+        this.menuItem.on('mouseleave', this.endHover);
     }
 
     onClick = (e) => {
-        console.log(this.texture);
+        // TODO: Check if not scrolling, and then allow for decorations to be created
+        world.createDecoration(this.data);
     }
 
     hover = () => {
-        this.background.tint = this.colors.DISABLED_COLOR;
+        this.background.tint = this.colors.MEDIUM_GREY;
     }
 
     endHover = () => {
