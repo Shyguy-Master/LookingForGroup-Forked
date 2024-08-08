@@ -30,9 +30,9 @@ export const onDragStart = (event) => {
     dragTarget = event.target;
 
     // if mouse is released within a certain threshold then a click has occured and no dragging functionality should run
-    //      - clicks on menu items are handled by decoration_menu_item.js or decoratin_menu_item_prototype.js
+    //      - clicks on menu items are handled by decoration_menu_item.js
     setTimeout(() => {
-        if (mousedown) {
+        if (mousedown) { // DRAG IS OCCURING
             // console.log("dragging: " + dragTarget.name);
             if (dragTarget.name != "items_container") {
                 dragTarget = dragTarget.parent;
@@ -45,8 +45,7 @@ export const onDragStart = (event) => {
 
             app.stage.on('pointermove', onDragMove);
         }
-        // else {
-        //     // CLICK HAS OCCURED
+        // else { // CLICK HAS OCCURED 
         //     // console.log("click");
         // }
     }, 50); 

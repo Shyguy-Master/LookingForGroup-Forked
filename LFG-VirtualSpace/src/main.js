@@ -53,6 +53,7 @@ const init = async () => {
             colors: colors,
         });
 
+        // create theme control
         settingsButton = new SettingsButton({
             x: 100,
             y: 100,
