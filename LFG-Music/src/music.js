@@ -1,17 +1,21 @@
+//Chinmay Gaikwad
+
 import * as PIXI from 'pixi.js';
 import {Howl, Howler} from 'howler';
 
 //Global Variables
 let app;
-let center;
-let elapsed;
+let center;//a variable for centering the play button; doesn't need to stay
+//let elapsed;//time elapsed in pixi
 let playSprites = [];
 let mixSprites = [];
 let sounds = ['assets/lounge.mp3', 'assets/lounge.mp3','assets/lounge.mp3'];
-let soundCount = 0;
-let sound;
+let soundCount = 0;//sound INDEX which changes which song is played in the sounds[] array
+let source; 
+// ^^^^the current 'speaker'. can play multiple instances of one sound if not careful
+//  source.play() starts a new sound, which needs its Id tracked in a variable to be paused/resumed. like so: soundId = source.play()
+//  to RESUME a paused sound, use source.play(soundId)
 let soundId;
-let isPlaying = true;
 
 const loadPixiCanvas = async () => {
     //Creating a new PIXI app
@@ -28,20 +32,20 @@ const loadPixiCanvas = async () => {
 
 
      //Setting up the test music
-     sound = new Howl({
+     source = new Howl({
         src: sounds[soundCount],
-        autoplay: true,
+        autoplay: false,
         loop: true,
-        volume: 0.4,
+        volume: 0.1,
         onend: function() {
-            console.log('Finished!');
+            console.log('PixiCanvas()=>howl loaded!');
           }
       });
     
-    //Autoplaying the sound when the screen loads
-    sound.once('load', function() {
-       soundId = sound.play();
-    })
+    //Autoplaying the sound when the screen loads; had trouble working it into project
+    /*source.once('load', function() {
+       soundId = source.play();
+    })*/
 
     //Setting up the sprites
     await loadSprites();
@@ -96,12 +100,6 @@ const loadPixiCanvas = async () => {
 
     forwardSprite.on('pointerdown', onClickForward);
     backwardSprite.on('pointerdown', onClickBackward);
-
-    //Adding an app ticker
-    app.ticker.add((ticker) => {
-        
-        elapsed += ticker.deltaTime;
-    });
 }
 
 const loadSprites = async () => {
@@ -120,29 +118,34 @@ const onClickPlay = (event) =>
         s.visible = !s.visible;
     }
 
-    //Checking if isPlaying is true
-    if(isPlaying) 
+    //Checking if the sound is playing
+    if(source.playing(soundId)) 
         {
-            //If it is, pausing the sound and setting isPlaying to false
-            sound.pause(soundId);
-            isPlaying = false;
+            //If it is, pause the sound
+            source.pause(soundId);
         }
-        else 
+        else //if(!source.playing(soundId) || soundId==undefined)
         {
-            //If it isn't, seeking the position of the sound where it was paused and then playing it from there, while setting isPlaying to true
-            sound.seek(sound.position, soundId);
-            sound.play(soundId);
-            isPlaying = true;
+            if(soundId == undefined){//play a NEW INSTANCE if there isn't a paused one...
+                soundId = source.play();
+            }else{
+                source.play(soundId);//...or resume the last instance if ti was paused. 
+            }
         }
 }
 
 const onClickForward = (event) => 
 {
-    sound.stop();
+    source.stop();
+    if(playSprites[1].visible==true){
+        for(let s of playSprites) {
+            s.visible = !s.visible;
+        }
+    }
     soundCount++;
 
     mixSprites[1].visible = true;
-    mixSprites[1].eventMode = 'static';
+    mixSprites[1].eventMode = 'static';//changes which forward/back buttons are visible, if on first/last song
 
     if(soundCount >= 2) 
     {
@@ -150,26 +153,32 @@ const onClickForward = (event) =>
         mixSprites[0].eventMode = 'none';
     }
 
-    sound = new Howl({
+    //change which sound is played from the source
+    source = new Howl({ 
         src: sounds[soundCount],
-        autoplay: true,
+        autoplay: false,
         loop: true,
-        volume: 0.4,
+        volume: 0.1,
         onend: function() {
-            console.log('Finished!');
+            console.log('onClickForward!');
           }
       });
-
-    //Autoplaying the sound when the screen loads
-    sound.once('load', function() {
-        soundId = sound.play();
+      soundId = undefined;
+    //Autoplays the sound when the screen loads
+    /*source.once('load', function() {
+        soundId = source.play();
     })
-    isPlaying = true;
+    isPlaying = true;*/
 }
 
 const onClickBackward = (event) => 
 {
-    sound.stop();
+    source.stop();
+    if(playSprites[1].visible==true){
+        for(let s of playSprites) {
+            s.visible = !s.visible;
+        }
+    }
     soundCount--;
 
     mixSprites[0].visible = true;
@@ -182,21 +191,22 @@ const onClickBackward = (event) =>
         mixSprites[1].eventMode = 'none';
     }
 
-    sound = new Howl({
+    source = new Howl({
         src: sounds[soundCount],
-        autoplay: true,
+        autoplay: false,
         loop: true,
-        volume: 0.4,
+        volume: 0.1,
         onend: function() {
-            console.log('Finished!');
+            console.log('onClickbackward!');
           }
       });
+      soundId = undefined;
 
     //Autoplaying the sound when the screen loads
-    sound.once('load', function() {
-        soundId = sound.play();
+    /*source.once('load', function() {
+        soundId = source.play();
     })
-    isPlaying = true;
+    isPlaying = true;*/
 }
 
 //Calling our loadPixiCanvas method
