@@ -9,7 +9,7 @@ export class Decoration {
         this.sprite = drawSprite(src);
         this.size = size; // {x:1,y:1};
         this.offset = 0; // the vertical offset for the placement of objects anchored to the center
-        this.isWall = false;
+        this.isWall = false; // Allows the decoration to be placed on a wall
         this.attachedGrid; // String -> could work better as a enum
         this.attachedTiles = []; // List of tile ids
         // Display Properties
@@ -27,10 +27,11 @@ export class Decoration {
     }
 
     removeTiles = () => {
-        // removes all the attached tiles from 
+        // removes all the attached tiles from this decoration
         for (let tile of this.attachedTiles) {
+            // removes the reference of this decoration for each tile
             tile.container.visible = true;
-            tile.removeDecoration();
+            tile.removeDecoration(); 
         }
         this.attachedTiles = [];
     }
@@ -44,7 +45,7 @@ export class Decoration {
         }
         this.sprite.onpointerout = (event) => {
             // Hover exit
-            event.target.tint = '#fff';
+            event.target.tint = '#fff'; // reset the tint
         }
         this.sprite.onpointerdown = (e) => {
             if (!disableEditing) {

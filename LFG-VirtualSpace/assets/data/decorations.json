@@ -23,7 +23,7 @@
                 {
                     "name": "Cozy Chair",
                     "src": "assets/images/cozy/VS_Chair(Cozy).png",
-                    "useHalen": true,
+                    "useSpecial": true,
                     "offset": 12
                 },
                 {
@@ -45,7 +45,7 @@
                 {
                     "name": "Cozy Plant",
                     "src": "assets/images/cozy/VS_Plant(Cozy).png",
-                    "useHalen": true,
+                    "useSpecial": true,
                     "offset": 12
                 },
                 {
@@ -71,12 +71,12 @@
                 {
                     "name": "Cyber Arm",
                     "src": "assets/images/cyber/VS_Arm(Cyber).png",
-                    "useHalen": true
+                    "useSpecial": true
                 },
                 {
                     "name": "Cyber Chair",
                     "src": "assets/images/cyber/VS_Chair(Cyber).png",
-                    "useHalen": true
+                    "useSpecial": true
                 },
                 {
                     "name": "Cyber Couch",
@@ -91,7 +91,7 @@
                 {
                     "name": "Cyber Lamp",
                     "src": "assets/images/cyber/VS_Lamp(Cyber-updated).png",
-                    "useHalen": true,
+                    "useSpecial": true,
                     "offset": 12
                 },
                 {
@@ -106,18 +106,18 @@
                 {
                     "name": "Cyber SideTable",
                     "src": "assets/images/cyber/VS_SideTable(Cyber).png",
-                    "useHalen": true
+                    "useSpecial": true
                 },
                 {
                     "name": "Cyber Table",
                     "src": "assets/images/cyber/VS_Table(Cyber-new).png",
-                    "useHalen": true,
+                    "useSpecial": true,
                     "offset": 12
                 },
                 {
                     "name": "Old Cyber Table",
                     "src": "assets/images/cyber/VS_Table(Cyber).png",
-                    "useHalen": true,
+                    "useSpecial": true,
                     "offset": 12
                 }
             ]
@@ -128,7 +128,7 @@
                 {
                     "name": "Cute Bear",
                     "src": "assets/images/cute/VS_Bear(Cute).png",
-                    "useHalen": true
+                    "useSpecial": true
                 },
                 {
                     "name": "Cute Bookshelf",
@@ -144,7 +144,7 @@
                 {
                     "name": "Cute Chair",
                     "src": "assets/images/cute/VS_Chair(Cute).png",
-                    "useHalen": true
+                    "useSpecial": true
                 },
                 {
                     "name": "Cute Couch",
@@ -159,12 +159,12 @@
                 {
                     "name": "Cute Fish",
                     "src": "assets/images/cute/VS_Fish(Cute).png",
-                    "useHalen": true
+                    "useSpecial": true
                 },
                 {
                     "name": "Cute Lamp",
                     "src": "assets/images/cute/VS_Lamp(Cute).png",
-                    "useHalen": true
+                    "useSpecial": true
                 },
                 {
                     "name": "Cute Rug",
@@ -178,7 +178,7 @@
                 {
                     "name": "Cute Table",
                     "src": "assets/images/cute/VS_Table(Cute).png",
-                    "useHalen": true
+                    "useSpecial": true
                 }
             ]
         },
@@ -199,13 +199,13 @@
                 {
                     "name": "Fantasy Cauldron",
                     "src": "assets/images/fantasy/VS_Cauldron(Fantasy).png",
-                    "useHalen": true,
+                    "useSpecial": true,
                     "offset": 12
                 },
                 {
                     "name": "Fantasy Chair",
                     "src": "assets/images/fantasy/VS_Chair(Fantasy).png",
-                    "useHalen": true,
+                    "useSpecial": true,
                     "offset": 12
                 },
                 {
@@ -221,7 +221,7 @@
                 {
                     "name": "Fantasy Lamp",
                     "src": "assets/images/fantasy/VS_Lamp(Fantasy).png",
-                    "useHalen": true,
+                    "useSpecial": true,
                     "offset": 12
                 },
                 {
@@ -236,12 +236,12 @@
                 {
                     "name": "Fantasy Table",
                     "src": "assets/images/fantasy/VS_Table(Fantasy).png",
-                    "useHalen": true
+                    "useSpecial": true
                 },
                 {
                     "name": "Fantasy Telescope",
                     "src": "assets/images/fantasy/VS_Telescope(Fantasy).png",
-                    "useHalen": true,
+                    "useSpecial": true,
                     "offset": 12
                 }
             ]
@@ -252,7 +252,7 @@
                 {
                     "name": "Western Chair",
                     "src": "assets/images/western/VS_Chair(Western-new).png",
-                    "useHalen": true,
+                    "useSpecial": true,
                     "offset": 12
                 },
                 {
@@ -268,7 +268,7 @@
                 {
                     "name": "Western Lamp",
                     "src": "assets/images/western/VS_Lamp(Western-new).png",
-                    "useHalen": true,
+                    "useSpecial": true,
                     "offset": 12
                 },
                 {
@@ -283,7 +283,7 @@
                 {
                     "name": "Western Table",
                     "src": "assets/images/western/VS_Table(Western-new).png",
-                    "useHalen": true
+                    "useSpecial": true
                 }
             ]
         }
