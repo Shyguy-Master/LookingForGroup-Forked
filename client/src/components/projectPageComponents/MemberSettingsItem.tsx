@@ -15,7 +15,7 @@ import menu from "../../icons/menu.png"
 //Takes in a user's name, their project role, and an id number for the dropdown menu as props
 //  The user name is used as the rendered name, role contains a string showing what their role is,
 //  and the id number is used to ensure correct functionality when opening/closing menus
-export const MemberListing = (props) => {
+export const MemberSettingsItem = (props) => {
   
   //Opens/closes the relevant 'more options' dropdown menu
   //i - the number id for the relevant menu. Allows the function to correctly open specific menus

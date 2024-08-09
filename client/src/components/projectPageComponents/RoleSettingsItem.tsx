@@ -1,7 +1,7 @@
 
 //Will return name, positions, & 3 buttons on a single line
 //Will also return description accessable via a dropdown menu (accessed via 1 of the buttons)
-export const RoleListing = (props) => {
+export const RoleSettingsItem = (props) => {
   //editMode - tells when this listing is currently being edited
   let editMode = false;
   //descHidden - tells whether or not the description is visible or not

@@ -1,4 +1,4 @@
-import { MemberListing } from "./MemberListing";
+import { MemberSettingsItem } from "./MemberSettingsItem";
 import { SearchBar } from "../SearchBar";
 import { projects, profiles } from "../../constants/fakeData";
 import { useState } from 'react';
@@ -6,7 +6,7 @@ import { useState } from 'react';
 //This component is used in the project member view of the Project page
 //Contains the layout of the 'Member' tab in the project settings menu
 //There is a button that should allow for inviting users to become project members assuming they are an admin or similar
-//When rendered, displays a list of project members that are rendered with several 'MemberListing' components
+//When rendered, displays a list of project members that are rendered with several 'MemberSettingsItem' components
 //Uses a 'SearchBar' component to assist with sorting through project members
 //Currently, the SearchBar does not function correctly due to how it and the current data is structured
 //    It currently searches through the project's member data rather than profile data, and no data on user's names are present there
@@ -53,7 +53,7 @@ export const MemberSettings = (props) => {
             i++;
             return(
               <div key={key++}>
-              <MemberListing name={member.name} role={props.tempSettings.projectMembers[i].role} num={i} idNum={member.id} updateMemberSettings={props.updateMemberSettings}/>
+              <MemberSettingsItem name={member.name} role={props.tempSettings.projectMembers[i].role} num={i} idNum={member.id} updateMemberSettings={props.updateMemberSettings}/>
               <hr/>
               </div>
             )

@@ -9,7 +9,7 @@ import { ProjectPost } from "../projectPageComponents/ProjectPost";
 import { ProjectMember } from "../projectPageComponents/ProjectMember";
 import { GeneralSettings } from "../projectPageComponents/GeneralSettings";
 import { MemberSettings } from "../projectPageComponents/MemberSettings";
-import { RoleListing } from "../projectPageComponents/RoleListing";
+import { RoleSettingsItem } from "../projectPageComponents/RoleSettingsItem";
 import { PagePopup, openClosePopup } from "../PagePopup";
 import { projects, posts, profiles } from "../../constants/fakeData";
 import { Tags } from "../Tags";
@@ -206,7 +206,7 @@ const ProjectMemberPopup = (props) => {
 // Could also move some comments into html of component
 
 // projectData is passed in through props, containing data on the project
-const ProjectInfo = (props) => {
+const ProjectHeader = (props) => {
   let key = 0; //key is not required for functionality, but react will give an error without it when using the .map function later
   return (
     <div id='project-info'>
@@ -272,7 +272,7 @@ const ProjectInfo = (props) => {
 // Utilizes the 'PagePopup' component for project settings, and 'GeneralSettings' as the first rendered tab within it
 // projectData and a callback for resetProjectData are passed in through props
 // projectData is a reference to the current project's info
-const ProjectInfoMember = (props) => {
+const ProjectHeaderMember = (props) => {
   const navigate = useNavigate(); // Hook for navigation
 
   let key = 0; //key is not required for functionality, but react will give an error without it when using the .map function later
@@ -599,7 +599,7 @@ const ProjectInfoMember = (props) => {
               {
                 currentlyNeededRoles.map(currentRole => {
                   return(
-                    <RoleListing role={currentRole} num={key2} key={key2++} 
+                    <RoleSettingsItem role={currentRole} num={key2} key={key2++} 
                     updateRoleSettings={updateRoleSettings} removeRole={removeRole} undoRemoveRole={undoRemoveRole}/>
                   )
                 })
@@ -624,7 +624,7 @@ const ProjectInfoMember = (props) => {
 
 // Main content of the Project page, which is exported from this file
 // When loading page, should check to see if the current user is part of the loaded project to determine which header to load
-// Utilizes the 'ProjectInfo' and 'ProjectInfoMember' components for headers, 'ProjectMember' component for listing project members,
+// Utilizes the 'ProjectHeader' and 'ProjectHeaderMember' components for headers, 'ProjectMember' component for listing project members,
 //    and 'ProjectPost' component for displaying posts the project has made
 
 // No data is passed in through props
@@ -701,7 +701,7 @@ const Project = (props) => {
       <button id='return-button' className='white-button' onClick={() => window.history.back()}>&lt; return</button>
       </div>
 
-      <ProjectInfoMember callback={resetProjectData} callback2={() => openClosePopup(showPopup, setShowPopup, [showPopup])} projectData={projectData}/>
+      <ProjectHeaderMember callback={resetProjectData} callback2={() => openClosePopup(showPopup, setShowPopup, [showPopup])} projectData={projectData}/>
 
       <div id='member-divider'>
         <hr/>
