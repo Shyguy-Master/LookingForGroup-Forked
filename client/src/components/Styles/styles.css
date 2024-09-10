@@ -784,6 +784,8 @@ Tag Filter style rules
 #tag-filter-list {
     display:flex;
     flex-wrap:wrap;
+    height: 200px;
+    overflow-y:auto;
 }
 
 .tag-filter {

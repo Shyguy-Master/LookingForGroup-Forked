@@ -9,7 +9,7 @@ import { softSkills, hardSkills, proficiencies } from "../constants/skills";
 
 //Things to fix:
 //Search bar re-rendering not working correctly *
-//Search queries longer than 2 characters not working
+//Search queries longer than 2 characters not working - need to figure out correct data structure
 //selected tag list wiped upon using filter *
 //Implement tag coloring *
 //New repeating tags when using profile filter
@@ -32,27 +32,25 @@ export const TagFilter = ({projectFilter, setUseState}) => {
     //fill array using 'tags'
     tagsList = tags;
   } else { //if people...
-    //fill array using 'softSkills', 'hardSkills', & 'proficiencies'
+    //fill array using 'interests', 'softSkills', 'hardSkills', & 'proficiencies'
     tagsList = interests.concat(softSkills).concat(hardSkills).concat(proficiencies);
-    /* for (let item of softSkills) {
-      tagsList.push(item);
-    }
-    for (let item of hardSkills) {
-      tagsList.push(item);
-    }
-    for (let item of proficiencies) {
-      tagsList.push(item);
-    } */
   }
   //create useState using this array; this will be used for 'tag searching' and modify display accordingly
   let [displayedTags, setDisplayedTags] = useState(tagsList);
+
+  //create a custom dataset for the searchbar component to use
+  let tagListData = tagsList.map(tag => {
+    return({tag: tag});
+  });
 
   //tag search function
   //Runs whenever the input in the searchbar changes
   //takes in searchResults, which is the data filtered by the search function
   const tagSearch = (searchResults) => {
     //Get the 'correct' data out of the weird structuring of searchResults
-    let realSearchResults = searchResults[0]
+    let realSearchResults = searchResults[0].map(item => {
+      return(item.tag);
+    });
     //set displayedTags state
     setDisplayedTags(realSearchResults);
     //run through all selected tags & update their displays if present
@@ -60,7 +58,6 @@ export const TagFilter = ({projectFilter, setUseState}) => {
     setTimeout(() => {
       //First, find all 'selected' elements and change them to unselected displays
       let selectedTagElements = Array.from(document.getElementsByClassName('tag-filter-selected'));
-      console.log(selectedTagElements);
       for (let element of selectedTagElements) {
         element.classList.toggle('tag-filter-selected');
       }
@@ -70,7 +67,6 @@ export const TagFilter = ({projectFilter, setUseState}) => {
         if (selectedTags.includes(result)) {
           //Update their displays to match
           let tagElement = document.getElementById(`tag-id-${result}`);
-          console.log(tagElement);
           tagElement ? tagElement.classList.toggle('tag-filter-selected') : console.log('error updating display');
         }
       }
@@ -112,7 +108,7 @@ export const TagFilter = ({projectFilter, setUseState}) => {
   return (
     <>
       {/*Include searchbar component (check what searchbar needs to run correctly)*/}
-      <SearchBar dataSets={[{data: tagsList}]} onSearch={tagSearch}/>
+      <SearchBar dataSets={[{data: tagListData}]} onSearch={tagSearch}/>
 
       <div id='tag-filter-list'>
         {
