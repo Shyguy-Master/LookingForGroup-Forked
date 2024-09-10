@@ -13,6 +13,7 @@ import { sortItems } from "../../functions/itemSort";
 import { useState } from 'react';
 import CreditsFooter from '../CreditsFooter';
 import ToTopButton from "../ToTopButton";
+import ProjectCarousel from "../ProjectCarousel";
 
 //the main discover page- see a list of people and projects
 const Home = (props) => {
@@ -79,6 +80,11 @@ const Home = (props) => {
                 <DiscoverButton isActive={selectedTab === 'People'} onClick={() => handleButtonClick('People')}>People</DiscoverButton>
                 <SearchBar dataSets={[{ data: projects }, { data: profiles }]} onSearch={HandleSearch}></SearchBar>
             </div>
+
+            {/* This is a carousel that contains a few random projects or profiles (currently just displays all of them) */}
+            {/* Should be seen upon opening the page */}
+            {/* Eventually, will only appear if the user has not searched or filtered anything */}
+            <ProjectCarousel selectedTab={selectedTab} projects={projects} profiles={profiles}></ProjectCarousel>
 
             {/* Prints all projects in the fake dataset on screen */}
             {discoverContent}
