@@ -35,6 +35,11 @@ const Home = (props) => {
 
     //--------------------------
 
+    // Tracks whether or not anything has been searched yet 
+    let [hasSearched, setHasSearched] = useState(false);
+
+    //--------------------------
+
     // This displays all of the projects (on project cards) from the static fakeData.ts dataset
     // Eventually the discover page should display a select number of cards instead of all
     let projectContent = <>{
@@ -65,6 +70,8 @@ const Home = (props) => {
     // Sets the content of the page depending on which tab is selected
     let discoverContent = selectedTab === 'Projects' ? projectContent : profileContent;
 
+    let displayedContent = hasSearched ? discoverContent : <ProjectCarousel selectedTab={selectedTab} projects={projects} profiles={profiles}></ProjectCarousel>;
+
     // Function to change highlighted tab
     const handleButtonClick = (selectedButton) => {
         setSelectedTab(selectedButton);
@@ -78,20 +85,24 @@ const Home = (props) => {
             <div id="discover-button-wrapper">
                 <DiscoverButton isActive={selectedTab === 'Projects'} onClick={() => handleButtonClick('Projects')}>Projects</DiscoverButton>
                 <DiscoverButton isActive={selectedTab === 'People'} onClick={() => handleButtonClick('People')}>People</DiscoverButton>
-                <SearchBar dataSets={[{ data: projects }, { data: profiles }]} onSearch={HandleSearch}></SearchBar>
+                <SearchBar dataSets={[{ data: projects }, { data: profiles }]} onSearch={HandleSearch} setSearched={setHasSearched}></SearchBar>
             </div>
 
             {/* This is a carousel that contains a few random projects or profiles (currently just displays all of them) */}
             {/* Should be seen upon opening the page */}
             {/* Eventually, will only appear if the user has not searched or filtered anything */}
-            <ProjectCarousel selectedTab={selectedTab} projects={projects} profiles={profiles}></ProjectCarousel>
-
+            {/* ---OR--- */}
             {/* Prints all projects in the fake dataset on screen */}
-            {discoverContent}
+            {displayedContent}
+            
 
             {/* Footer of the page made exclusively to navigate to a project credits page. */}
             {/* This link should probably be moved to settings in the future but its in this footer for ease of access for now */}
             <CreditsFooter />
+
+            {/* Ignore these: */}
+            {/* <CreditsFooter isRelative={hasSearched == true} /> */}
+            {/* <CreditsFooter isRelative={hasSearched === true} style={hasSearched ? {position: `relative`} : {}}></CreditsFooter> */}
 
             {/* Scroll To Top button */}
             <ToTopButton />

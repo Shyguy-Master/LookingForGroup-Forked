@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { ProjectCard } from "./ProjectCard";
 import { projects } from "../constants/fakeData";
 
-export const SearchBar = ({ dataSets, onSearch }) => {
+export const SearchBar = ({ dataSets, onSearch, setSearched }) => {
 
     let result;
     let placeholderText = "Search ";
@@ -42,6 +42,8 @@ export const SearchBar = ({ dataSets, onSearch }) => {
             )
           );
           onSearch(filteredResults);
+
+          setSearched(true);
         };
 
 return (

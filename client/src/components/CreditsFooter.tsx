@@ -26,6 +26,8 @@ const CreditsFooter = () => {
         window.addEventListener('resize', () => setWidth(window.innerWidth));
     })
 
+    // console.log(isRelative);
+
     // Mobile layout 
     if (width < breakpoint) {
         // ---CODE GOES HERE--- 
@@ -33,8 +35,8 @@ const CreditsFooter = () => {
 
     // Desktop layout 
     return (
-        <div>
-            <div className="FooterContainer">
+        <div className='footer-container-container'>
+            <div className="footer-container">
                 <button className={isCredits === true ? 'shown' : ''} onClick={() => toggleCredits(true, paths.routes.CREDITS)}>
                     Credits
                 </button>
