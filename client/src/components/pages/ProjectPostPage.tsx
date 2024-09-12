@@ -145,6 +145,17 @@ const ProjectPostPage = (props) => {
           <button id='post-options' className='icon-button'><img src = {menu}></img></button>
 
           <div id='post-content'>
+            <span id="span-img"><img src={postData.postImage.data} alt={postData.postImage.name} width="50" height="50"></img></span>
+            <span id="span-img"><img src={postData.postImage.data} alt={postData.postImage.name} width="50" height="50"></img></span>
+            <span id="span-img"><img src={postData.postImage.data} alt={postData.postImage.name} width="50" height="50"></img></span>
+            <span id="span-img"><img src={postData.postImage.data} alt={postData.postImage.name} width="50" height="50"></img></span>
+            {/* <span id="span-img">
+              <span id="image" style={{backgroundImage: `url(${postData.postImage.data})`}} className={postData.postImage.name}></span>
+              <span id="image" style={{backgroundImage: `url(${postData.postImage.data})`}} className={postData.postImage.name}></span>
+              <span id="image" style={{backgroundImage: `url(${postData.postImage.data})`}} className={postData.postImage.name}></span>
+              <span id="image" style={{backgroundImage: `url(${postData.postImage.data})`}} className={postData.postImage.name}></span>
+            </span> */}
+            <br />
             {postData.postText}
           </div>
 

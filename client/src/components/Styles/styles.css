@@ -3051,3 +3051,53 @@ Carousel style rules
     align-items: center;
     transition: 1s cubic-bezier(0.39, 0.575, 0.565, 1);
 }
+
+/*
+/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+------------------------------------------------------------------------------------------------
+Project post image style rules 
+------------------------------------------------------------------------------------------------
+\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\//\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
+*/
+#post-content #span-img {
+    /* width: 60%; */
+    max-width: 300px;
+    margin: 2em auto;
+    padding: 1em;
+    text-align: center;
+    overflow: hidden;
+}
+
+#post-content #span-img img {
+    margin: 0 0 1em;
+    max-width: 100%;
+    height: auto;
+    box-shadow: 0 0 0px rgba(0, 0, 0, 0.5);
+    transition: transform .2s, box-shadow .2s;
+
+    display: inline-block;
+}
+
+#post-content #span-img img:hover {
+    transform: scale(2.5);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+/* #post-content #span-img {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+}
+
+#post-content #span-img #image:hover {
+    background-size: cover;
+    background-position: center;
+    width: 50px;
+    height: 50px;
+    transition: width 0.2s;
+    transition: height 0.2s;
+}
+
+#post-content #span-img #image:hover {
+    width: 125px;
+    height: 125px;
+} */

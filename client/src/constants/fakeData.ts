@@ -1,5 +1,6 @@
 import { hardSkills, proficiencies, softSkills } from "./skills";
 import { interests } from "./interests";
+import profilePicture from "../images/blue_frog.png";
 
 // No comments - GL!
 
@@ -546,8 +547,8 @@ export const posts = [
         title: "A cool post",
         postText: "welcome to the coolest project of all time",
         postImage: {
-            name: "image1",
-            data: "",
+            name: `Blue Frog`,
+            data: `${profilePicture}`,
             mimeType: "",
         },
         comments: [0, 3], // unique
