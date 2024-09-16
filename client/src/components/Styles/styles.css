@@ -3032,9 +3032,12 @@ Carousel style rules
 ------------------------------------------------------------------------------------------------
 \/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\//\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
 */
+.carousel-section {
+    margin-bottom: 21em;
+}
+
 .carousel-container {
     background-color: white;
-    margin-bottom: 21em;
 
     display: flex;
     flex-wrap: nowrap;
@@ -3050,6 +3053,17 @@ Carousel style rules
     justify-content: center;
     align-items: center;
     transition: 1s cubic-bezier(0.39, 0.575, 0.565, 1);
+}
+
+.carousel-pages button {
+    background-color: transparent;
+    border: none;
+    color: #777777;
+    transition: color 1s;
+}
+
+.carousel-pages button#current {
+    color: black;
 }
 
 /*
