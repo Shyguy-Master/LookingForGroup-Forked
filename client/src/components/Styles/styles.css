@@ -3033,7 +3033,8 @@ Carousel style rules
 \/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\//\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
 */
 .carousel-section {
-    margin-bottom: 21em;
+    background-color: transparent;
+    margin-bottom: 20em;
 }
 
 .carousel-container {
@@ -3064,6 +3065,57 @@ Carousel style rules
 
 .carousel-pages button#current {
     color: black;
+}
+
+.carousel-top-row {
+    position: absolute;
+
+    background-color: transparent;
+    width: 100%;
+    height: 40%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+}
+
+.carousel-button {
+    background-color: transparent;
+    height: 100%;
+    padding: 0px 25px;
+    z-index: 1;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.carousel-button#left {
+    background-image: linear-gradient(to left, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));
+    height: 100%;
+}
+
+.carousel-button#right {
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 1));
+}
+
+.carousel-button button {
+    background-color: transparent;
+    border: none;
+    height: 100%;
+    padding: 20px;
+    font-size: 50px;
+
+    transition: background-color .2s;
+}
+
+.carousel-button button:hover {
+    background-color: #cccccc70;
+}
+
+.carousel-button button:active {
+    background-color: #aaaaaa70;
 }
 
 /*

@@ -31,9 +31,55 @@ const ProjectCarousel = ({selectedTab, projects, profiles}) => {
         return () => clearInterval(interval);
     });
 
+    const advancePage = () => {
+        if (selectedTab === 'Projects') {
+            if (currentIndex === projects.length - 1) {
+                setCurrentIndex(0);
+            }
+            else {
+                setCurrentIndex(currentIndex + 1);
+            }
+        }
+        else {
+            if (currentIndex === profiles.length - 1) {
+                setCurrentIndex(0);
+            }
+            else {
+                setCurrentIndex(currentIndex + 1);
+            }
+        }
+    };
+
+    const retreatPage = () => {
+        if (selectedTab === 'Projects') {
+            if (currentIndex === 0) {
+                setCurrentIndex(projects.length - 1);
+            }
+            else {
+                setCurrentIndex(currentIndex - 1);
+            }
+        }
+        else {
+            if (currentIndex === 0) {
+                setCurrentIndex(profiles.length - 1);
+            }
+            else {
+                setCurrentIndex(currentIndex - 1);
+            }
+        }
+    };
+
     if (selectedTab === 'Projects') {
         return (
             <div className='carousel-section'>
+                <div className='carousel-top-row'>
+                    <div className='carousel-button' id='left'>
+                        <button className='carousel-left-button' onClick={() => retreatPage()}>〈</button>
+                    </div>
+                    <div className='carousel-button' id='right'>
+                        <button className='carousel-right-button' onClick={() => advancePage()}>〉</button>
+                    </div>
+                </div>
                 <div className='carousel-container'>
                     {
                         projects.map((project) => {
@@ -62,6 +108,14 @@ const ProjectCarousel = ({selectedTab, projects, profiles}) => {
     else {
         return (
             <div className='carousel-section'>
+                <div className='carousel-top-row'>
+                    <div className='carousel-button' id='left'>
+                        <button className='carousel-left-button' onClick={() => retreatPage()}>〈</button>
+                    </div>
+                    <div className='carousel-button' id='right'>
+                        <button className='carousel-right-button' onClick={() => advancePage()}>〉</button>
+                    </div>
+                </div>
                 <div className='carousel-container'>
                     {
                         profiles.map((profile) => {
