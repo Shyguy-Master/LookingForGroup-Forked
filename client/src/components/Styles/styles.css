@@ -3039,6 +3039,7 @@ Carousel style rules
 
 .carousel-container {
     background-color: white;
+    padding: 1em 0em;
 
     display: flex;
     flex-wrap: nowrap;
@@ -3053,7 +3054,12 @@ Carousel style rules
     display: flex;
     justify-content: center;
     align-items: center;
+
     transition: 1s cubic-bezier(0.39, 0.575, 0.565, 1);
+}
+
+.carousel-pages {
+    z-index: 0;
 }
 
 .carousel-pages button {
@@ -3117,6 +3123,121 @@ Carousel style rules
 .carousel-button button:active {
     background-color: #aaaaaa70;
 }
+
+/*
+----------------------------------------------------- 
+Carousel Cards 
+----------------------------------------------------- 
+*/
+.carousel-card, #endorsement, #profile-project-card {
+    width: 70%;
+    max-width: 765px;
+    height: 233px;
+    max-height: 265px;
+    border: 2px solid black;
+    box-shadow: 10px 10px 5px lightblue;
+    display: grid;
+    grid-template-columns: 30% 70%;
+    text-align: left;
+    padding: 3%;
+    margin: 2.5% auto;
+    z-index: 1;
+
+    transition: 1s, height .3s, z-index .3s;
+    opacity: 0;
+    animation: fadeIn 1s forwards;
+}
+
+.carousel-card:hover {
+    height: 300px;
+    z-index: 3;
+}
+
+/*the animation that plays when the card is loaded*/
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+#carousel-card-body {
+    margin-left: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    grid-template-rows: 10% 50% 30% 10%;
+    font-size: 0.8rem;
+}
+
+/*make them grow and shrink with the window */
+#carousel-card-body>* {
+    flex: 1;
+}
+
+@media only screen and (max-width: 800px) {
+    .carousel-card {
+        width: 90%;
+        max-width: 90%;
+    }
+}
+
+/*profile picture rules-----------------------------------------------------*/
+#carousel-card-profile-picture {
+    width: 100%;
+    border: 2px solid black;
+    border-radius: 100%;
+}
+
+/*text rules---------------------------------------------------------------*/
+#carousel-card-name {
+    text-align: center;
+    margin-bottom: 0;
+}
+
+#carousel-card-name:hover {
+    text-decoration: underline;
+}
+
+#carousel-card-description {
+    margin-top: 0;
+    width: 450px;
+    max-width: 450px;
+    height: 30px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    transition: height .3s, overflow .3s, text-overflow .3s;
+}
+
+.carousel-card:hover #carousel-card-description {
+    height: auto;
+    white-space: normal;
+    overflow: visible;
+    text-overflow: none;
+}
+
+#carousel-card-tag-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 4px;
+    max-width: 450px;
+}
+
+#carousel-card-pronouns {
+    margin-top: 0%;
+    text-align: center;
+}
+
 
 /*
 /\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\

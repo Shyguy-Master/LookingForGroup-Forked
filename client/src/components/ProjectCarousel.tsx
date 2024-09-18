@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import * as paths from "../constants/routes";
 import { useSelector } from 'react-redux';
 
-import { ProjectCard } from "./ProjectCard";
+import { ProjectCard } from "./CarouselCard";
 import { ProfileCard } from './ProfileCard';
 
 const ProjectCarousel = ({selectedTab, projects, profiles}) => {
@@ -26,7 +26,9 @@ const ProjectCarousel = ({selectedTab, projects, profiles}) => {
 
     useEffect(() => {
         const interval = setInterval(() => {
-            carouselInfiniteScroll();
+            if (!checkForHover()) {
+                carouselInfiniteScroll();
+            }
         }, 5000);
         return () => clearInterval(interval);
     });
@@ -66,6 +68,25 @@ const ProjectCarousel = ({selectedTab, projects, profiles}) => {
             else {
                 setCurrentIndex(currentIndex - 1);
             }
+        }
+    };
+
+    const checkForHover = () => {
+        if (selectedTab === 'Projects') {
+            let projectContainer = document.querySelector(".carousel-container");
+            if (projectContainer != null && projectContainer != undefined) {
+                let projectCards = projectContainer.querySelectorAll(".carousel-item");
+                for (let i = 0; i < projectCards.length; i++) {
+                    if (projectCards[i].matches(":hover")) {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+        else {
+            // ---CODE GOES HERE--- 
+            return false;
         }
     };
 
