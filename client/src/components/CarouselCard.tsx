@@ -23,9 +23,11 @@ export const ProjectCard = ({project}) => {
                 </h2>
                 
                 {/* Character limit is currently 200; there's no specific reason why 200 */}
-                <p id="carousel-card-description">
-                    {project.description}
-                </p>
+                <div id="carousel-card-description">
+                    <p>
+                        {project.description}
+                    </p>
+                </div>
                 
                 <div id="carousel-card-tag-wrapper">
                     <Tags>{project.tags[0]}</Tags>

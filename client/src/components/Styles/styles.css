@@ -3150,6 +3150,7 @@ Carousel Cards
 
 .carousel-card:hover {
     height: 300px;
+    max-height: 270px;
     z-index: 3;
 }
 
@@ -3211,18 +3212,55 @@ Carousel Cards
     width: 450px;
     max-width: 450px;
     height: 30px;
+
+    transition: height .3s;
+}
+
+#carousel-card-description p {
+    height: 20px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 
-    transition: height .3s, overflow .3s, text-overflow .3s;
+    transition: height .3s;
+    animation-name: recollapse;
+    animation-duration: .3s;
+    animation-fill-mode: forwards;
 }
 
 .carousel-card:hover #carousel-card-description {
-    height: auto;
+    height: 100px;
+}
+
+.carousel-card:hover #carousel-card-description p {
+    height: 100px;
+    max-height: 75px;
     white-space: normal;
-    overflow: visible;
-    text-overflow: none;
+
+    transition: height .5s;
+    animation-name: uncollapse;
+    animation-duration: .3s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes uncollapse {
+    0% {
+        white-space: normal;
+    }
+
+    100% {
+        white-space: normal;
+    }
+}
+
+@keyframes recollapse {
+    0% {
+        white-space: normal;
+    }
+
+    100% {
+        white-space: nowrap;
+    }
 }
 
 #carousel-card-tag-wrapper {
