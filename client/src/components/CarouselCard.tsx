@@ -13,7 +13,6 @@ export const ProjectCard = ({project}) => {
     // Updates the url to point toward the project being clicked
     const navigate = useNavigate();
     let pathQuery = `?projID=${project._id}`;
-    let projDesc = project.description;
     return (
         <div className="carousel-card">
             <img id="carousel-card-profile-picture" src={profilePicture} alt={project.name}/>
@@ -25,8 +24,7 @@ export const ProjectCard = ({project}) => {
                 
                 {/* Character limit is currently 200; there's no specific reason why 200 */}
                 <p id="carousel-card-description">
-                    {/* {projDesc.length > 200 ? projDesc.substring(0, 200).concat("...") : projDesc} */}
-                    {projDesc}
+                    {project.description}
                 </p>
                 
                 <div id="carousel-card-tag-wrapper">
@@ -44,3 +42,33 @@ export const ProjectCard = ({project}) => {
     );
 }
 
+// This is used by the Discover Page to display Profile information in a carousel 
+export const ProfileCard = ({profile}) => {
+    const navigate = useNavigate();
+    const pathQuery = `?profID=${profile._id}`;
+    return (
+        <div className="carousel-card">
+            <img id="carousel-card-profile-picture" src={profilePicture} alt={profile.name}/>
+            <div id="carousel-card-body">
+                <span>
+                    {/* When the title is clicked it navigates to the profile page */}
+                    <h2 id="carousel-card-name" onClick={() => navigate(paths.routes.PROFILE + pathQuery)}>{profile.name}</h2>
+                    {/* The pronouns are pulled from an array in fakeData.ts, and are mapped/joined together with / */}
+                    <p id="carousel-card-pronouns">{profile.pronouns.map(p => `${p}`).join("/")}</p>
+                </span>
+
+                <p id="carousel-card-description">
+                    {profile.bio}
+                </p>
+
+                <div id="carousel-card-tag-wrapper">
+                    <Tags>{profile.skills[0].skill}</Tags>
+                    <Tags>{profile.skills[1].skill}</Tags>
+                    <Tags>{profile.skills[2].skill}</Tags>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+// export default {ProjectCard, ProfileCard };

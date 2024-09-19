@@ -3,21 +3,20 @@ import { useNavigate } from 'react-router-dom';
 import * as paths from "../constants/routes";
 import { useSelector } from 'react-redux';
 
-import { ProjectCard } from "./CarouselCard";
-import { ProfileCard } from './ProfileCard';
+import { ProjectCard, ProfileCard } from "./CarouselCard";
 
 const ProjectCarousel = ({selectedTab, projects, profiles}) => {
     const [currentIndex, setCurrentIndex] = useState(0);
 
     const carouselInfiniteScroll = () => {
         if (selectedTab === 'Projects') {
-            if (currentIndex === projects.length - 1) {
+            if (currentIndex >= projects.length - 1) {
                 return setCurrentIndex(0);
             }
             return setCurrentIndex(currentIndex + 1);
         }
         else {
-            if (currentIndex === profiles.length - 1) {
+            if (currentIndex >= profiles.length - 1) {
                 return setCurrentIndex(0);
             }
             return setCurrentIndex(currentIndex + 1);
@@ -35,7 +34,7 @@ const ProjectCarousel = ({selectedTab, projects, profiles}) => {
 
     const advancePage = () => {
         if (selectedTab === 'Projects') {
-            if (currentIndex === projects.length - 1) {
+            if (currentIndex >= projects.length - 1) {
                 setCurrentIndex(0);
             }
             else {
@@ -43,7 +42,7 @@ const ProjectCarousel = ({selectedTab, projects, profiles}) => {
             }
         }
         else {
-            if (currentIndex === profiles.length - 1) {
+            if (currentIndex >= profiles.length - 1) {
                 setCurrentIndex(0);
             }
             else {
@@ -54,7 +53,7 @@ const ProjectCarousel = ({selectedTab, projects, profiles}) => {
 
     const retreatPage = () => {
         if (selectedTab === 'Projects') {
-            if (currentIndex === 0) {
+            if (currentIndex <= 0) {
                 setCurrentIndex(projects.length - 1);
             }
             else {
@@ -62,7 +61,7 @@ const ProjectCarousel = ({selectedTab, projects, profiles}) => {
             }
         }
         else {
-            if (currentIndex === 0) {
+            if (currentIndex <= 0) {
                 setCurrentIndex(profiles.length - 1);
             }
             else {
@@ -85,7 +84,15 @@ const ProjectCarousel = ({selectedTab, projects, profiles}) => {
             return false;
         }
         else {
-            // ---CODE GOES HERE--- 
+            let profileContainer = document.querySelector(".carousel-container");
+            if (profileContainer != null && profileContainer != undefined) {
+                let profileCards = profileContainer.querySelectorAll(".carousel-item");
+                for (let i = 0; i < profileCards.length; i++) {
+                    if (profileCards[i].matches(":hover")) {
+                        return true;
+                    }
+                }
+            }
             return false;
         }
     };
