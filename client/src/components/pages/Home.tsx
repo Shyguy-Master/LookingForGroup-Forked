@@ -70,7 +70,8 @@ const Home = (props) => {
     // Sets the content of the page depending on which tab is selected
     let discoverContent = selectedTab === 'Projects' ? projectContent : profileContent;
 
-    let displayedContent = hasSearched ? discoverContent : <ProjectCarousel selectedTab={selectedTab} projects={projects} profiles={profiles}></ProjectCarousel>;
+    let displayedContent = hasSearched ? <div className="display-stuff">{discoverContent}</div>
+        : <ProjectCarousel selectedTab={selectedTab} projects={projects} profiles={profiles}></ProjectCarousel>;
 
     // Function to change highlighted tab
     const handleButtonClick = (selectedButton) => {
@@ -78,7 +79,7 @@ const Home = (props) => {
     }
 
     return (
-        <div className="page">
+        <div className="page" id="home">
             <h1 className="page-title">Discover</h1>
 
             {/* Discover Buttons change the content of the page based on which one is highlighted */}
@@ -88,17 +89,19 @@ const Home = (props) => {
                 <SearchBar dataSets={[{ data: projects }, { data: profiles }]} onSearch={HandleSearch} setSearched={setHasSearched}></SearchBar>
             </div>
 
-            {/* This is a carousel that contains a few random projects or profiles (currently just displays all of them) */}
-            {/* Should be seen upon opening the page */}
-            {/* Eventually, will only appear if the user has not searched or filtered anything */}
-            {/* ---OR--- */}
-            {/* Prints all projects in the fake dataset on screen */}
-            {displayedContent}
-            
+            <div className="scrollable-stuff">
+                {/* This is a carousel that contains a few random projects or profiles (currently just displays all of them) */}
+                {/* Should be seen upon opening the page */}
+                {/* Eventually, will only appear if the user has not searched or filtered anything */}
+                {/* ---OR--- */}
+                {/* Prints all projects in the fake dataset on screen */}
+                {displayedContent}
+                
 
-            {/* Footer of the page made exclusively to navigate to a project credits page. */}
-            {/* This link should probably be moved to settings in the future but its in this footer for ease of access for now */}
-            <CreditsFooter />
+                {/* Footer of the page made exclusively to navigate to a project credits page. */}
+                {/* This link should probably be moved to settings in the future but its in this footer for ease of access for now */}
+                <CreditsFooter />
+            </div>
 
             {/* Ignore these: */}
             {/* <CreditsFooter isRelative={hasSearched == true} /> */}
