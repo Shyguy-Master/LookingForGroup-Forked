@@ -116,9 +116,14 @@ Card component style rules
     animation: fadeIn 1s forwards;
 }
 
+.discover-card {
+    height: 233px;
+    transition: height .3s;
+}
+
 /*makes them bigger when hovered over */
 /*TODO: endorsements dont get bigger for some reason*/
-.discover-card:hover #endorsement:hover,
+#endorsement:hover,
 #profile-project-card:hover {
     transform: scale(1.05);
 }
@@ -224,10 +229,68 @@ Card component style rules
     text-decoration: underline;
 }
 
+.discover-card:hover {
+    height: 300px;
+    max-height: 270px;
+    z-index: 3;
+}
+
 #discover-card-description {
     margin-top: 0;
+    width: 450px;
     max-width: 450px;
+    height: 30px;
+
+    transition: height .3s;
+    /* Mark */
 }
+
+#discover-card-description p {
+    height: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    transition: height .3s;
+    animation-name: recollapse;
+    animation-duration: .3s;
+    animation-fill-mode: forwards;
+}
+
+.discover-card:hover #discover-card-description {
+    height: 100px;
+}
+
+.discover-card:hover #discover-card-description p {
+    height: 100px;
+    max-height: 75px;
+    white-space: normal;
+
+    transition: height .5s;
+    animation-name: uncollapse;
+    animation-duration: .3s;
+    animation-fill-mode: forwards;
+}
+
+/* @keyframes uncollapse {
+    0% {
+        white-space: normal;
+    }
+
+    100% {
+        white-space: normal;
+    }
+}
+
+@keyframes recollapse {
+    0% {
+        white-space: normal;
+    }
+
+    100% {
+        white-space: nowrap;
+    }
+} */
 
 #discover-card-tag-wrapper {
     display: flex;

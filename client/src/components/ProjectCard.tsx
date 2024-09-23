@@ -44,7 +44,12 @@ export const ProjectCard = ({project}) => {
             <div id="discover-card-body">
                 {/* When the title is clicked it navigates to the project page */}
                 <h2 id="discover-card-name" onClick={() => navigate(paths.routes.PROJECT + pathQuery)}>{project.name}</h2>
-                <p id="discover-card-description">{project.description}</p>
+                {/* <p id="discover-card-description">{project.description}</p> */}
+                <div id="discover-card-description">
+                    <p>
+                        {project.description}
+                    </p>
+                </div>
                 <div id="discover-card-tag-wrapper">
                     <Tags>{project.tags[0]}</Tags>
                     <Tags>{project.tags[1]}</Tags>
