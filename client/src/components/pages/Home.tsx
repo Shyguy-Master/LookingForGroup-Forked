@@ -418,7 +418,7 @@ const Home = (props) => {
     }
 
     return (
-        <div className="page" onScroll={addContent}>
+        <div className="page" id="home" onScroll={addContent}>
             <h1 className="page-title">Discover</h1>
 
             {/* Discover Buttons change the content of the page based on which one is highlighted */}
@@ -428,20 +428,22 @@ const Home = (props) => {
                 <SearchBar dataSets={[{ data: projects }, { data: profiles }]} onSearch={HandleSearch}></SearchBar>
             </div>
 
-            {/* Prints all projects in the fake dataset on screen */}
-            {/* 
-            Add padding to discover-panel-box later
-            Breakpoints occur every 200 pixels
-            Formula for padding will be: (windowWidth - (sidebarWidth + currentBreakpointFlexboxWidth)) / 2
-            How to implement breakpoints, thought?
-            */}
-            <div id='discover-panel-box'>
-            {discoverContent}
-            </div>
+            <div className="scrollable-stuff">
+                {/* Prints all projects in the fake dataset on screen */}
+                {/* 
+                Add padding to discover-panel-box later
+                Breakpoints occur every 200 pixels
+                Formula for padding will be: (windowWidth - (sidebarWidth + currentBreakpointFlexboxWidth)) / 2
+                How to implement breakpoints, thought?
+                */}
+                <div id='discover-panel-box'>
+                {discoverContent}
+                </div>
 
-            {/* Footer of the page made exclusively to navigate to a project credits page. */}
-            {/* This link should probably be moved to settings in the future but its in this footer for ease of access for now */}
-            <CreditsFooter />
+                {/* Footer of the page made exclusively to navigate to a project credits page. */}
+                {/* This link should probably be moved to settings in the future but its in this footer for ease of access for now */}
+                <CreditsFooter />
+            </div>
 
             {/* Scroll To Top button */}
             <ToTopButton />

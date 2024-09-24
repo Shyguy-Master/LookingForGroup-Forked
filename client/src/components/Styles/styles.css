@@ -3006,15 +3006,47 @@ Credits link footer style rules
 \/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\//\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\
 */
 
-.FooterContainer {
-    height: 100px;
+.page#home {
+    display: flex;
+    flex-direction: column;
+}
+
+.scrollable-stuff {
+    flex-grow: 1;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#discover-panel-box {
+    height: max-content;
+}
+
+.footer-container-container {
+    position: relative;
+    min-height: 50px;
+    height: auto;
+    max-height: 80rem;
+}
+
+.footer-container {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    height: 50px;
     z-index: 2;
     background-color: var(--primary-blue);
 }
 
-.FooterContainer button {
-    border: 0px;
+.footer-container button {
     background: 0px;
+    border: 0px;
+    color: black;
+}
+
+.footer-container button:hover {
+    color: white;
 }
 
 /*
