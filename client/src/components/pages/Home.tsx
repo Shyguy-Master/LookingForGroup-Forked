@@ -378,10 +378,10 @@ const Home = (props) => {
             : null */
         
         //For each project in project display list... (use map)
-                displayedProjects.map((project) => (
-                    //Create a Project Panel component
-                    <ProjectPanel width={project.width + project.adjust}></ProjectPanel>
-                ))
+        displayedProjects.map((project) => (
+            //Create a Project Panel component
+            <ProjectPanel width={project.width + project.adjust} data={project.project}></ProjectPanel>
+        ))
     }</>;
 
     // This displays all of the profiles (on profile cards) from the static fakeData.ts dataset
@@ -437,7 +437,7 @@ const Home = (props) => {
                 How to implement breakpoints, thought?
                 */}
                 <div id='discover-panel-box'>
-                {discoverContent}
+                    {discoverContent}
                 </div>
 
                 {/* Footer of the page made exclusively to navigate to a project credits page. */}
