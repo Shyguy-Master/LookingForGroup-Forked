@@ -251,9 +251,11 @@ Project Panel component style rules
 \/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/
 */
 .project-panel {
+    position: relative;
+    border: 2px solid grey;
+    background-color: white;
     /* height: 200px; */
     height: max-content;
-    border: 2px solid grey;
 
     transition: height .3s;
 }
@@ -267,7 +269,12 @@ Project Panel component style rules
 Expanding Project Panels 
 ------------------- 
 */
+.project-panel-panel {
+    height: 200px;
+}
+
 .project-panel:hover {
+    position: relative;
     height: max-content;
 }
 

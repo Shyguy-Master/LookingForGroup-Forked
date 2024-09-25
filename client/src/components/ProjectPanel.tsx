@@ -5,19 +5,21 @@ import profilePicture from "../images/blue_frog.png";
 //Currently, this component serves as a placeholder
 
 //Takes in a 'project' value which contains info on the project it will display
-export const ProjectPanel = ({width, data}) => {
+export const ProjectPanel = ({width, data, row}) => {
   return (
-    <div className={'project-panel'} style={{width: width}}>
-      <img src={profilePicture} alt={"project iamge"}/>
+    <div className="project-panel-panel">
+      <div className={'project-panel'} style={{width: width, zIndex: row}}>
+        <img src={profilePicture} alt={"project iamge"}/>
 
-      <h2 id="project-panel-name">{data.name}</h2>
+        <h2 id="project-panel-name">{data.name}</h2>
 
-      <div id="project-panel-desc">{data.description}</div>
+        <div id="project-panel-desc">{data.description}</div>
 
-      <div id="project-panel-tags-wrapper">
-        <span id="project-panel-tag">{data.tags[0]}</span>
-        <span id="project-panel-tag">{data.tags[1]}</span>
-        <span id="project-panel-tag">{data.tags[2]}</span>
+        <div id="project-panel-tags-wrapper">
+          <span id="project-panel-tag">{data.tags[0]}</span>
+          <span id="project-panel-tag">{data.tags[1]}</span>
+          <span id="project-panel-tag">{data.tags[2]}</span>
+        </div>
       </div>
     </div>
   )

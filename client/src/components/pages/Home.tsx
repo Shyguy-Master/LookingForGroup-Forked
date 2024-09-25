@@ -380,7 +380,7 @@ const Home = (props) => {
         //For each project in project display list... (use map)
         displayedProjects.map((project) => (
             //Create a Project Panel component
-            <ProjectPanel width={project.width + project.adjust} data={project.project}></ProjectPanel>
+            <ProjectPanel width={project.width + project.adjust} data={project.project} row={displayedProjects.length - displayedProjects.indexOf(project)}></ProjectPanel>
         ))
     }</>;
 
